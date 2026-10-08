@@ -8,7 +8,7 @@
 \renewcommand{\theHsubsection}{appendix.\arabic{subsection}}
 \setcounter{subsection}{0}
 
-\subsection{操作系统与编译工具版本}
+\subsection{实验环境与工具版本}
 \label{app:environment}
 表\ref{tab:environment}记录本实验实际使用的主机、交叉编译与报告工具版本；AscendNPU 专用工具的探测信息保存在 \path{artifacts/mlir/}。
 \begin{table}[H]
@@ -31,35 +31,34 @@
 \end{table}
 版本记录和已安装软件包清单见 \path{artifacts/environment/versions.txt}。表中版本来自该环境记录及原报告，不代表其他机器上的安装状态。
 
-\subsection{RISC-V 目标架构与执行环境}
+\subsection{目标架构与实验复现}
 \label{app:riscv-environment}
-选择 RISC-V 是因为 Ubuntu 提供配套交叉编译器、glibc 和 QEMU 用户态发行包，可以保持 ISA、目标文件和浮点 ABI 一致，无需构建大型编译器源码。实验目标为 RV64GC 与 LP64D，并生成 Linux ELF64 RISC-V 程序。LP64D 中整数与指针宽度不同：本实验 SysY 的 \texttt{int} 为 32 位，地址为 64 位，浮点参数使用硬浮点约定\cite{riscvabi}。
+实验目标为 RV64GC、LP64D 与 Linux ELF64 RISC-V。SysY 的 \texttt{int} 为 32 位，指针为 64 位，浮点参数按 LP64D 硬浮点调用约定传递\cite{riscvabi}。SysY 源程序由 Clang 14 交叉编译，手写 LLVM IR 统一使用 \texttt{llvm-as-14}、\texttt{opt-14} 和 \texttt{llc-14} 验证并生成目标文件，以保持 typed-pointer IR 与 LLVM 14 工具版本兼容；手写汇编由 \texttt{riscv64-linux-gnu-gcc} 汇编，三种实现均链接相同运行库。
 
-SysY 源程序由 Clang 14 交叉编译为 RISC-V Linux 目标，并以 RV64GC 指定指令集、LP64D 指定 ABI；完整构建命令见第三章。LLVM IR 使用 \texttt{llvm-as-14}、\texttt{opt-14} 与 \texttt{llc-14} 验证并生成目标文件，手写汇编由 \texttt{riscv64-linux-gnu-gcc} 汇编。统一选用带 \texttt{-14} 后缀的 LLVM 工具，是为了让 typed-pointer IR 与工具主版本相匹配，避免不同版本间的 IR 语法兼容差异。
+生成的静态 RISC-V ELF 程序由 \texttt{qemu-riscv64} 用户态模拟器执行，用于核验指令、Linux ABI 及输入输出行为，不据此推断真实硬件性能\cite{qemu}。具体依赖、构建和测试命令见仓库 README。
 
-生成的静态 RISC-V ELF 程序由 \texttt{qemu-riscv64} 用户态模拟器执行。该测试用于验证 RISC-V 指令及 Linux ABI 下的功能和输入输出行为；它不能代表真实硬件性能，报告也不从静态文件大小或指令数量推断执行时间\cite{qemu}。
+\paragraph{实验源码与复现资料}
+实验源码与可公开的复现资料保存在公开 GitHub 仓库：\url{https://github.com/Andy3325/compiler-principles-prelab-2026}。
+固定实验快照的 Commit SHA 为
+\href{https://github.com/Andy3325/compiler-principles-prelab-2026/tree/4fc49b44539a5a89a535faee35f6f467d6ecb20d}{\nolinkurl{4fc49b44539a5a89a535faee35f6f467d6ecb20d}}。
+仓库包含 GCC/Clang 工具链实验、两个 SysY 示例及其手写 LLVM IR 和 RISC-V 汇编、AscendNPU IR 主机侧 lowering 实验、测试与构建脚本、报告 LaTeX 源码，以及精选结果和分析记录；README 提供目录索引、环境依赖和复现步骤。第三方源码保留原许可与来源，课程原件、校徽、二进制和重复日志不随仓库分发，完整生成产物可按 README 重建。
 
-\Needspace{12\baselineskip}
-\subsection{实验源码、构建脚本及结果文件}
-\label{app:project-map}
-表\ref{tab:project-map}列出主要源文件、复现入口及结果证据的位置。路径均相对于工程根目录；正文保留了关键构建命令和 IR/汇编摘录，附录仅提供定位索引。
+\Needspace{18\baselineskip}
+\subsection{课程要求与实验成果对应关系}
+\label{app:course-results}
+表\ref{tab:results-summary}给出课程要求、实验成果及正文分析位置的对应关系。
 \begin{table}[H]
 \centering\small
-\caption{实验源码与复现证据索引}
-\label{tab:project-map}
-\begin{tabularx}{\textwidth}{L{4.4cm}Y}
-\toprule\rowcolor{tableHead}内容 & 工程路径与用途 \\
+\caption{课程要求、完成结果与对应分析}
+\label{tab:results-summary}
+\begin{tabularx}{\textwidth}{L{3.2cm}L{2.7cm}L{2.2cm}Y}
+\toprule\rowcolor{tableHead}课程要求 & 完成情况 & 对应章节 & 实验结果与证据 \\
 \midrule
-工具链实验程序 & \path{src/toolchain/}：C 源程序、头文件及跨文件链接示例。 \\
-SysY 示例 & \path{src/sysy/}：两个 SysY 源程序；\path{src/llvm/} 与 \path{src/riscv/} 分别保存手写 LLVM IR 和 RISC-V 汇编。 \\
-SysY 运行时 & \path{runtime/}：运行库源码、头文件及语言/运行时说明。 \\
-MLIR / AscendNPU IR & \path{src/mlir/}：官方 VecAdd 示例、工具源码快照索引及来源说明；\path{artifacts/mlir/}：逐层 lowering 的 IR、差异、日志和核验记录。 \\
-测试与 oracle & \path{tests/}：输入用例、预期结果及独立 oracle；\path{artifacts/toolchain/test_results.json}、\path{artifacts/sysy/}：工具链和 SysY 测试结果。 \\
-构建与验证脚本 & \path{scripts/run_all.ps1} 为 Windows 总入口；\path{scripts/run_all.sh} 为 WSL/Linux 入口；\path{scripts/build_report.ps1} 单独构建报告。具体依赖与命令见工程根目录 \path{README.md}。 \\
-汇总记录 & \path{artifacts/combined_validation.json} 汇总各项验证；\path{artifacts/environment/versions.txt} 记录工具版本；\path{artifacts/report_review/} 保存 PDF 页面渲染及版面检查结果。 \\
+基本要求一：完整编译过程 & 完成 & 第\ref{sec:toolchain}节 & 预处理、汇编文本、目标文件和链接结果；六种构建，60/60 次测试通过 \\
+基本要求二：三种等价实现 & 完成 & 第\ref{sec:sysy}节 & 两个 SysY 示例，静态链接运行库；480/480 次 QEMU 执行通过 \\
+进阶要求：中端 lowering & 完成主机侧中端分析 & 第\ref{sec:advanced}节 & 六次处理完成，18/18 项解析与结构检查通过 \\
+进阶要求：设备端执行 & 未完成 & 第\ref{sec:advanced}节\ref{subsec:template-backend} & 缺少 hivmc/CANN 与昇腾设备，未生成设备目标文件 \\
 \bottomrule
 \end{tabularx}
 \end{table}
-进阶实验逐阶段 lowering 输出、差异文件、主机侧结果和设备后端诊断统一保存在 \path{artifacts/mlir/}；设备端 kernel 未生成这一限制及其证据已在第四章说明。
-
 \endgroup

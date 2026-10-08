@@ -1,0 +1,13 @@
+{
+  "seed": 24115602412565,
+  "logical_cases": 160,
+  "executions": 480,
+  "passed": 480,
+  "failed": 0,
+  "integer_cases": 100,
+  "float_cases": 60,
+  "float_exact_numeric_matches": 180,
+  "float_tolerance": "abs(actual-expected) <= 1e-6 + 2e-6*abs(expected)",
+  "runtime_stderr": "upstream destructor prints TOTAL: 0H-0M-0S-0us; not performance data",
+  "failures": []
+}

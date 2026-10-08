@@ -1,0 +1,203 @@
+{
+  "commit": "428ab8fdab46a879c7349caba4cde705bc8c9bb6",
+  "files": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/LICENSE",
+      "sha256": "c6bc7016be95ed3585ebf1f57aa6f76bb1307f6c0eefa218dab5fcac991bdecc",
+      "bytes": 9185
+    },
+    {
+      "path": "NOTICE",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/NOTICE",
+      "sha256": "21b19e92b67d90bf112fbadb3f2fa95cc5ae4b29276cc4282a05c31ea792f76c",
+      "bytes": 40247
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/README.md",
+      "sha256": "9522da9bc3064e9eeca9036e712fa105d3cc637eb980faaa3acdd02fa3f5adee",
+      "bytes": 4239
+    },
+    {
+      "path": ".gitmodules",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/.gitmodules",
+      "sha256": "5a18f0f5f82f5ed88f8e0471d0baadc3346586316b468dcad94fdb7f6fa34b1c",
+      "bytes": 234
+    },
+    {
+      "path": "CMakeLists.txt",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/CMakeLists.txt",
+      "sha256": "2ae6c945fb542437842e844195651789ae4ea6d045f765626d521edb3b2e35e8",
+      "bytes": 10997
+    },
+    {
+      "path": "build-tools/build.sh",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/build-tools/build.sh",
+      "sha256": "bf537ae9445f1df192f0b94bb8d7e79f0a457e8d55e9631b057b0745e57b82d1",
+      "bytes": 25903
+    },
+    {
+      "path": "bishengir/python/wheel/pyproject.toml",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/python/wheel/pyproject.toml",
+      "sha256": "207aa0088a54a061c5abc0d6498b03cb6610ecfe8eb2e774bac031fbf149073f",
+      "bytes": 2076
+    },
+    {
+      "path": "bishengir/test/Integration/HIVM/VecAdd/add.mlir",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/test/Integration/HIVM/VecAdd/add.mlir",
+      "sha256": "bf6be387f569d6178346e4beabf9dcc156ea8cdc862a8e5c5f5ce8e9119b1750",
+      "bytes": 1040
+    },
+    {
+      "path": "bishengir/test/Integration/HIVM/VecAdd/main.cpp",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/test/Integration/HIVM/VecAdd/main.cpp",
+      "sha256": "2bce38b636439960d4b6be7493d1eb41cff7982de16c22f3aa3e82af32f9b4b5",
+      "bytes": 7702
+    },
+    {
+      "path": "bishengir/test/Integration/HIVM/VecAdd/README.md",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/test/Integration/HIVM/VecAdd/README.md",
+      "sha256": "df5b6b2ae780ffce6263fe57c037192dc405fdd4103666cb772dfd657a7c5ee6",
+      "bytes": 1778
+    },
+    {
+      "path": "bishengir/test/Integration/HIVM/VecAdd/README_zh.md",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/test/Integration/HIVM/VecAdd/README_zh.md",
+      "sha256": "c2e13ff41eade11093a919ffc30f94beff3beedab408dc355d5126b6ea2bb742",
+      "bytes": 1753
+    },
+    {
+      "path": "bishengir/test/Integration/HIVM/VecAdd/CMakeLists.txt",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/test/Integration/HIVM/VecAdd/CMakeLists.txt",
+      "sha256": "9a9150f8b25434c397b54d380790db4f8a47d9a03ee6f6b320398f50ce3c3d60",
+      "bytes": 447
+    },
+    {
+      "path": "bishengir/lib/Dialect/HIVM/Pipelines/HIVMPipelines.cpp",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/lib/Dialect/HIVM/Pipelines/HIVMPipelines.cpp",
+      "sha256": "996cbabac87e1e5e86cff456fd4ab04054e36405f49a499394dbac40bc53c5ea",
+      "bytes": 19193
+    },
+    {
+      "path": "bishengir/lib/Dialect/HIVM/Pipelines/ConvertToHIVMPipeline.cpp",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/lib/Dialect/HIVM/Pipelines/ConvertToHIVMPipeline.cpp",
+      "sha256": "06f485d704f1627d2249a8f79df9df75f9fb340781ac1d55490e55a9dfa18e93",
+      "bytes": 2435
+    },
+    {
+      "path": "bishengir/lib/Tools/bishengir-compile/PassPipeline.cpp",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/lib/Tools/bishengir-compile/PassPipeline.cpp",
+      "sha256": "038065df09f529ffc82b25343b5fe4a8278a3c26d880c76e2f9e8104c8d3f88c",
+      "bytes": 9503
+    },
+    {
+      "path": "bishengir/lib/Conversion/HIVMToStandard/HIVMToStandard.cpp",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/lib/Conversion/HIVMToStandard/HIVMToStandard.cpp",
+      "sha256": "bd63d766c8b03404d6771a2fe4f3800909d43b8c84664ce5626375750cfdfcd5",
+      "bytes": 76711
+    },
+    {
+      "path": "bishengir/include/bishengir/Dialect/HIVM/Transforms/Passes.td",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/include/bishengir/Dialect/HIVM/Transforms/Passes.td",
+      "sha256": "d11c35505e0b54423059803633d5f0dfb3bcbd41df97e1e754d6eabb6c6caca1",
+      "bytes": 36570
+    },
+    {
+      "path": "bishengir/include/bishengir/Dialect/HIVM/IR/HIVMDMAOps.td",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/include/bishengir/Dialect/HIVM/IR/HIVMDMAOps.td",
+      "sha256": "5b9e75e32095d5cd1d66e77ab2187d662b42f17684f384f98a4b60ba7b6bed8a",
+      "bytes": 21688
+    },
+    {
+      "path": "bishengir/include/bishengir/Dialect/HIVM/IR/HIVMVectorOps.td",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/include/bishengir/Dialect/HIVM/IR/HIVMVectorOps.td",
+      "sha256": "f35712dd71b6646e883d59ebae6cf28058fbbb1b69b5a03e315ea20634d49703",
+      "bytes": 76458
+    },
+    {
+      "path": "bishengir/include/bishengir/Dialect/HIVM/IR/HIVMSynchronizationOps.td",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/include/bishengir/Dialect/HIVM/IR/HIVMSynchronizationOps.td",
+      "sha256": "30659cca8edea08b5072ee15a8b8537acc8f1a730130010cfd1eb84aa83d41bf",
+      "bytes": 10268
+    },
+    {
+      "path": "bishengir/include/bishengir/Tools/bishengir-compile/Options.td",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/include/bishengir/Tools/bishengir-compile/Options.td",
+      "sha256": "685df012f1a6a852864931228d883039d1169969473b40a3ebe28fc06ce0ac0f",
+      "bytes": 17924
+    },
+    {
+      "path": "docs/source/zh_cn/introduction/quick_start/examples.md",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/docs/source/zh_cn/introduction/quick_start/examples.md",
+      "sha256": "6fee7f54e45ce1198da4a8edffb86536afbae3a73bda3d9b96963811a0ebe9ab",
+      "bytes": 8584
+    },
+    {
+      "path": "docs/source/zh_cn/introduction/quick_start/installing_guide.md",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/docs/source/zh_cn/introduction/quick_start/installing_guide.md",
+      "sha256": "9f11667f11614a4aa0c1c3fcff96c2c3af2cdfa15a9c27e2e45ef72fef0c2460",
+      "bytes": 9137
+    },
+    {
+      "path": "docs/source/zh_cn/introduction/architecture.md",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/docs/source/zh_cn/introduction/architecture.md",
+      "sha256": "4d3bc29bcdf374e4c68e7bfa0e1cd2b461e1de3457a38fb56dbb34e7e667b0ae",
+      "bytes": 6150
+    },
+    {
+      "path": "docs/source/zh_cn/faq/faq.md",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/docs/source/zh_cn/faq/faq.md",
+      "sha256": "f2b4b9ad76715d56032a4171f4f7a77ae0755ad31b49dcef22f67dd37847d5e3",
+      "bytes": 13039
+    },
+    {
+      "path": "docs/source/en/developer_guide/conversion/interface_api.md",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/docs/source/en/developer_guide/conversion/interface_api.md",
+      "sha256": "495e045a43465f97a8580b47401b1dd569d808f44f15deafeaece3e9d46517b0",
+      "bytes": 4158
+    },
+    {
+      "path": "bishengir/lib/Tools/bishengir-compile/BiShengIRCompileConfig.cpp",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/lib/Tools/bishengir-compile/BiShengIRCompileConfig.cpp",
+      "sha256": "69c06b23912de63c6d77328676118602ec3e66200664f604d1848f858715623d",
+      "bytes": 8283
+    },
+    {
+      "path": "bishengir/lib/Tools/bishengir-compile/BiShengIRCompileMain.cpp",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/lib/Tools/bishengir-compile/BiShengIRCompileMain.cpp",
+      "sha256": "633aa502c59739b4627ec88092c3aa0a01c478179811b0313c2ccabb8d57f7b4",
+      "bytes": 12093
+    },
+    {
+      "path": "bishengir/test/bishengir-compile/hivm/compile-bisheng-hir-mix-lir.mlir",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/test/bishengir-compile/hivm/compile-bisheng-hir-mix-lir.mlir",
+      "sha256": "42ebe2dbfe7fed4ef79226ced7d9d6f5ea5a020b318def09f7df9c371bb0e6eb",
+      "bytes": 1762
+    },
+    {
+      "path": "bishengir/test/bishengir-compile/hivm/compile-bisheng-hir-mix.mlir",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/test/bishengir-compile/hivm/compile-bisheng-hir-mix.mlir",
+      "sha256": "360216f3196bae554a4f0a67d32a42f5df79f5295ef03fb4929fd3c774b17126",
+      "bytes": 2223
+    },
+    {
+      "path": "bishengir/test/bishengir-compile/hivm/compile-bisheng-hir-static-ptr-off.mlir",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/test/bishengir-compile/hivm/compile-bisheng-hir-static-ptr-off.mlir",
+      "sha256": "5b24a96aa4ff6ca878235cce8f8f608e230bba6c892ac11c8f441895f2bcd6c9",
+      "bytes": 1652
+    },
+    {
+      "path": "bishengir/test/bishengir-compile/hivm/compile-bisheng-hir.mlir",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/test/bishengir-compile/hivm/compile-bisheng-hir.mlir",
+      "sha256": "803d4885c9f8cd47ec1d90da1eed3df290680b13a1098d9a303df3e5470c265a",
+      "bytes": 1230
+    },
+    {
+      "path": "docs/source/zh_cn/developer_guide/features/AutoSync/AutoSync.md",
+      "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/docs/source/zh_cn/developer_guide/features/AutoSync/AutoSync.md",
+      "sha256": "059f265336219a3645cd98b3daa5cf4acacf7553de5c825341bf2d9c2c9739fe",
+      "bytes": 8852
+    }
+  ]
+}

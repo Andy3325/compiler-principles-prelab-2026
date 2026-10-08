@@ -1,0 +1,57 @@
+[
+  {
+    "file": "01-parsed.mlir",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "02-core.mlir",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "03-memory.mlir",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "04-sync.mlir",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "05-standard.mlir",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "07-host-lowered.mlir",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "compiler-snapshots/01-hivm-infer-func-core-type.mlir",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "compiler-snapshots/02-hivm-plan-memory.mlir",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "compiler-snapshots/03-hivm-plan-memory.mlir",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "compiler-snapshots/04-hivm-graph-sync-solver.mlir",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "compiler-snapshots/05-convert-hivm-to-std.mlir",
+    "exit_code": 0,
+    "stderr": ""
+  }
+]

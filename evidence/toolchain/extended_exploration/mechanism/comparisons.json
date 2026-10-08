@@ -1,0 +1,50 @@
+{
+  "baseline_remeasurements": {
+    "clang_A_O2": {
+      "baseline_variant": "clang_O2",
+      "text_bytes_equal": true,
+      "instruction_count_equal": true,
+      "executable_text_equal": true
+    },
+    "gcc_A_O2": {
+      "baseline_variant": "gcc_O2",
+      "text_bytes_equal": true,
+      "instruction_count_equal": true,
+      "executable_text_equal": true
+    }
+  },
+  "clang_four_configuration_deltas": {
+    "text_bytes": {
+      "A_minus_B": 272,
+      "A_minus_C": 32,
+      "A_minus_D": 368,
+      "interaction_A_minus_B_minus_C_plus_D": -64
+    },
+    "main_object_instruction_count": {
+      "A_minus_B": 49,
+      "A_minus_C": 4,
+      "A_minus_D": 78,
+      "interaction_A_minus_B_minus_C_plus_D": -25
+    },
+    "main_object_branches": {
+      "A_minus_B": 4,
+      "A_minus_C": 4,
+      "A_minus_D": 10,
+      "interaction_A_minus_B_minus_C_plus_D": -2
+    },
+    "main_object_machine_basic_blocks_including_padding": {
+      "A_minus_B": 4,
+      "A_minus_C": 4,
+      "A_minus_D": 12,
+      "interaction_A_minus_B_minus_C_plus_D": -4
+    }
+  },
+  "interaction_interpretation": "Observed configuration interaction, not independent causal pass contributions.",
+  "measurement_definitions": {
+    "text_bytes": "Executable .text from size -A, includes startup code.",
+    "main_object_instruction_count": "All objdump instruction lines in main.o, including alignment NOPs, same regex as baseline.",
+    "machine_basic_blocks_including_padding": "Leaders: each disassembled function entry, in-function direct branch targets, instructions after branches/returns; includes alignment padding and is not LLVM/GIMPLE block count.",
+    "branches": "j* and loop* instructions in main.o, excluding calls and returns.",
+    "final_ir_functions": "LLVM optimized IR counts for Clang; optimized GNU GIMPLE counts for GCC, different representations."
+  }
+}

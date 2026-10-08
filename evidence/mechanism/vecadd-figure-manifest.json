@@ -1,0 +1,51 @@
+{
+  "generated_utc": "2026-10-04T14:08:26.641822+00:00",
+  "command": [
+    "<USER_HOME>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "<PROJECT>\\scripts\\generate_vecadd_mechanism_figures.py"
+  ],
+  "generator": {
+    "path": "scripts/generate_vecadd_mechanism_figures.py",
+    "sha256": "b7ce8c62ac341e09d93c7766f6577ca0fa2015297941ffde7c64a85377200b96",
+    "bytes": 13079
+  },
+  "python": "3.12.14",
+  "matplotlib": "3.11.2",
+  "font": "C:\\Windows\\Fonts\\msyh.ttc",
+  "figures": [
+    {
+      "path": "report/figures/vecadd-lifetime.pdf",
+      "sha256": "c7f57ff98b29b455a63bf5f063b372167766238bdb9d77382f6fb6665720de92",
+      "bytes": 32048
+    },
+    {
+      "path": "report/figures/vecadd-lifetime.png",
+      "sha256": "5595ade83432f69517c44de7ecc5ba2d4684a19d7a57978a0ebce77e7d86d083",
+      "bytes": 139107
+    },
+    {
+      "path": "report/figures/vecadd-pipeline.pdf",
+      "sha256": "e10a9c3807a7e8c7da5e46b32da9df387ec5aaf4e60ce393cedef4aa316a9e14",
+      "bytes": 29998
+    },
+    {
+      "path": "report/figures/vecadd-pipeline.png",
+      "sha256": "0a1733ba910e961db1bc6ce99cf84353e89570c2cdbaec09b764013c322a45c9",
+      "bytes": 131822
+    }
+  ],
+  "canvas_inches": {
+    "vecadd-lifetime": [
+      7.2,
+      3.45
+    ],
+    "vecadd-pipeline": [
+      7.2,
+      3.35
+    ]
+  },
+  "png_dpi": 300,
+  "pdf_fonttype": 42,
+  "existing_inputs_unchanged": true,
+  "disclaimer": "Source-backed schematic, not simulated/measured runtime; generated without invoking compiler or device."
+}

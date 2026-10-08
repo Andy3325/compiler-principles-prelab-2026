@@ -1,0 +1,99 @@
+{
+  "standalone_probes": {
+    "function_entry": "0x401150",
+    "vector_loop": "0x4011c0",
+    "scalar_loop": "0x401260"
+  },
+  "main_probes": {
+    "main_entry": "0x401280",
+    "standalone_entry": "0x401150",
+    "vector_reduce": "0x401350",
+    "scalar_loop": "0x401380",
+    "constant_vector_0": "0x4012d1",
+    "constant_vector_1": "0x4012e0",
+    "constant_vector_2": "0x401334",
+    "constant_vector_3": "0x40133e",
+    "constant_vector_4": "0x401348"
+  },
+  "standalone_loops": [
+    {
+      "header": 4198848,
+      "backedge": 4198951,
+      "simd": true,
+      "instructions": [
+        "  4011c0:\tmovdqa xmm0,xmm2",
+        "  4011c4:\tpaddd  xmm0,xmm2",
+        "  4011c8:\tpaddd  xmm0,xmm2",
+        "  4011cc:\tmovdqa xmm4,xmm0",
+        "  4011d0:\tmovdqa xmm6,xmm12",
+        "  4011d5:\tpsubd  xmm6,xmm0",
+        "  4011d9:\tmovdqa xmm7,xmm13",
+        "  4011de:\tpsubd  xmm7,xmm0",
+        "  4011e2:\tpaddd  xmm0,xmm9",
+        "  4011e7:\tpaddd  xmm4,xmm10",
+        "  4011ec:\tmovdqa xmm3,xmm2",
+        "  4011f0:\tpand   xmm3,xmm11",
+        "  4011f5:\tpcmpeqd xmm3,xmm8",
+        "  4011fa:\tmovdqa xmm5,xmm3",
+        "  4011fe:\tpandn  xmm5,xmm6",
+        "  401202:\tpand   xmm0,xmm3",
+        "  401206:\tpor    xmm0,xmm5",
+        "  40120a:\tpaddd  xmm1,xmm0",
+        "  40120e:\tpand   xmm4,xmm3",
+        "  401212:\tpandn  xmm3,xmm7",
+        "  401216:\tpor    xmm3,xmm4",
+        "  40121a:\tpaddd  xmm15,xmm3",
+        "  40121f:\tpaddd  xmm2,xmm14",
+        "  401224:\tadd    eax,0xfffffff8",
+        "  401227:\tjne    4011c0 <alternating_sum+0x70>"
+      ]
+    },
+    {
+      "header": 4199008,
+      "backedge": 4199032,
+      "simd": false,
+      "instructions": [
+        "  401260:\ttest   r8b,0x1",
+        "  401264:\tmov    edx,ecx",
+        "  401266:\tcmove  edx,esi",
+        "  401269:\tadd    eax,edx",
+        "  40126b:\tadd    r8d,0x1",
+        "  40126f:\tadd    ecx,0xfffffffd",
+        "  401272:\tadd    esi,0x3",
+        "  401275:\tcmp    edi,r8d",
+        "  401278:\tjne    401260 <alternating_sum+0x110>"
+      ]
+    }
+  ],
+  "main_loops": [
+    {
+      "header": 4199296,
+      "backedge": 4199317,
+      "simd": false,
+      "instructions": [
+        "  401380:\ttest   cl,0x1",
+        "  401383:\tmov    edi,edx",
+        "  401385:\tcmove  edi,esi",
+        "  401388:\tadd    ebp,edi",
+        "  40138a:\tadd    ecx,0x1",
+        "  40138d:\tadd    edx,0xfffffffd",
+        "  401390:\tadd    esi,0x3",
+        "  401393:\tcmp    eax,ecx",
+        "  401395:\tjne    401380 <main+0x100>"
+      ]
+    }
+  ],
+  "main_reduction_instructions": [
+    "  401350:\tpshufd xmm1,xmm0,0xee",
+    "  401359:\tpshufd xmm0,xmm1,0x55"
+  ],
+  "main_constant_vector_instructions": [
+    "  4012d1:\tmovdqa xmm0,XMMWORD PTR [rip+0xda7]        # 402080 <_IO_stdin_used+0x80>",
+    "  4012e0:\tmovdqa xmm0,XMMWORD PTR [rip+0xdc8]        # 4020b0 <_IO_stdin_used+0xb0>",
+    "  401334:\tmovdqa xmm0,XMMWORD PTR [rip+0xd84]        # 4020c0 <_IO_stdin_used+0xc0>",
+    "  40133e:\tmovdqa xmm0,XMMWORD PTR [rip+0xd5a]        # 4020a0 <_IO_stdin_used+0xa0>",
+    "  401348:\tmovdqa xmm0,XMMWORD PTR [rip+0xd40]        # 402090 <_IO_stdin_used+0x90>"
+  ],
+  "basis": "Backward conditional branch target identifies each actual loop header. SIMD operands classify standalone vector body; main has only one scalar backedge. Its vector computation is bounded, fully unrolled and folded into constant-vector selection plus reduction.",
+  "threshold_evidence": "baseline main.s: standalone cmp $8,%edi / and $-8,%r8d; main cmp $4,%eax / and $-4,%ecx. Actual machine disassembly is retained beside this JSON."
+}

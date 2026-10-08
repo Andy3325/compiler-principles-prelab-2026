@@ -1,0 +1,153 @@
+
+artifacts/sysy/objects/float_stats.llvm.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <affine>:
+   0:	10b57053          	fmul.s	ft0,fa0,fa1
+   4:	d00570d3          	fcvt.s.w	ft1,a0
+   8:	00107553          	fadd.s	fa0,ft0,ft1
+   c:	8082                	ret
+
+000000000000000e <sum_positive>:
+   e:	715d                	addi	sp,sp,-80
+  10:	e486                	sd	ra,72(sp)
+  12:	02a12227          	fsw	fa0,36(sp)
+  16:	f42a                	sd	a0,40(sp)
+  18:	f0000053          	fmv.w.x	ft0,zero
+  1c:	4501                	li	a0,0
+  1e:	f82e                	sd	a1,48(sp)
+  20:	fc2a                	sd	a0,56(sp)
+  22:	04012227          	fsw	ft0,68(sp)
+  26:	a009                	j	28 <sum_positive+0x1a>
+  28:	7542                	ld	a0,48(sp)
+  2a:	75e2                	ld	a1,56(sp)
+  2c:	04412007          	flw	ft0,68(sp)
+  30:	00012a27          	fsw	ft0,20(sp)
+  34:	ec2e                	sd	a1,24(sp)
+  36:	2585                	addiw	a1,a1,1
+  38:	06b54263          	blt	a0,a1,9c <sum_positive+0x8e>
+  3c:	a009                	j	3e <sum_positive+0x30>
+  3e:	02412587          	flw	fa1,36(sp)
+  42:	75a2                	ld	a1,40(sp)
+  44:	6562                	ld	a0,24(sp)
+  46:	2501                	sext.w	a0,a0
+  48:	00251613          	slli	a2,a0,0x2
+  4c:	95b2                	add	a1,a1,a2
+  4e:	0005a507          	flw	fa0,0(a1)
+  52:	00000097          	auipc	ra,0x0
+			52: R_RISCV_CALL_PLT	affine
+  56:	000080e7          	jalr	ra # 52 <sum_positive+0x44>
+  5a:	01412007          	flw	ft0,20(sp)
+  5e:	20a500d3          	fmv.s	ft1,fa0
+  62:	00112627          	fsw	ft1,12(sp)
+  66:	f00000d3          	fmv.w.x	ft1,zero
+  6a:	a0a09553          	flt.s	a0,ft1,fa0
+  6e:	4581                	li	a1,0
+  70:	00012827          	fsw	ft0,16(sp)
+  74:	00b50c63          	beq	a0,a1,8c <sum_positive+0x7e>
+  78:	a009                	j	7a <sum_positive+0x6c>
+  7a:	01412007          	flw	ft0,20(sp)
+  7e:	00c12087          	flw	ft1,12(sp)
+  82:	00107053          	fadd.s	ft0,ft0,ft1
+  86:	00012827          	fsw	ft0,16(sp)
+  8a:	a009                	j	8c <sum_positive+0x7e>
+  8c:	6562                	ld	a0,24(sp)
+  8e:	01012007          	flw	ft0,16(sp)
+  92:	2505                	addiw	a0,a0,1
+  94:	fc2a                	sd	a0,56(sp)
+  96:	04012227          	fsw	ft0,68(sp)
+  9a:	b779                	j	28 <sum_positive+0x1a>
+  9c:	01412507          	flw	fa0,20(sp)
+  a0:	60a6                	ld	ra,72(sp)
+  a2:	6161                	addi	sp,sp,80
+  a4:	8082                	ret
+
+00000000000000a6 <main>:
+  a6:	711d                	addi	sp,sp,-96
+  a8:	ec86                	sd	ra,88(sp)
+  aa:	3f000537          	lui	a0,0x3f000
+  ae:	e4aa                	sd	a0,72(sp)
+  b0:	557d                	li	a0,-1
+  b2:	151e                	slli	a0,a0,0x27
+  b4:	07f50513          	addi	a0,a0,127 # 3f00007f <main+0x3effffd9>
+  b8:	055e                	slli	a0,a0,0x17
+  ba:	e0aa                	sd	a0,64(sp)
+  bc:	00000097          	auipc	ra,0x0
+			bc: R_RISCV_CALL_PLT	getint
+  c0:	000080e7          	jalr	ra # bc <main+0x16>
+  c4:	f02a                	sd	a0,32(sp)
+  c6:	4501                	li	a0,0
+  c8:	f42a                	sd	a0,40(sp)
+  ca:	00000097          	auipc	ra,0x0
+			ca: R_RISCV_CALL_PLT	getfloat
+  ce:	000080e7          	jalr	ra # ca <main+0x24>
+  d2:	7522                	ld	a0,40(sp)
+  d4:	02a12a27          	fsw	fa0,52(sp)
+  d8:	fc2a                	sd	a0,56(sp)
+  da:	a009                	j	dc <main+0x36>
+  dc:	7582                	ld	a1,32(sp)
+  de:	7562                	ld	a0,56(sp)
+  e0:	ec2a                	sd	a0,24(sp)
+  e2:	2501                	sext.w	a0,a0
+  e4:	02b55363          	bge	a0,a1,10a <main+0x64>
+  e8:	a009                	j	ea <main+0x44>
+  ea:	00000097          	auipc	ra,0x0
+			ea: R_RISCV_CALL_PLT	getfloat
+  ee:	000080e7          	jalr	ra # ea <main+0x44>
+  f2:	6562                	ld	a0,24(sp)
+  f4:	0005059b          	sext.w	a1,a0
+  f8:	00259613          	slli	a2,a1,0x2
+  fc:	008c                	addi	a1,sp,64
+  fe:	95b2                	add	a1,a1,a2
+ 100:	00a5a027          	fsw	fa0,0(a1)
+ 104:	2505                	addiw	a0,a0,1
+ 106:	fc2a                	sd	a0,56(sp)
+ 108:	bfd1                	j	dc <main+0x36>
+ 10a:	7582                	ld	a1,32(sp)
+ 10c:	03412507          	flw	fa0,52(sp)
+ 110:	0088                	addi	a0,sp,64
+ 112:	00000097          	auipc	ra,0x0
+			112: R_RISCV_CALL_PLT	sum_positive
+ 116:	000080e7          	jalr	ra # 112 <main+0x6c>
+ 11a:	7502                	ld	a0,32(sp)
+ 11c:	000005b7          	lui	a1,0x0
+			11c: R_RISCV_HI20	.LCPI2_0
+ 120:	0005a007          	flw	ft0,0(a1) # 0 <affine>
+			120: R_RISCV_LO12_I	.LCPI2_0
+ 124:	00057553          	fadd.s	fa0,fa0,ft0
+ 128:	c00515d3          	fcvt.w.s	a1,fa0,rtz
+ 12c:	e02e                	sd	a1,0(sp)
+ 12e:	2505                	addiw	a0,a0,1
+ 130:	d0057053          	fcvt.s.w	ft0,a0
+ 134:	18057053          	fdiv.s	ft0,fa0,ft0
+ 138:	00012a27          	fsw	ft0,20(sp)
+ 13c:	00000097          	auipc	ra,0x0
+			13c: R_RISCV_CALL_PLT	putfloat
+ 140:	000080e7          	jalr	ra # 13c <main+0x96>
+ 144:	02000513          	li	a0,32
+ 148:	e42a                	sd	a0,8(sp)
+ 14a:	00000097          	auipc	ra,0x0
+			14a: R_RISCV_CALL_PLT	putch
+ 14e:	000080e7          	jalr	ra # 14a <main+0xa4>
+ 152:	6502                	ld	a0,0(sp)
+ 154:	00000097          	auipc	ra,0x0
+			154: R_RISCV_CALL_PLT	putint
+ 158:	000080e7          	jalr	ra # 154 <main+0xae>
+ 15c:	6522                	ld	a0,8(sp)
+ 15e:	00000097          	auipc	ra,0x0
+			15e: R_RISCV_CALL_PLT	putch
+ 162:	000080e7          	jalr	ra # 15e <main+0xb8>
+ 166:	01412507          	flw	fa0,20(sp)
+ 16a:	00000097          	auipc	ra,0x0
+			16a: R_RISCV_CALL_PLT	putfloat
+ 16e:	000080e7          	jalr	ra # 16a <main+0xc4>
+ 172:	4529                	li	a0,10
+ 174:	00000097          	auipc	ra,0x0
+			174: R_RISCV_CALL_PLT	putch
+ 178:	000080e7          	jalr	ra # 174 <main+0xce>
+ 17c:	4501                	li	a0,0
+ 17e:	60e6                	ld	ra,88(sp)
+ 180:	6125                	addi	sp,sp,96
+ 182:	8082                	ret

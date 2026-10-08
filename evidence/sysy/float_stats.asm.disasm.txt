@@ -1,0 +1,166 @@
+
+artifacts/sysy/objects/float_stats.asm.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <affine>:
+   0:	10b57553          	fmul.s	fa0,fa0,fa1
+   4:	d0057053          	fcvt.s.w	ft0,a0
+   8:	00057553          	fadd.s	fa0,fa0,ft0
+   c:	8082                	ret
+
+000000000000000e <sum_positive>:
+   e:	7139                	addi	sp,sp,-64
+  10:	fc06                	sd	ra,56(sp)
+  12:	f822                	sd	s0,48(sp)
+  14:	f426                	sd	s1,40(sp)
+  16:	f04a                	sd	s2,32(sp)
+  18:	ac22                	fsd	fs0,24(sp)
+  1a:	a826                	fsd	fs1,16(sp)
+  1c:	842a                	mv	s0,a0
+  1e:	84ae                	mv	s1,a1
+  20:	4901                	li	s2,0
+  22:	20a50453          	fmv.s	fs0,fa0
+  26:	f00004d3          	fmv.w.x	fs1,zero
+
+000000000000002a <.Lfloat_loop>:
+  2a:	0019029b          	addiw	t0,s2,1
+  2e:	0254c863          	blt	s1,t0,5e <.Lfloat_exit>
+			2e: R_RISCV_BRANCH	.Lfloat_exit
+  32:	00291293          	slli	t0,s2,0x2
+  36:	92a2                	add	t0,t0,s0
+  38:	0002a507          	flw	fa0,0(t0)
+  3c:	208405d3          	fmv.s	fa1,fs0
+  40:	854a                	mv	a0,s2
+  42:	00000097          	auipc	ra,0x0
+			42: R_RISCV_CALL	affine
+			42: R_RISCV_RELAX	*ABS*
+  46:	000080e7          	jalr	ra # 42 <.Lfloat_loop+0x18>
+  4a:	f0000053          	fmv.w.x	ft0,zero
+  4e:	a0a012d3          	flt.s	t0,ft0,fa0
+  52:	00028463          	beqz	t0,5a <.Lfloat_step>
+			52: R_RISCV_BRANCH	.Lfloat_step
+  56:	00a4f4d3          	fadd.s	fs1,fs1,fa0
+
+000000000000005a <.Lfloat_step>:
+  5a:	2905                	addiw	s2,s2,1
+  5c:	b7f9                	j	2a <.Lfloat_loop>
+			5c: R_RISCV_RVC_JUMP	.Lfloat_loop
+
+000000000000005e <.Lfloat_exit>:
+  5e:	20948553          	fmv.s	fa0,fs1
+  62:	24c2                	fld	fs1,16(sp)
+  64:	2462                	fld	fs0,24(sp)
+  66:	7902                	ld	s2,32(sp)
+  68:	74a2                	ld	s1,40(sp)
+  6a:	7442                	ld	s0,48(sp)
+  6c:	70e2                	ld	ra,56(sp)
+  6e:	6121                	addi	sp,sp,64
+  70:	8082                	ret
+
+0000000000000072 <main>:
+  72:	715d                	addi	sp,sp,-80
+  74:	e486                	sd	ra,72(sp)
+  76:	e0a2                	sd	s0,64(sp)
+  78:	fc26                	sd	s1,56(sp)
+  7a:	f84a                	sd	s2,48(sp)
+  7c:	b422                	fsd	fs0,40(sp)
+  7e:	b026                	fsd	fs1,32(sp)
+  80:	ac4a                	fsd	fs2,24(sp)
+  82:	00000297          	auipc	t0,0x0
+			82: R_RISCV_PCREL_HI20	float_initial
+			82: R_RISCV_RELAX	*ABS*
+  86:	00028293          	mv	t0,t0
+			86: R_RISCV_PCREL_LO12_I	.L0 
+			86: R_RISCV_RELAX	*ABS*
+  8a:	0002b303          	ld	t1,0(t0) # 82 <main+0x10>
+  8e:	0082b383          	ld	t2,8(t0)
+  92:	e01a                	sd	t1,0(sp)
+  94:	e41e                	sd	t2,8(sp)
+  96:	00000097          	auipc	ra,0x0
+			96: R_RISCV_CALL	getint
+			96: R_RISCV_RELAX	*ABS*
+  9a:	000080e7          	jalr	ra # 96 <main+0x24>
+  9e:	842a                	mv	s0,a0
+  a0:	00000097          	auipc	ra,0x0
+			a0: R_RISCV_CALL	getfloat
+			a0: R_RISCV_RELAX	*ABS*
+  a4:	000080e7          	jalr	ra # a0 <main+0x2e>
+  a8:	20a50453          	fmv.s	fs0,fa0
+  ac:	4481                	li	s1,0
+
+00000000000000ae <.Lfloat_read>:
+  ae:	0084dd63          	bge	s1,s0,c8 <.Lfloat_compute>
+			ae: R_RISCV_BRANCH	.Lfloat_compute
+  b2:	00000097          	auipc	ra,0x0
+			b2: R_RISCV_CALL	getfloat
+			b2: R_RISCV_RELAX	*ABS*
+  b6:	000080e7          	jalr	ra # b2 <.Lfloat_read+0x4>
+  ba:	00249293          	slli	t0,s1,0x2
+  be:	928a                	add	t0,t0,sp
+  c0:	00a2a027          	fsw	fa0,0(t0)
+  c4:	2485                	addiw	s1,s1,1
+  c6:	b7e5                	j	ae <.Lfloat_read>
+			c6: R_RISCV_RVC_JUMP	.Lfloat_read
+
+00000000000000c8 <.Lfloat_compute>:
+  c8:	850a                	mv	a0,sp
+  ca:	85a2                	mv	a1,s0
+  cc:	20840553          	fmv.s	fa0,fs0
+  d0:	00000097          	auipc	ra,0x0
+			d0: R_RISCV_CALL	sum_positive
+			d0: R_RISCV_RELAX	*ABS*
+  d4:	000080e7          	jalr	ra # d0 <.Lfloat_compute+0x8>
+  d8:	00000297          	auipc	t0,0x0
+			d8: R_RISCV_PCREL_HI20	shift
+			d8: R_RISCV_RELAX	*ABS*
+  dc:	00028293          	mv	t0,t0
+			dc: R_RISCV_PCREL_LO12_I	.L0 
+			dc: R_RISCV_RELAX	*ABS*
+  e0:	0002a007          	flw	ft0,0(t0) # d8 <.Lfloat_compute+0x10>
+  e4:	000574d3          	fadd.s	fs1,fa0,ft0
+  e8:	c0049953          	fcvt.w.s	s2,fs1,rtz
+  ec:	0014029b          	addiw	t0,s0,1
+  f0:	d002f053          	fcvt.s.w	ft0,t0
+  f4:	1804f953          	fdiv.s	fs2,fs1,ft0
+  f8:	20948553          	fmv.s	fa0,fs1
+  fc:	00000097          	auipc	ra,0x0
+			fc: R_RISCV_CALL	putfloat
+			fc: R_RISCV_RELAX	*ABS*
+ 100:	000080e7          	jalr	ra # fc <.Lfloat_compute+0x34>
+ 104:	02000513          	li	a0,32
+ 108:	00000097          	auipc	ra,0x0
+			108: R_RISCV_CALL	putch
+			108: R_RISCV_RELAX	*ABS*
+ 10c:	000080e7          	jalr	ra # 108 <.Lfloat_compute+0x40>
+ 110:	854a                	mv	a0,s2
+ 112:	00000097          	auipc	ra,0x0
+			112: R_RISCV_CALL	putint
+			112: R_RISCV_RELAX	*ABS*
+ 116:	000080e7          	jalr	ra # 112 <.Lfloat_compute+0x4a>
+ 11a:	02000513          	li	a0,32
+ 11e:	00000097          	auipc	ra,0x0
+			11e: R_RISCV_CALL	putch
+			11e: R_RISCV_RELAX	*ABS*
+ 122:	000080e7          	jalr	ra # 11e <.Lfloat_compute+0x56>
+ 126:	21290553          	fmv.s	fa0,fs2
+ 12a:	00000097          	auipc	ra,0x0
+			12a: R_RISCV_CALL	putfloat
+			12a: R_RISCV_RELAX	*ABS*
+ 12e:	000080e7          	jalr	ra # 12a <.Lfloat_compute+0x62>
+ 132:	4529                	li	a0,10
+ 134:	00000097          	auipc	ra,0x0
+			134: R_RISCV_CALL	putch
+			134: R_RISCV_RELAX	*ABS*
+ 138:	000080e7          	jalr	ra # 134 <.Lfloat_compute+0x6c>
+ 13c:	4501                	li	a0,0
+ 13e:	2962                	fld	fs2,24(sp)
+ 140:	3482                	fld	fs1,32(sp)
+ 142:	3422                	fld	fs0,40(sp)
+ 144:	7942                	ld	s2,48(sp)
+ 146:	74e2                	ld	s1,56(sp)
+ 148:	6406                	ld	s0,64(sp)
+ 14a:	60a6                	ld	ra,72(sp)
+ 14c:	6161                	addi	sp,sp,80
+ 14e:	8082                	ret

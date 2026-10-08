@@ -1,0 +1,69 @@
+[
+  {
+    "name": "01-parse",
+    "command": "<USER_HOME>/.cache/compiler-coursework/ascendnpu-ir-1.1.0/unpacked/ascendnpuir/bin/bishengir-opt '<PROJECT>/src/mlir/official-tool-1.1.0/bishengir/test/Integration/HIVM/VecAdd/add.mlir' -o '<PROJECT>/artifacts/mlir/01-parsed.mlir'",
+    "exit_code": 0,
+    "output": "01-parsed.mlir",
+    "output_exists": true,
+    "diagnostic_errors": [],
+    "status": "HOST_TRANSFORM_PASSED"
+  },
+  {
+    "name": "02-core",
+    "command": "<USER_HOME>/.cache/compiler-coursework/ascendnpu-ir-1.1.0/unpacked/ascendnpuir/bin/bishengir-opt '<PROJECT>/src/mlir/official-tool-1.1.0/bishengir/test/Integration/HIVM/VecAdd/add.mlir' --hivm-infer-func-core-type -o '<PROJECT>/artifacts/mlir/02-core.mlir'",
+    "exit_code": 0,
+    "output": "02-core.mlir",
+    "output_exists": true,
+    "diagnostic_errors": [],
+    "status": "HOST_TRANSFORM_PASSED"
+  },
+  {
+    "name": "03-plan-memory",
+    "command": "<USER_HOME>/.cache/compiler-coursework/ascendnpu-ir-1.1.0/unpacked/ascendnpuir/bin/bishengir-opt '<PROJECT>/artifacts/mlir/02-core.mlir' --hivm-plan-memory -o '<PROJECT>/artifacts/mlir/03-memory.mlir'",
+    "exit_code": 0,
+    "output": "03-memory.mlir",
+    "output_exists": true,
+    "diagnostic_errors": [],
+    "status": "HOST_TRANSFORM_PASSED"
+  },
+  {
+    "name": "04-sync",
+    "command": "<USER_HOME>/.cache/compiler-coursework/ascendnpu-ir-1.1.0/unpacked/ascendnpuir/bin/bishengir-opt '<PROJECT>/artifacts/mlir/03-memory.mlir' --hivm-inject-sync -o '<PROJECT>/artifacts/mlir/04-sync.mlir'",
+    "exit_code": 0,
+    "output": "04-sync.mlir",
+    "output_exists": true,
+    "diagnostic_errors": [],
+    "status": "HOST_TRANSFORM_PASSED"
+  },
+  {
+    "name": "05-to-std",
+    "command": "<USER_HOME>/.cache/compiler-coursework/ascendnpu-ir-1.1.0/unpacked/ascendnpuir/bin/bishengir-opt '<PROJECT>/artifacts/mlir/04-sync.mlir' --convert-hivm-to-std -o '<PROJECT>/artifacts/mlir/05-standard.mlir'",
+    "exit_code": 0,
+    "output": "05-standard.mlir",
+    "output_exists": true,
+    "diagnostic_errors": [],
+    "status": "HOST_TRANSFORM_PASSED"
+  },
+  {
+    "name": "06-full-compile",
+    "command": "<USER_HOME>/.cache/compiler-coursework/ascendnpu-ir-1.1.0/unpacked/ascendnpuir/bin/bishengir-compile '<PROJECT>/src/mlir/official-tool-1.1.0/bishengir/test/Integration/HIVM/VecAdd/add.mlir' --enable-hivm-compile --target=Ascend910B1 --mlir-disable-threading --mlir-print-ir-after-all --mlir-print-ir-module-scope -o '<PROJECT>/artifacts/mlir/06-kernel.o'",
+    "exit_code": 0,
+    "output": null,
+    "output_exists": false,
+    "diagnostic_errors": [
+      "[ERROR] Cannot find hivmc under $PATH ",
+      "[ERROR] Failed to run `hivmc --version`.",
+      "[ERROR] Cannot find hivmc under $PATH "
+    ],
+    "status": "BLOCKED_BACKEND_MISSING"
+  },
+  {
+    "name": "07-full-host-pipeline",
+    "command": "<USER_HOME>/.cache/compiler-coursework/ascendnpu-ir-1.1.0/unpacked/ascendnpuir/bin/bishengir-opt '<PROJECT>/src/mlir/official-tool-1.1.0/bishengir/test/Integration/HIVM/VecAdd/add.mlir' --hacc-append-device-spec=target=Ascend910B1 --optimize-hivm-pipeline --mlir-disable-threading --mlir-print-ir-after=hivm-infer-func-core-type,hivm-plan-memory,hivm-inject-sync,hivm-graph-sync-solver,convert-hivm-to-std --mlir-print-ir-module-scope -o '<PROJECT>/artifacts/mlir/07-host-lowered.mlir'",
+    "exit_code": 0,
+    "output": "07-host-lowered.mlir",
+    "output_exists": true,
+    "diagnostic_errors": [],
+    "status": "HOST_TRANSFORM_PASSED"
+  }
+]

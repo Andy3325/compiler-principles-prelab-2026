@@ -1,0 +1,87 @@
+{
+  "gcc": {
+    "gcc_A_O2": {
+      "queried_optimizer_states": {
+        "-ftree-loop-vectorize": "[disabled]",
+        "-ftree-slp-vectorize": "[disabled]",
+        "-fvect-cost-model": "cheap",
+        "-finline-functions": "[enabled]",
+        "-finline-small-functions": "[enabled]"
+      },
+      "observed_vectorization": false,
+      "missed_loop_reasons": []
+    },
+    "gcc_B_O2_vector": {
+      "queried_optimizer_states": {
+        "-ftree-loop-vectorize": "[enabled]",
+        "-ftree-slp-vectorize": "[enabled]",
+        "-fvect-cost-model": "cheap",
+        "-finline-functions": "[enabled]",
+        "-finline-small-functions": "[enabled]"
+      },
+      "observed_vectorization": false,
+      "missed_loop_reasons": [
+        "<PROJECT>/src/toolchain/main.c:13:23: missed: couldn't vectorize loop",
+        "<PROJECT>/src/toolchain/main.c:16:17: missed: not vectorized: unsupported use in stmt."
+      ],
+      "vector_details_preserve_all_executable_sections": true
+    },
+    "gcc_C_O3": {
+      "queried_optimizer_states": {
+        "-ftree-loop-vectorize": "[enabled]",
+        "-ftree-slp-vectorize": "[enabled]",
+        "-fvect-cost-model": "dynamic",
+        "-finline-functions": "[enabled]",
+        "-finline-small-functions": "[enabled]"
+      },
+      "observed_vectorization": false,
+      "missed_loop_reasons": [
+        "<PROJECT>/src/toolchain/main.c:13:23: missed: couldn't vectorize loop",
+        "<PROJECT>/src/toolchain/main.c:16:17: missed: not vectorized: unsupported use in stmt.",
+        "<PROJECT>/src/toolchain/main.c:13:23: missed: couldn't vectorize loop",
+        "<PROJECT>/src/toolchain/main.c:18:17: missed: not vectorized: unsupported use in stmt."
+      ],
+      "vector_details_preserve_all_executable_sections": true
+    },
+    "gcc_D_O3_no_vector": {
+      "queried_optimizer_states": {
+        "-ftree-loop-vectorize": "[disabled]",
+        "-ftree-slp-vectorize": "[disabled]",
+        "-fvect-cost-model": "dynamic",
+        "-finline-functions": "[enabled]",
+        "-finline-small-functions": "[enabled]"
+      },
+      "observed_vectorization": false,
+      "missed_loop_reasons": []
+    }
+  },
+  "comparisons": {
+    "gcc_A_O2_vs_gcc_B_O2_vector": {
+      "all_main_object_code_sections_equal": true,
+      "executable_text_equal": true,
+      "optimized_gimple_byte_equal": false,
+      "optimized_gimple_equal_ignoring_function_identifier_numbers": false,
+      "normalized_gimple_diff": "artifacts/toolchain/extended_exploration/mechanism/gcc_A_O2_vs_gcc_B_O2_vector.gimple.diff",
+      "left_optimized_gimple_sha256": "0e09bf5e54347fab865044f16a0d94668fcb4c2569b995fddb614c5162e97f88",
+      "right_optimized_gimple_sha256": "8798f570ddde8324ff461a7091432227dff9cc41598ba949eadbd2763ea09c49"
+    },
+    "gcc_B_O2_vector_vs_gcc_C_O3": {
+      "all_main_object_code_sections_equal": false,
+      "executable_text_equal": false,
+      "optimized_gimple_byte_equal": false,
+      "optimized_gimple_equal_ignoring_function_identifier_numbers": false,
+      "normalized_gimple_diff": "artifacts/toolchain/extended_exploration/mechanism/gcc_B_O2_vector_vs_gcc_C_O3.gimple.diff",
+      "left_optimized_gimple_sha256": "8798f570ddde8324ff461a7091432227dff9cc41598ba949eadbd2763ea09c49",
+      "right_optimized_gimple_sha256": "9d78a20b9598c59c785fe284966778b6dd4e26b198ac0e38d832efe82994e593"
+    },
+    "gcc_C_O3_vs_gcc_D_O3_no_vector": {
+      "all_main_object_code_sections_equal": true,
+      "executable_text_equal": true,
+      "optimized_gimple_byte_equal": false,
+      "optimized_gimple_equal_ignoring_function_identifier_numbers": false,
+      "normalized_gimple_diff": "artifacts/toolchain/extended_exploration/mechanism/gcc_C_O3_vs_gcc_D_O3_no_vector.gimple.diff",
+      "left_optimized_gimple_sha256": "9d78a20b9598c59c785fe284966778b6dd4e26b198ac0e38d832efe82994e593",
+      "right_optimized_gimple_sha256": "908c91333856c24145b490d1053ffbabe9c862ad1d03eedfa400011b0dde8965"
+    }
+  }
+}

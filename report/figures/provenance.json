@@ -1,0 +1,12 @@
+{
+  "source": "artifacts/toolchain/metrics.json",
+  "sha256": "5082b1f2e4dd28af3adb9e71ad8c9af800f0900161486bd9061d6aac19d8405d",
+  "filter": "exclude _g variants for structural comparison",
+  "chart_units": [
+    "bytes",
+    "static instruction count"
+  ],
+  "performance_claim": false,
+  "matplotlib": "3.11.2",
+  "schematic": "Design/verification pipeline, not measured timing"
+}

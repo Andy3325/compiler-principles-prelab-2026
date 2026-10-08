@@ -1,0 +1,51 @@
+// Hand-designed SysY2022 example; no C-only syntax in this file.
+const int COLS = 3;
+int calls = 0;
+int bias = 7;
+
+int tick(int x) {
+    calls = calls + 1;
+    return +x; // Unary + preserves the value; IR/assembly need no instruction.
+}
+
+int cell(int a[][3], int row, int col) {
+    return a[row][col];
+}
+
+int fold(int a[][3], int n, int stop) {
+    int i = 0, sum = 0;
+    while (i <= n - 1) {
+        int v = cell(a, i / COLS, i % COLS);
+        i = i + 1;
+        if (v == 0) continue;
+        if (v == stop) break;
+        sum = sum + v * i;
+    }
+    return sum;
+}
+
+void separator() {
+    putch(32);
+    return;
+}
+
+int main() {
+    int a[2][3] = {{1, 2}, {-3, 4, 5}};
+    int n = getint(), stop = getint(), gate = getint(), divisor = getint();
+    int i = 0, local = 0, tag = 0;
+    while (i < 6) {
+        a[i / COLS][i % COLS] = a[i / COLS][i % COLS] + getint();
+        i = i + 1;
+    }
+    { int bias = 3; local = bias; }
+    if (gate != 0 && tick(a[0][0]) > 0) tag = tag + 1;
+    // && binds tighter than ||. SysY's parenthesized Exp excludes Cond.
+    if (gate == 0 || a[1][2] < 0 && tick(a[1][2]) != 0) tag = tag + 2;
+    if (!gate) tag = tag + 4;
+    putint(fold(a, n, stop) + bias + local); separator();
+    putint(calls); separator();
+    putint(tag); separator();
+    putint(a[0][1] / divisor); separator();
+    putint(a[0][1] % divisor); putch(10);
+    return 0;
+}

@@ -1,0 +1,35 @@
+// Every arithmetic operation is binary32; no fused multiply-add is requested.
+const float SHIFT = 0.25;
+
+float affine(float x, float scale, int offset) {
+    return x * scale + offset;
+}
+
+float sum_positive(float a[], int n, float scale) {
+    int i = 0;
+    float sum = 0.0;
+    while (n >= i + 1) {
+        float v = affine(a[i], scale, i);
+        if (v > 0.0) sum = sum + v;
+        i = i + 1;
+    }
+    return sum;
+}
+
+int main() {
+    int n = getint();
+    float scale = getfloat();
+    float a[4] = {1.0, -2.0, 0.5, 0.0};
+    int i = 0;
+    while (i < n) {
+        a[i] = getfloat();
+        i = i + 1;
+    }
+    float result = sum_positive(a, n, scale) + SHIFT;
+    int truncated = result;
+    float normalized = result / (n + 1);
+    putfloat(result); putch(32);
+    putint(truncated); putch(32);
+    putfloat(normalized); putch(10);
+    return 0;
+}

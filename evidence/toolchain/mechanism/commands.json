@@ -1,0 +1,195 @@
+[
+  {
+    "started": "2026-10-04T22:10:56.232073+08:00",
+    "command": [
+      "clang-14",
+      "--version"
+    ],
+    "exit": 0,
+    "label": "version"
+  },
+  {
+    "started": "2026-10-04T22:10:56.941754+08:00",
+    "command": [
+      "llvm-as-14",
+      "--version"
+    ],
+    "exit": 0,
+    "label": "llvm_version"
+  },
+  {
+    "started": "2026-10-04T22:10:56.989544+08:00",
+    "command": [
+      "uname",
+      "-a"
+    ],
+    "exit": 0,
+    "label": "system"
+  },
+  {
+    "started": "2026-10-04T22:10:57.017096+08:00",
+    "command": [
+      "clang-14",
+      "--help"
+    ],
+    "exit": 0,
+    "label": "help"
+  },
+  {
+    "started": "2026-10-04T22:10:57.193054+08:00",
+    "command": [
+      "gcc",
+      "--version"
+    ],
+    "exit": 0,
+    "label": "gcc_version"
+  },
+  {
+    "started": "2026-10-04T22:10:57.217624+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-Q",
+      "--help=optimizers"
+    ],
+    "exit": 0,
+    "label": "gcc_O2_optimizer_options"
+  },
+  {
+    "started": "2026-10-04T22:10:57.283265+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-Rpass=loop-vectorize",
+      "-Rpass-missed=loop-vectorize",
+      "-Rpass-analysis=loop-vectorize",
+      "-fsave-optimization-record=yaml",
+      "-foptimization-record-file=<PROJECT>/artifacts/toolchain/mechanism/ir.opt.yaml",
+      "-foptimization-record-passes=loop-vectorize|loop-unroll|inline",
+      "-S",
+      "-emit-llvm",
+      "<PROJECT>/src/toolchain/main.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/mechanism/main.remarks.ll"
+    ],
+    "exit": 0,
+    "label": "emit_ir_remarks"
+  },
+  {
+    "started": "2026-10-04T22:10:57.624920+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-Rpass=loop-vectorize",
+      "-Rpass-missed=loop-vectorize",
+      "-Rpass-analysis=loop-vectorize",
+      "-fsave-optimization-record=yaml",
+      "-foptimization-record-file=<PROJECT>/artifacts/toolchain/mechanism/asm.opt.yaml",
+      "-foptimization-record-passes=loop-vectorize|loop-unroll|inline",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/mechanism/main.remarks.s"
+    ],
+    "exit": 0,
+    "label": "emit_asm_remarks"
+  },
+  {
+    "started": "2026-10-04T22:10:57.884267+08:00",
+    "command": [
+      "llvm-as-14",
+      "<PROJECT>/artifacts/toolchain/mechanism/main.remarks.ll",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/mechanism/main.remarks.bc"
+    ],
+    "exit": 0,
+    "label": "verify_new_ir"
+  },
+  {
+    "started": "2026-10-04T22:10:57.934202+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-Rpass=loop-vectorize",
+      "-Rpass-missed=loop-vectorize",
+      "-Rpass-analysis=loop-vectorize",
+      "-mllvm",
+      "-print-before=loop-vectorize",
+      "-mllvm",
+      "-print-after=loop-vectorize",
+      "-mllvm",
+      "-filter-print-funcs=alternating_sum",
+      "-S",
+      "-emit-llvm",
+      "<PROJECT>/src/toolchain/main.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/mechanism/main.trace.ll"
+    ],
+    "exit": 0,
+    "label": "loop_vectorize_trace"
+  },
+  {
+    "started": "2026-10-04T22:10:58.153349+08:00",
+    "command": [
+      "clang-14",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/mechanism/main.remarks.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/mechanism/main.remarks.o"
+    ],
+    "exit": 0,
+    "label": "assemble_new_diagnostic_output"
+  },
+  {
+    "started": "2026-10-04T22:10:58.335395+08:00",
+    "command": [
+      "objcopy",
+      "--dump-section",
+      ".text=<PROJECT>/artifacts/toolchain/mechanism/original_main.text.bin",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.o",
+      "<PROJECT>/artifacts/toolchain/mechanism/original_main.copy.o"
+    ],
+    "exit": 0,
+    "label": "extract_original_text"
+  },
+  {
+    "started": "2026-10-04T22:10:58.374411+08:00",
+    "command": [
+      "objcopy",
+      "--dump-section",
+      ".text=<PROJECT>/artifacts/toolchain/mechanism/remarks_main.text.bin",
+      "<PROJECT>/artifacts/toolchain/mechanism/main.remarks.o",
+      "<PROJECT>/artifacts/toolchain/mechanism/remarks_main.copy.o"
+    ],
+    "exit": 0,
+    "label": "extract_new_text"
+  }
+]

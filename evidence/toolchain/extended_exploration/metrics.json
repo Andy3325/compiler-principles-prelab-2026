@@ -1,0 +1,1607 @@
+[
+  {
+    "configuration": "clang_A_O2",
+    "compiler": "clang-14",
+    "optimization_flags": "-O2",
+    "noinline_variant": false,
+    "text_bytes": 868,
+    "debug_section_bytes": 0,
+    "main_object_instruction_count": 154,
+    "main_object_branches": 18,
+    "main_object_conditional_branches": 12,
+    "main_object_machine_basic_blocks_including_padding": 26,
+    "main_object_text_sha256": "0eaaf6cfca895fb88b5b278a12e77b87713271cef9af68c9b0f79728e6f3ca73",
+    "executable_text_sha256": "52930e2adcc12fa27d9fb091972b584d7c143fed235d8eeb0f0568b819f90133",
+    "main_o_bytes": 3624,
+    "executable_bytes": 16120,
+    "main_object_scale_symbol": false,
+    "symbol_sizes": {
+      "alternating_sum": 299,
+      "main": 315
+    },
+    "machine_functions": {
+      "alternating_sum": {
+        "instructions": 70,
+        "branches": 5,
+        "conditional_branches": 5,
+        "calls": 0,
+        "machine_basic_blocks_including_padding": 9
+      },
+      "main": {
+        "instructions": 84,
+        "branches": 13,
+        "conditional_branches": 7,
+        "calls": 5,
+        "machine_basic_blocks_including_padding": 17
+      }
+    },
+    "final_ir_functions": {
+      "alternating_sum": {
+        "basic_blocks": 8,
+        "explicit_labels": [
+          "3",
+          "5",
+          "7",
+          "29",
+          "33",
+          "36",
+          "38"
+        ],
+        "conditional_branches": 5,
+        "all_branches": 7,
+        "phi_nodes": 9,
+        "has_vector_integer_type": true,
+        "vector_reduce_add_calls": 1,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%39 = phi i32 [ %47, %38 ], [ %34, %33 ]",
+            "incoming": "%47",
+            "add_chain": [
+              "%47 = add i32 %46, %39"
+            ]
+          }
+        ]
+      },
+      "main": {
+        "basic_blocks": 16,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "18",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "32",
+          "35",
+          "47",
+          "52"
+        ],
+        "conditional_branches": 6,
+        "all_branches": 14,
+        "phi_nodes": 7,
+        "has_vector_integer_type": true,
+        "vector_reduce_add_calls": 1,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%36 = phi i32 [ %44, %35 ], [ %33, %32 ]",
+            "incoming": "%44",
+            "add_chain": [
+              "%44 = add i32 %43, %36"
+            ]
+          }
+        ]
+      }
+    },
+    "vectorized_loops": [
+      {
+        "kind": "!Passed",
+        "pass": "loop-vectorize",
+        "name": "Vectorized",
+        "function": "alternating_sum",
+        "unroll_count": null,
+        "vectorization_factor": "4",
+        "interleave_count": "2"
+      },
+      {
+        "kind": "!Passed",
+        "pass": "loop-vectorize",
+        "name": "Vectorized",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": "4",
+        "interleave_count": "1"
+      }
+    ],
+    "unroll_remarks": [
+      {
+        "kind": "!Passed",
+        "pass": "loop-unroll",
+        "name": "FullyUnrolled",
+        "function": "main",
+        "unroll_count": "5",
+        "vectorization_factor": null,
+        "interleave_count": null
+      }
+    ],
+    "inline_remarks": [
+      {
+        "kind": "!Passed",
+        "pass": "inline",
+        "name": "Inlined",
+        "function": "alternating_sum",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Passed",
+        "pass": "inline",
+        "name": "Inlined",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      }
+    ],
+    "test_count": 10,
+    "passed": 10,
+    "failed": 0,
+    "diagnostics_preserve_main_object_text": true,
+    "main_object_text_field_scope": "Only ELF .text; GCC main is in .text.startup. See all_code_sections for full code.",
+    "all_code_sections": {
+      ".text": {
+        "size": 619,
+        "sha256": "0eaaf6cfca895fb88b5b278a12e77b87713271cef9af68c9b0f79728e6f3ca73"
+      }
+    },
+    "diagnostics_preserve_all_executable_sections": true,
+    "simd_register_instruction_count": 49,
+    "simd_register_instruction_lines": [
+      "20:\t66 0f 6f 15 00 00 00 00 \tmovdqa xmm2,XMMWORD PTR [rip+0x0]        # 28 <alternating_sum+0x28>\t24: R_X86_64_PC32\t.LCPI0_0-0x4",
+      "28:\t66 45 0f ef c0       \tpxor   xmm8,xmm8",
+      "2d:\t66 44 0f 6f 0d 00 00 00 00 \tmovdqa xmm9,XMMWORD PTR [rip+0x0]        # 36 <alternating_sum+0x36>\t32: R_X86_64_PC32\t.LCPI0_1-0x4",
+      "36:\t66 44 0f 6f 15 00 00 00 00 \tmovdqa xmm10,XMMWORD PTR [rip+0x0]        # 3f <alternating_sum+0x3f>\t3b: R_X86_64_PC32\t.LCPI0_2-0x4",
+      "3f:\t66 44 0f 6f 1d 00 00 00 00 \tmovdqa xmm11,XMMWORD PTR [rip+0x0]        # 48 <alternating_sum+0x48>\t44: R_X86_64_PC32\t.LCPI0_3-0x4",
+      "48:\t66 44 0f 6f 25 00 00 00 00 \tmovdqa xmm12,XMMWORD PTR [rip+0x0]        # 51 <alternating_sum+0x51>\t4d: R_X86_64_PC32\t.LCPI0_4-0x4",
+      "51:\t66 44 0f 6f 2d 00 00 00 00 \tmovdqa xmm13,XMMWORD PTR [rip+0x0]        # 5a <alternating_sum+0x5a>\t56: R_X86_64_PC32\t.LCPI0_5-0x4",
+      "5a:\t66 44 0f 6f 35 00 00 00 00 \tmovdqa xmm14,XMMWORD PTR [rip+0x0]        # 63 <alternating_sum+0x63>\t5f: R_X86_64_PC32\t.LCPI0_6-0x4",
+      "66:\t66 0f ef c9          \tpxor   xmm1,xmm1",
+      "6a:\t66 45 0f ef ff       \tpxor   xmm15,xmm15",
+      "70:\t66 0f 6f c2          \tmovdqa xmm0,xmm2",
+      "74:\t66 0f fe c2          \tpaddd  xmm0,xmm2",
+      "78:\t66 0f fe c2          \tpaddd  xmm0,xmm2",
+      "7c:\t66 0f 6f e0          \tmovdqa xmm4,xmm0",
+      "80:\t66 41 0f 6f f4       \tmovdqa xmm6,xmm12",
+      "85:\t66 0f fa f0          \tpsubd  xmm6,xmm0",
+      "89:\t66 41 0f 6f fd       \tmovdqa xmm7,xmm13",
+      "8e:\t66 0f fa f8          \tpsubd  xmm7,xmm0",
+      "92:\t66 41 0f fe c1       \tpaddd  xmm0,xmm9",
+      "97:\t66 41 0f fe e2       \tpaddd  xmm4,xmm10",
+      "9c:\t66 0f 6f da          \tmovdqa xmm3,xmm2",
+      "a0:\t66 41 0f db db       \tpand   xmm3,xmm11",
+      "a5:\t66 41 0f 76 d8       \tpcmpeqd xmm3,xmm8",
+      "aa:\t66 0f 6f eb          \tmovdqa xmm5,xmm3",
+      "ae:\t66 0f df ee          \tpandn  xmm5,xmm6",
+      "b2:\t66 0f db c3          \tpand   xmm0,xmm3",
+      "b6:\t66 0f eb c5          \tpor    xmm0,xmm5",
+      "ba:\t66 0f fe c8          \tpaddd  xmm1,xmm0",
+      "be:\t66 0f db e3          \tpand   xmm4,xmm3",
+      "c2:\t66 0f df df          \tpandn  xmm3,xmm7",
+      "c6:\t66 0f eb dc          \tpor    xmm3,xmm4",
+      "ca:\t66 44 0f fe fb       \tpaddd  xmm15,xmm3",
+      "cf:\t66 41 0f fe d6       \tpaddd  xmm2,xmm14",
+      "d9:\t66 44 0f fe f9       \tpaddd  xmm15,xmm1",
+      "de:\t66 41 0f 70 c7 ee    \tpshufd xmm0,xmm15,0xee",
+      "e4:\t66 41 0f fe c7       \tpaddd  xmm0,xmm15",
+      "e9:\t66 0f 70 c8 55       \tpshufd xmm1,xmm0,0x55",
+      "ee:\t66 0f fe c8          \tpaddd  xmm1,xmm0",
+      "f2:\t66 0f 7e c8          \tmovd   eax,xmm1",
+      "181:\t66 0f 6f 05 00 00 00 00 \tmovdqa xmm0,XMMWORD PTR [rip+0x0]        # 189 <main+0x59>\t185: R_X86_64_PC32\t.LCPI1_0-0x4",
+      "190:\t66 0f 6f 05 00 00 00 00 \tmovdqa xmm0,XMMWORD PTR [rip+0x0]        # 198 <main+0x68>\t194: R_X86_64_PC32\t.LCPI1_3-0x4",
+      "1e4:\t66 0f 6f 05 00 00 00 00 \tmovdqa xmm0,XMMWORD PTR [rip+0x0]        # 1ec <main+0xbc>\t1e8: R_X86_64_PC32\t.LCPI1_4-0x4",
+      "1ee:\t66 0f 6f 05 00 00 00 00 \tmovdqa xmm0,XMMWORD PTR [rip+0x0]        # 1f6 <main+0xc6>\t1f2: R_X86_64_PC32\t.LCPI1_2-0x4",
+      "1f8:\t66 0f 6f 05 00 00 00 00 \tmovdqa xmm0,XMMWORD PTR [rip+0x0]        # 200 <main+0xd0>\t1fc: R_X86_64_PC32\t.LCPI1_1-0x4",
+      "200:\t66 0f 70 c8 ee       \tpshufd xmm1,xmm0,0xee",
+      "205:\t66 0f fe c8          \tpaddd  xmm1,xmm0",
+      "209:\t66 0f 70 c1 55       \tpshufd xmm0,xmm1,0x55",
+      "20e:\t66 0f fe c1          \tpaddd  xmm0,xmm1",
+      "212:\t66 0f 7e c5          \tmovd   ebp,xmm0"
+    ]
+  },
+  {
+    "configuration": "clang_B_no_vector",
+    "compiler": "clang-14",
+    "optimization_flags": "-O2 -fno-vectorize -fno-slp-vectorize",
+    "noinline_variant": false,
+    "text_bytes": 596,
+    "debug_section_bytes": 0,
+    "main_object_instruction_count": 105,
+    "main_object_branches": 14,
+    "main_object_conditional_branches": 10,
+    "main_object_machine_basic_blocks_including_padding": 22,
+    "main_object_text_sha256": "fa4dda44ac9660b7f933fc7d4092a6045bdff6b0981cfb736b64cfa6d69cd0f7",
+    "executable_text_sha256": "00cff672749b872d29a008d1ebed2950c5cc1b4ed8a8411ac927ca2d93b192d2",
+    "main_o_bytes": 2072,
+    "executable_bytes": 16120,
+    "main_object_scale_symbol": false,
+    "symbol_sizes": {
+      "alternating_sum": 96,
+      "main": 244
+    },
+    "machine_functions": {
+      "alternating_sum": {
+        "instructions": 33,
+        "branches": 5,
+        "conditional_branches": 4,
+        "calls": 0,
+        "machine_basic_blocks_including_padding": 9
+      },
+      "main": {
+        "instructions": 72,
+        "branches": 9,
+        "conditional_branches": 6,
+        "calls": 5,
+        "machine_basic_blocks_including_padding": 13
+      }
+    },
+    "final_ir_functions": {
+      "alternating_sum": {
+        "basic_blocks": 7,
+        "explicit_labels": [
+          "3",
+          "6",
+          "8",
+          "13",
+          "21",
+          "23"
+        ],
+        "conditional_branches": 4,
+        "all_branches": 6,
+        "phi_nodes": 7,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%24 = phi i32 [ 0, %6 ], [ %33, %23 ]",
+            "incoming": "%33",
+            "add_chain": [
+              "%33 = add i32 %32, %29",
+              "%29 = add i32 %28, %24"
+            ]
+          }
+        ]
+      },
+      "main": {
+        "basic_blocks": 12,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "19",
+          "21",
+          "35",
+          "40",
+          "48",
+          "53"
+        ],
+        "conditional_branches": 6,
+        "all_branches": 11,
+        "phi_nodes": 8,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%22 = phi i32 [ 0, %19 ], [ %31, %21 ]",
+            "incoming": "%31",
+            "add_chain": [
+              "%31 = add i32 %30, %27",
+              "%27 = add i32 %26, %22"
+            ]
+          }
+        ]
+      }
+    },
+    "vectorized_loops": [],
+    "unroll_remarks": [
+      {
+        "kind": "!Passed",
+        "pass": "loop-unroll",
+        "name": "PartialUnrolled",
+        "function": "alternating_sum",
+        "unroll_count": "2",
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Passed",
+        "pass": "loop-unroll",
+        "name": "PartialUnrolled",
+        "function": "main",
+        "unroll_count": "2",
+        "vectorization_factor": null,
+        "interleave_count": null
+      }
+    ],
+    "inline_remarks": [
+      {
+        "kind": "!Passed",
+        "pass": "inline",
+        "name": "Inlined",
+        "function": "alternating_sum",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Passed",
+        "pass": "inline",
+        "name": "Inlined",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      }
+    ],
+    "test_count": 10,
+    "passed": 10,
+    "failed": 0,
+    "diagnostics_preserve_main_object_text": true,
+    "main_object_text_field_scope": "Only ELF .text; GCC main is in .text.startup. See all_code_sections for full code.",
+    "all_code_sections": {
+      ".text": {
+        "size": 340,
+        "sha256": "fa4dda44ac9660b7f933fc7d4092a6045bdff6b0981cfb736b64cfa6d69cd0f7"
+      }
+    },
+    "diagnostics_preserve_all_executable_sections": true,
+    "simd_register_instruction_count": 0,
+    "simd_register_instruction_lines": []
+  },
+  {
+    "configuration": "clang_C_no_unroll",
+    "compiler": "clang-14",
+    "optimization_flags": "-O2 -fno-unroll-loops",
+    "noinline_variant": false,
+    "text_bytes": 836,
+    "debug_section_bytes": 0,
+    "main_object_instruction_count": 150,
+    "main_object_branches": 14,
+    "main_object_conditional_branches": 12,
+    "main_object_machine_basic_blocks_including_padding": 22,
+    "main_object_text_sha256": "5c28791efd290cb12eb7bbdd01da804425b24785a64ae2aece30417544fedd3c",
+    "executable_text_sha256": "4abc343b7651d8233940e979ca5409ed42c184830b843cb107e3a33d1666d667",
+    "main_o_bytes": 2984,
+    "executable_bytes": 16120,
+    "main_object_scale_symbol": false,
+    "symbol_sizes": {
+      "alternating_sum": 219,
+      "main": 367
+    },
+    "machine_functions": {
+      "alternating_sum": {
+        "instructions": 55,
+        "branches": 5,
+        "conditional_branches": 5,
+        "calls": 0,
+        "machine_basic_blocks_including_padding": 9
+      },
+      "main": {
+        "instructions": 95,
+        "branches": 9,
+        "conditional_branches": 7,
+        "calls": 5,
+        "machine_basic_blocks_including_padding": 13
+      }
+    },
+    "final_ir_functions": {
+      "alternating_sum": {
+        "basic_blocks": 8,
+        "explicit_labels": [
+          "3",
+          "5",
+          "7",
+          "21",
+          "24",
+          "27",
+          "29"
+        ],
+        "conditional_branches": 5,
+        "all_branches": 7,
+        "phi_nodes": 8,
+        "has_vector_integer_type": true,
+        "vector_reduce_add_calls": 1,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%30 = phi i32 [ %38, %29 ], [ %25, %24 ]",
+            "incoming": "%38",
+            "add_chain": [
+              "%38 = add i32 %37, %30"
+            ]
+          }
+        ]
+      },
+      "main": {
+        "basic_blocks": 13,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "18",
+          "20",
+          "34",
+          "37",
+          "40",
+          "52",
+          "57"
+        ],
+        "conditional_branches": 7,
+        "all_branches": 12,
+        "phi_nodes": 9,
+        "has_vector_integer_type": true,
+        "vector_reduce_add_calls": 1,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%41 = phi i32 [ %49, %40 ], [ %38, %37 ]",
+            "incoming": "%49",
+            "add_chain": [
+              "%49 = add i32 %48, %41"
+            ]
+          }
+        ]
+      }
+    },
+    "vectorized_loops": [
+      {
+        "kind": "!Passed",
+        "pass": "loop-vectorize",
+        "name": "Vectorized",
+        "function": "alternating_sum",
+        "unroll_count": null,
+        "vectorization_factor": "4",
+        "interleave_count": "1"
+      },
+      {
+        "kind": "!Passed",
+        "pass": "loop-vectorize",
+        "name": "Vectorized",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": "4",
+        "interleave_count": "1"
+      }
+    ],
+    "unroll_remarks": [],
+    "inline_remarks": [
+      {
+        "kind": "!Passed",
+        "pass": "inline",
+        "name": "Inlined",
+        "function": "alternating_sum",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Passed",
+        "pass": "inline",
+        "name": "Inlined",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      }
+    ],
+    "test_count": 10,
+    "passed": 10,
+    "failed": 0,
+    "diagnostics_preserve_main_object_text": true,
+    "main_object_text_field_scope": "Only ELF .text; GCC main is in .text.startup. See all_code_sections for full code.",
+    "all_code_sections": {
+      ".text": {
+        "size": 591,
+        "sha256": "5c28791efd290cb12eb7bbdd01da804425b24785a64ae2aece30417544fedd3c"
+      }
+    },
+    "diagnostics_preserve_all_executable_sections": true,
+    "simd_register_instruction_count": 48,
+    "simd_register_instruction_lines": [
+      "20:\t66 0f 6f 0d 00 00 00 00 \tmovdqa xmm1,XMMWORD PTR [rip+0x0]        # 28 <alternating_sum+0x28>\t24: R_X86_64_PC32\t.LCPI0_0-0x4",
+      "28:\t66 0f ef c0          \tpxor   xmm0,xmm0",
+      "2c:\t66 0f 6f 15 00 00 00 00 \tmovdqa xmm2,XMMWORD PTR [rip+0x0]        # 34 <alternating_sum+0x34>\t30: R_X86_64_PC32\t.LCPI0_1-0x4",
+      "34:\t66 0f 6f 1d 00 00 00 00 \tmovdqa xmm3,XMMWORD PTR [rip+0x0]        # 3c <alternating_sum+0x3c>\t38: R_X86_64_PC32\t.LCPI0_2-0x4",
+      "3c:\t66 0f 6f 25 00 00 00 00 \tmovdqa xmm4,XMMWORD PTR [rip+0x0]        # 44 <alternating_sum+0x44>\t40: R_X86_64_PC32\t.LCPI0_3-0x4",
+      "50:\t66 0f 6f e9          \tmovdqa xmm5,xmm1",
+      "54:\t66 0f fe e9          \tpaddd  xmm5,xmm1",
+      "58:\t66 0f fe e9          \tpaddd  xmm5,xmm1",
+      "5c:\t66 0f 6f f3          \tmovdqa xmm6,xmm3",
+      "60:\t66 0f fa f5          \tpsubd  xmm6,xmm5",
+      "64:\t66 0f fe ea          \tpaddd  xmm5,xmm2",
+      "68:\t66 0f 6f f9          \tmovdqa xmm7,xmm1",
+      "6c:\t66 0f 72 f7 1f       \tpslld  xmm7,0x1f",
+      "71:\t66 0f 72 e7 1f       \tpsrad  xmm7,0x1f",
+      "76:\t66 0f db f7          \tpand   xmm6,xmm7",
+      "7a:\t66 0f df fd          \tpandn  xmm7,xmm5",
+      "7e:\t66 0f eb fe          \tpor    xmm7,xmm6",
+      "82:\t66 0f fe c7          \tpaddd  xmm0,xmm7",
+      "86:\t66 0f fe cc          \tpaddd  xmm1,xmm4",
+      "8f:\t66 0f 70 c8 ee       \tpshufd xmm1,xmm0,0xee",
+      "94:\t66 0f fe c8          \tpaddd  xmm1,xmm0",
+      "98:\t66 0f 70 c1 55       \tpshufd xmm0,xmm1,0x55",
+      "9d:\t66 0f fe c1          \tpaddd  xmm0,xmm1",
+      "a1:\t66 0f 7e c0          \tmovd   eax,xmm0",
+      "12e:\t66 0f 6f 0d 00 00 00 00 \tmovdqa xmm1,XMMWORD PTR [rip+0x0]        # 136 <main+0x56>\t132: R_X86_64_PC32\t.LCPI1_0-0x4",
+      "136:\t66 0f ef c0          \tpxor   xmm0,xmm0",
+      "13a:\t66 0f 6f 15 00 00 00 00 \tmovdqa xmm2,XMMWORD PTR [rip+0x0]        # 142 <main+0x62>\t13e: R_X86_64_PC32\t.LCPI1_1-0x4",
+      "142:\t66 0f 6f 1d 00 00 00 00 \tmovdqa xmm3,XMMWORD PTR [rip+0x0]        # 14a <main+0x6a>\t146: R_X86_64_PC32\t.LCPI1_2-0x4",
+      "14a:\t66 0f 6f 25 00 00 00 00 \tmovdqa xmm4,XMMWORD PTR [rip+0x0]        # 152 <main+0x72>\t14e: R_X86_64_PC32\t.LCPI1_3-0x4",
+      "160:\t66 0f 6f e9          \tmovdqa xmm5,xmm1",
+      "164:\t66 0f fe e9          \tpaddd  xmm5,xmm1",
+      "168:\t66 0f fe e9          \tpaddd  xmm5,xmm1",
+      "16c:\t66 0f 6f f3          \tmovdqa xmm6,xmm3",
+      "170:\t66 0f fa f5          \tpsubd  xmm6,xmm5",
+      "174:\t66 0f fe ea          \tpaddd  xmm5,xmm2",
+      "178:\t66 0f 6f f9          \tmovdqa xmm7,xmm1",
+      "17c:\t66 0f 72 f7 1f       \tpslld  xmm7,0x1f",
+      "181:\t66 0f 72 e7 1f       \tpsrad  xmm7,0x1f",
+      "186:\t66 0f db f7          \tpand   xmm6,xmm7",
+      "18a:\t66 0f df fd          \tpandn  xmm7,xmm5",
+      "18e:\t66 0f eb fe          \tpor    xmm7,xmm6",
+      "192:\t66 0f fe c7          \tpaddd  xmm0,xmm7",
+      "196:\t66 0f fe cc          \tpaddd  xmm1,xmm4",
+      "19f:\t66 0f 70 c8 ee       \tpshufd xmm1,xmm0,0xee",
+      "1a4:\t66 0f fe c8          \tpaddd  xmm1,xmm0",
+      "1a8:\t66 0f 70 c1 55       \tpshufd xmm0,xmm1,0x55",
+      "1ad:\t66 0f fe c1          \tpaddd  xmm0,xmm1",
+      "1b1:\t66 0f 7e c5          \tmovd   ebp,xmm0"
+    ]
+  },
+  {
+    "configuration": "clang_D_no_vector_no_unroll",
+    "compiler": "clang-14",
+    "optimization_flags": "-O2 -fno-vectorize -fno-slp-vectorize -fno-unroll-loops",
+    "noinline_variant": false,
+    "text_bytes": 500,
+    "debug_section_bytes": 0,
+    "main_object_instruction_count": 76,
+    "main_object_branches": 8,
+    "main_object_conditional_branches": 6,
+    "main_object_machine_basic_blocks_including_padding": 14,
+    "main_object_text_sha256": "80e1e700099f6d30ad26130ccedaaf35e5673349f8bf8e1661e7328a7cfd254b",
+    "executable_text_sha256": "463f0f99e75669e828e37389f8171945a40a9105984c776d06c4ef0a8e6abc13",
+    "main_o_bytes": 1984,
+    "executable_bytes": 16120,
+    "main_object_scale_symbol": false,
+    "symbol_sizes": {
+      "alternating_sum": 59,
+      "main": 192
+    },
+    "machine_functions": {
+      "alternating_sum": {
+        "instructions": 19,
+        "branches": 2,
+        "conditional_branches": 2,
+        "calls": 0,
+        "machine_basic_blocks_including_padding": 5
+      },
+      "main": {
+        "instructions": 57,
+        "branches": 6,
+        "conditional_branches": 4,
+        "calls": 5,
+        "machine_basic_blocks_including_padding": 9
+      }
+    },
+    "final_ir_functions": {
+      "alternating_sum": {
+        "basic_blocks": 3,
+        "explicit_labels": [
+          "3",
+          "5"
+        ],
+        "conditional_branches": 2,
+        "all_branches": 2,
+        "phi_nodes": 3,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%6 = phi i32 [ %14, %5 ], [ 0, %1 ]",
+            "incoming": "%14",
+            "add_chain": [
+              "%14 = add i32 %13, %6"
+            ]
+          }
+        ]
+      },
+      "main": {
+        "basic_blocks": 8,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "28",
+          "33"
+        ],
+        "conditional_branches": 4,
+        "all_branches": 7,
+        "phi_nodes": 4,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%17 = phi i32 [ %25, %16 ], [ 0, %14 ]",
+            "incoming": "%25",
+            "add_chain": [
+              "%25 = add i32 %24, %17"
+            ]
+          }
+        ]
+      }
+    },
+    "vectorized_loops": [],
+    "unroll_remarks": [],
+    "inline_remarks": [
+      {
+        "kind": "!Passed",
+        "pass": "inline",
+        "name": "Inlined",
+        "function": "alternating_sum",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Passed",
+        "pass": "inline",
+        "name": "Inlined",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      }
+    ],
+    "test_count": 10,
+    "passed": 10,
+    "failed": 0,
+    "diagnostics_preserve_main_object_text": true,
+    "main_object_text_field_scope": "Only ELF .text; GCC main is in .text.startup. See all_code_sections for full code.",
+    "all_code_sections": {
+      ".text": {
+        "size": 256,
+        "sha256": "80e1e700099f6d30ad26130ccedaaf35e5673349f8bf8e1661e7328a7cfd254b"
+      }
+    },
+    "diagnostics_preserve_all_executable_sections": true,
+    "simd_register_instruction_count": 0,
+    "simd_register_instruction_lines": []
+  },
+  {
+    "configuration": "gcc_A_O2",
+    "compiler": "gcc",
+    "optimization_flags": "-O2",
+    "noinline_variant": false,
+    "text_bytes": 520,
+    "debug_section_bytes": 0,
+    "main_object_instruction_count": 66,
+    "main_object_branches": 7,
+    "main_object_conditional_branches": 5,
+    "main_object_machine_basic_blocks_including_padding": 14,
+    "main_object_text_sha256": "2419b6d79df6e598a512692ee5d79bca5f439f6cfa85b80d6accbf1857a33da5",
+    "executable_text_sha256": "b8e7a7f14d4434715b37db60119f6ff3f29a42754316553aa27dd41052861739",
+    "main_o_bytes": 2544,
+    "executable_bytes": 16216,
+    "main_object_scale_symbol": false,
+    "symbol_sizes": {
+      ".text": 51,
+      "alternating_sum": 51,
+      ".text.startup": 195,
+      "main": 195
+    },
+    "machine_functions": {
+      "alternating_sum": {
+        "instructions": 19,
+        "branches": 2,
+        "conditional_branches": 2,
+        "calls": 0,
+        "machine_basic_blocks_including_padding": 6
+      },
+      "main": {
+        "instructions": 47,
+        "branches": 5,
+        "conditional_branches": 3,
+        "calls": 7,
+        "machine_basic_blocks_including_padding": 8
+      }
+    },
+    "final_ir_functions": {
+      "alternating_sum": {
+        "basic_blocks": 6,
+        "vector_variable_declarations": 0,
+        "scale_call_count": 0
+      },
+      "main": {
+        "basic_blocks": 6,
+        "vector_variable_declarations": 0,
+        "scale_call_count": 0
+      }
+    },
+    "vectorized_loops": [],
+    "unroll_remarks": [],
+    "inline_remarks": [],
+    "test_count": 10,
+    "passed": 10,
+    "failed": 0,
+    "diagnostics_preserve_main_object_text": true,
+    "main_object_text_field_scope": "Only ELF .text; GCC main is in .text.startup. See all_code_sections for full code.",
+    "all_code_sections": {
+      ".text": {
+        "size": 51,
+        "sha256": "2419b6d79df6e598a512692ee5d79bca5f439f6cfa85b80d6accbf1857a33da5"
+      },
+      ".text.startup": {
+        "size": 195,
+        "sha256": "1bc27a9b484625a7d11ed2606fa89dc6207969495b302607168c440010b4892c"
+      }
+    },
+    "diagnostics_preserve_all_executable_sections": true,
+    "simd_register_instruction_count": 0,
+    "simd_register_instruction_lines": [],
+    "gcc_vectorized_loop_diagnostics": [],
+    "gcc_vectorization_missed_reasons": [],
+    "gcc_observed_vectorization": false
+  },
+  {
+    "configuration": "gcc_B_O2_vector",
+    "compiler": "gcc",
+    "optimization_flags": "-O2 -ftree-loop-vectorize -ftree-slp-vectorize",
+    "noinline_variant": false,
+    "text_bytes": 520,
+    "debug_section_bytes": 0,
+    "main_object_instruction_count": 66,
+    "main_object_branches": 7,
+    "main_object_conditional_branches": 5,
+    "main_object_machine_basic_blocks_including_padding": 14,
+    "main_object_text_sha256": "2419b6d79df6e598a512692ee5d79bca5f439f6cfa85b80d6accbf1857a33da5",
+    "executable_text_sha256": "b8e7a7f14d4434715b37db60119f6ff3f29a42754316553aa27dd41052861739",
+    "main_o_bytes": 2544,
+    "executable_bytes": 16216,
+    "main_object_scale_symbol": false,
+    "symbol_sizes": {
+      ".text": 51,
+      "alternating_sum": 51,
+      ".text.startup": 195,
+      "main": 195
+    },
+    "machine_functions": {
+      "alternating_sum": {
+        "instructions": 19,
+        "branches": 2,
+        "conditional_branches": 2,
+        "calls": 0,
+        "machine_basic_blocks_including_padding": 6
+      },
+      "main": {
+        "instructions": 47,
+        "branches": 5,
+        "conditional_branches": 3,
+        "calls": 7,
+        "machine_basic_blocks_including_padding": 8
+      }
+    },
+    "final_ir_functions": {
+      "alternating_sum": {
+        "basic_blocks": 6,
+        "vector_variable_declarations": 0,
+        "scale_call_count": 0
+      },
+      "main": {
+        "basic_blocks": 6,
+        "vector_variable_declarations": 0,
+        "scale_call_count": 0
+      }
+    },
+    "vectorized_loops": [],
+    "unroll_remarks": [],
+    "inline_remarks": [],
+    "test_count": 10,
+    "passed": 10,
+    "failed": 0,
+    "diagnostics_preserve_main_object_text": true,
+    "main_object_text_field_scope": "Only ELF .text; GCC main is in .text.startup. See all_code_sections for full code.",
+    "all_code_sections": {
+      ".text": {
+        "size": 51,
+        "sha256": "2419b6d79df6e598a512692ee5d79bca5f439f6cfa85b80d6accbf1857a33da5"
+      },
+      ".text.startup": {
+        "size": 195,
+        "sha256": "1bc27a9b484625a7d11ed2606fa89dc6207969495b302607168c440010b4892c"
+      }
+    },
+    "diagnostics_preserve_all_executable_sections": true,
+    "simd_register_instruction_count": 0,
+    "simd_register_instruction_lines": [],
+    "gcc_vectorized_loop_diagnostics": [],
+    "gcc_vectorization_missed_reasons": [
+      "<PROJECT>/src/toolchain/main.c:13:23: missed: couldn't vectorize loop",
+      "<PROJECT>/src/toolchain/main.c:16:17: missed: not vectorized: unsupported use in stmt."
+    ],
+    "gcc_observed_vectorization": false
+  },
+  {
+    "configuration": "gcc_C_O3",
+    "compiler": "gcc",
+    "optimization_flags": "-O3",
+    "noinline_variant": false,
+    "text_bytes": 552,
+    "debug_section_bytes": 0,
+    "main_object_instruction_count": 79,
+    "main_object_branches": 9,
+    "main_object_conditional_branches": 7,
+    "main_object_machine_basic_blocks_including_padding": 17,
+    "main_object_text_sha256": "2419b6d79df6e598a512692ee5d79bca5f439f6cfa85b80d6accbf1857a33da5",
+    "executable_text_sha256": "a16e9026251a9175f10c767bd6154935f288d8ff69513cc8f59b0f0ebcbdd81e",
+    "main_o_bytes": 2560,
+    "executable_bytes": 16216,
+    "main_object_scale_symbol": false,
+    "symbol_sizes": {
+      ".text": 51,
+      "alternating_sum": 51,
+      ".text.startup": 236,
+      "main": 236
+    },
+    "machine_functions": {
+      "alternating_sum": {
+        "instructions": 19,
+        "branches": 2,
+        "conditional_branches": 2,
+        "calls": 0,
+        "machine_basic_blocks_including_padding": 6
+      },
+      "main": {
+        "instructions": 60,
+        "branches": 7,
+        "conditional_branches": 5,
+        "calls": 6,
+        "machine_basic_blocks_including_padding": 11
+      }
+    },
+    "final_ir_functions": {
+      "alternating_sum": {
+        "basic_blocks": 6,
+        "vector_variable_declarations": 0,
+        "scale_call_count": 0
+      },
+      "main": {
+        "basic_blocks": 11,
+        "vector_variable_declarations": 0,
+        "scale_call_count": 0
+      }
+    },
+    "vectorized_loops": [],
+    "unroll_remarks": [],
+    "inline_remarks": [],
+    "test_count": 10,
+    "passed": 10,
+    "failed": 0,
+    "diagnostics_preserve_main_object_text": true,
+    "main_object_text_field_scope": "Only ELF .text; GCC main is in .text.startup. See all_code_sections for full code.",
+    "all_code_sections": {
+      ".text": {
+        "size": 51,
+        "sha256": "2419b6d79df6e598a512692ee5d79bca5f439f6cfa85b80d6accbf1857a33da5"
+      },
+      ".text.startup": {
+        "size": 236,
+        "sha256": "04afa3827af7b5f41c52add7dce4107bb3ec51a0970e28ae134970515e3ae2fa"
+      }
+    },
+    "diagnostics_preserve_all_executable_sections": true,
+    "simd_register_instruction_count": 0,
+    "simd_register_instruction_lines": [],
+    "gcc_vectorized_loop_diagnostics": [],
+    "gcc_vectorization_missed_reasons": [
+      "<PROJECT>/src/toolchain/main.c:13:23: missed: couldn't vectorize loop",
+      "<PROJECT>/src/toolchain/main.c:16:17: missed: not vectorized: unsupported use in stmt.",
+      "<PROJECT>/src/toolchain/main.c:13:23: missed: couldn't vectorize loop",
+      "<PROJECT>/src/toolchain/main.c:18:17: missed: not vectorized: unsupported use in stmt."
+    ],
+    "gcc_observed_vectorization": false
+  },
+  {
+    "configuration": "gcc_D_O3_no_vector",
+    "compiler": "gcc",
+    "optimization_flags": "-O3 -fno-tree-loop-vectorize -fno-tree-slp-vectorize",
+    "noinline_variant": false,
+    "text_bytes": 552,
+    "debug_section_bytes": 0,
+    "main_object_instruction_count": 79,
+    "main_object_branches": 9,
+    "main_object_conditional_branches": 7,
+    "main_object_machine_basic_blocks_including_padding": 17,
+    "main_object_text_sha256": "2419b6d79df6e598a512692ee5d79bca5f439f6cfa85b80d6accbf1857a33da5",
+    "executable_text_sha256": "a16e9026251a9175f10c767bd6154935f288d8ff69513cc8f59b0f0ebcbdd81e",
+    "main_o_bytes": 2560,
+    "executable_bytes": 16216,
+    "main_object_scale_symbol": false,
+    "symbol_sizes": {
+      ".text": 51,
+      "alternating_sum": 51,
+      ".text.startup": 236,
+      "main": 236
+    },
+    "machine_functions": {
+      "alternating_sum": {
+        "instructions": 19,
+        "branches": 2,
+        "conditional_branches": 2,
+        "calls": 0,
+        "machine_basic_blocks_including_padding": 6
+      },
+      "main": {
+        "instructions": 60,
+        "branches": 7,
+        "conditional_branches": 5,
+        "calls": 6,
+        "machine_basic_blocks_including_padding": 11
+      }
+    },
+    "final_ir_functions": {
+      "alternating_sum": {
+        "basic_blocks": 6,
+        "vector_variable_declarations": 0,
+        "scale_call_count": 0
+      },
+      "main": {
+        "basic_blocks": 11,
+        "vector_variable_declarations": 0,
+        "scale_call_count": 0
+      }
+    },
+    "vectorized_loops": [],
+    "unroll_remarks": [],
+    "inline_remarks": [],
+    "test_count": 10,
+    "passed": 10,
+    "failed": 0,
+    "diagnostics_preserve_main_object_text": true,
+    "main_object_text_field_scope": "Only ELF .text; GCC main is in .text.startup. See all_code_sections for full code.",
+    "all_code_sections": {
+      ".text": {
+        "size": 51,
+        "sha256": "2419b6d79df6e598a512692ee5d79bca5f439f6cfa85b80d6accbf1857a33da5"
+      },
+      ".text.startup": {
+        "size": 236,
+        "sha256": "04afa3827af7b5f41c52add7dce4107bb3ec51a0970e28ae134970515e3ae2fa"
+      }
+    },
+    "diagnostics_preserve_all_executable_sections": true,
+    "simd_register_instruction_count": 0,
+    "simd_register_instruction_lines": [],
+    "gcc_vectorized_loop_diagnostics": [],
+    "gcc_vectorization_missed_reasons": [],
+    "gcc_observed_vectorization": false
+  },
+  {
+    "configuration": "clang_noinline_O2",
+    "compiler": "clang-14",
+    "optimization_flags": "-O2",
+    "noinline_variant": true,
+    "text_bytes": 532,
+    "debug_section_bytes": 0,
+    "main_object_instruction_count": 91,
+    "main_object_branches": 9,
+    "main_object_conditional_branches": 6,
+    "main_object_machine_basic_blocks_including_padding": 18,
+    "main_object_text_sha256": "6686c575c474f8c970401c3fdb89a8188f5ed30c7274b354cb4797d2f5092bb0",
+    "executable_text_sha256": "e2e441ee7d87e642863a6e77a42af9376fd4505b30922229af7f2871bfcc2d32",
+    "main_o_bytes": 2152,
+    "executable_bytes": 16168,
+    "main_object_scale_symbol": true,
+    "symbol_sizes": {
+      "scale_and_bias": 7,
+      "alternating_sum": 55,
+      "main": 202
+    },
+    "machine_functions": {
+      "alternating_sum": {
+        "instructions": 27,
+        "branches": 3,
+        "conditional_branches": 2,
+        "calls": 1,
+        "machine_basic_blocks_including_padding": 7
+      },
+      "scale_and_bias": {
+        "instructions": 4,
+        "branches": 0,
+        "conditional_branches": 0,
+        "calls": 0,
+        "machine_basic_blocks_including_padding": 2
+      },
+      "main": {
+        "instructions": 60,
+        "branches": 6,
+        "conditional_branches": 4,
+        "calls": 6,
+        "machine_basic_blocks_including_padding": 9
+      }
+    },
+    "final_ir_functions": {
+      "alternating_sum": {
+        "basic_blocks": 3,
+        "explicit_labels": [
+          "3",
+          "5"
+        ],
+        "conditional_branches": 2,
+        "all_branches": 2,
+        "phi_nodes": 3,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 1,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%6 = phi i32 [ %13, %5 ], [ 0, %1 ]",
+            "incoming": "%13",
+            "add_chain": [
+              "%13 = add i32 %12, %6"
+            ]
+          }
+        ]
+      },
+      "scale_and_bias": {
+        "basic_blocks": 1,
+        "explicit_labels": [],
+        "conditional_branches": 0,
+        "all_branches": 0,
+        "phi_nodes": 0,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": []
+      },
+      "main": {
+        "basic_blocks": 8,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "27",
+          "32"
+        ],
+        "conditional_branches": 4,
+        "all_branches": 7,
+        "phi_nodes": 4,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 1,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%17 = phi i32 [ %24, %16 ], [ 0, %14 ]",
+            "incoming": "%24",
+            "add_chain": [
+              "%24 = add i32 %23, %17"
+            ]
+          }
+        ]
+      }
+    },
+    "vectorized_loops": [],
+    "unroll_remarks": [],
+    "inline_remarks": [
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NeverInline",
+        "function": "alternating_sum",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NoDefinition",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Passed",
+        "pass": "inline",
+        "name": "Inlined",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      },
+      {
+        "kind": "!Missed",
+        "pass": "inline",
+        "name": "NeverInline",
+        "function": "main",
+        "unroll_count": null,
+        "vectorization_factor": null,
+        "interleave_count": null
+      }
+    ],
+    "test_count": 10,
+    "passed": 10,
+    "failed": 0,
+    "diagnostics_preserve_main_object_text": true,
+    "main_object_text_field_scope": "Only ELF .text; GCC main is in .text.startup. See all_code_sections for full code.",
+    "all_code_sections": {
+      ".text": {
+        "size": 282,
+        "sha256": "6686c575c474f8c970401c3fdb89a8188f5ed30c7274b354cb4797d2f5092bb0"
+      }
+    },
+    "diagnostics_preserve_all_executable_sections": true,
+    "simd_register_instruction_count": 0,
+    "simd_register_instruction_lines": []
+  }
+]

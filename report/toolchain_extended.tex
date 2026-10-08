@@ -1,0 +1,115 @@
+\subsubsection{Clang 向量化与循环展开的受控实验}
+\label{sec:toolchain-clang-controlled}
+为检验 Clang O2 代码增长与向量化、循环展开之间的关系，本轮固定原始 \texttt{main.c}、\texttt{bonus.c} 和 \texttt{demo.h}、Clang 14.0.0、通用 x86-64 目标及原有公共选项，构建四组配置：A 为 \texttt{-O2}；B 在 A 上添加 \texttt{-fno-vectorize -fno-slp-vectorize}；C 添加 \texttt{-fno-unroll-loops}；D 同时添加上述三个关闭选项。各组仍分别预处理、编译、汇编并以 \texttt{-no-pie} 链接，没有启用 LTO。新增 A 的可执行文件 \texttt{.text} 与旧 Clang O2 逐字节一致，因此表\ref{tab:clang-controlled} 中的 A 是重新构建并测量的对照，而非直接抄录旧值。
+
+\begin{table}[H]
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{Clang 四组控制实验的实际结果；BB 按独立函数／\texttt{main} 给出}
+\label{tab:clang-controlled}
+\begin{tabularx}{\textwidth}{L{0.45cm}L{1.55cm}L{2.15cm}Y L{1.05cm}L{0.95cm}L{0.9cm}L{1.0cm}}
+\toprule\rowcolor{tableHead}
+组 & 向量／展开开关 & 实际向量化 VF/IC & 实际展开 & IR BB & \texttt{.text} B & 指令 & 测试 \\
+\midrule
+A & 开／开 & 4/2；4/1 & \texttt{main} 完全展开 5 次 & 8/16 & 868 & 154 & 10/10 \\
+B & 关／开 & 两者均无 & 两者标量循环均展开 2 次 & 7/12 & 596 & 105 & 10/10 \\
+C & 开／关 & 4/1；4/1 & 无成功展开记录，向量回边保留 & 8/13 & 836 & 150 & 10/10 \\
+D & 关／关 & 两者均无 & 无成功展开记录，标量回边保留 & 3/8 & 500 & 76 & 10/10 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+表中“开／关”表示请求的配置，“实际向量化”与“实际展开”两列观察来自实际 IR 与 optimization remarks。BB 是最终 LLVM IR 的基本块数，含隐式入口块；\texttt{.text} 是可执行文件代码节，含启动代码；指令数继续按 \texttt{main.o} 的反汇编指令行统计，含对齐 nop。分支指令只计 \texttt{j*} 与 \texttt{loop*}，不计调用和返回，A/B/C/D 分别为 18/14/14/8 条。这些统计对象不同，不能把 IR 的块数直接当成机器分支数。
+
+B、D 的最终函数体均没有整数向量类型或 \texttt{llvm.vector.reduce.add} 调用，汇编也没有对应 SIMD 主体，因而关闭向量化的实际效果得到核验。但归约没有消失：D 仍保留标量 \texttt{phi}、带符号项选择及回传累计值。B 的诊断在两个上下文均报告 \texttt{PartialUnrolled}、次数 2；其独立函数每次回边将索引加 2，先后累计一正一负两项，并对奇数项数保留收尾处理。D 则只保留逐项标量循环。下面摘录 D 的真实归约链，省略与该链无关的指令：
+\begin{lstlisting}[caption={同时关闭向量化与展开后仍存在的标量归约}]
+%6 = phi i32 [ %14, %5 ], [ 0, %1 ]
+; %13 selects the signed scalar term
+%13 = select i1 %11, i32 %9, i32 %12
+%14 = add i32 %13, %6
+\end{lstlisting}
+
+C 说明关闭展开还会改变向量循环的交错策略。独立函数的诊断明确报告 \texttt{InterleavingBeneficialButDisabled}，VF 仍为 4，IC 从 2 降至 1；最终 IR 每次索引增加 4，而非 A 的 8，并继续使用横向归约与标量尾部。\texttt{main} 也保留四通道向量循环的 \texttt{phi} 和回边，不再出现 A 的五次完全展开记录。这里没有观察到另一个成功的 loop-unroll 记录，但四通道 SIMD 与常量表达式仍存在，不能将关闭展开解释为取消全部并行通道或常量化。
+
+按 \texttt{nm -S} 的符号大小，独立函数 A/B/C/D 分别为 299/96/219/59 B，\texttt{main} 为 315/244/367/192 B。C 的独立函数缩小，\texttt{main} 却增大：A 的有界向量循环展开后可进一步形成常量向量选择，C 保留运行时向量索引、算术与回边。该结构差异能解释为何关闭展开未必使每个函数都缩小；函数大小也不含函数间对齐填充，不能与可执行文件 \texttt{.text} 混为同一指标。
+
+四组数据还可检验交互。A$-$B、A$-$C、A$-$D 分别减少 272/32/368 B，及 49/4/78 条指令。联合减少量比两项单独减少量之和多 64 B、25 条。若以 $y$ 表示同口径指标，则
+\[
+ I=y_A-y_B-y_C+y_D
+   =\begin{cases}-64\ \mathrm{B},& y=\texttt{.text};\\-25,& y=\text{静态指令数}.\end{cases}
+\]
+有向量化时，关闭展开减少 32 B；没有向量化时则减少 96 B。这与 A 的向量交错及有界完全展开、B 的标量两次展开、C 的未展开向量循环、D 的单次标量循环相对应，说明两个配置因素共同改变了优化后 CFG 与指令结构。开关同时影响后续分析和变换，因此这些差值支持配置之间存在交互，不能当作某个 pass 的独立空间贡献。
+
+四组均重新执行原有十类输入检查，以配对求和公式作为独立预期，逐项比较 stdout、stderr 与退出状态，合计 40/40。完整命令、源码 SHA256、IR、CFG、汇编、ELF、诊断和逐项结果保存在 \path{artifacts/toolchain/extended_exploration/configs/} 下的四个 Clang 配置目录；汇总指标见该实验目录的 \texttt{metrics.json/csv}。本实验只比较代码结构，不测量执行速度。
+
+\subsubsection{GCC 优化级别与向量化配置比较}
+\label{sec:toolchain-gcc-controlled}
+Clang 的结果提示优化集合可能影响代码结构，但 GCC O2 没有启用向量化并不意味着显式开启后就一定成功。为区分“默认未开启”和“开启后识别失败”，使用实际版本 GCC 11.4.0，保持源程序、公共选项及链接依赖不变：A 为 \texttt{-O2}；B 为 \texttt{-O2 -ftree-loop-vectorize -ftree-slp-vectorize}；C 为 \texttt{-O3}；D 为 \texttt{-O3 -fno-tree-loop-vectorize -fno-tree-slp-vectorize}。逐组查询优化选项，并保留 \texttt{-fopt-info-vec-all} 与 GIMPLE 输出，B/C 另保存详细向量化分析。
+
+\begin{table}[H]
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{GCC 优化配置比较；四组均未实际产生循环向量化}
+\label{tab:gcc-controlled}
+\begin{tabularx}{\textwidth}{L{0.45cm}L{0.65cm}L{1.6cm}L{1.15cm}Y L{0.9cm}L{1.0cm}L{1.0cm}}
+\toprule\rowcolor{tableHead}
+组 & 级别 & 向量化选项 & 实际结果 & 诊断／结构 & 指令 & \texttt{.text} B & 测试 \\
+\midrule
+A & O2 & 默认关闭 & 无向量化 & 标量循环；\texttt{main} 保留函数调用 & 66 & 520 & 10/10 \\
+B & O2 & 显式开启两类 & 无向量化 & 尝试后报不支持的 def-use 模式 & 66 & 520 & 10/10 \\
+C & O3 & 默认开启 & 无向量化 & 独立及内联循环均失败；\texttt{main} 已内联 & 79 & 552 & 10/10 \\
+D & O3 & 显式关闭两类 & 无向量化 & 标量内联循环；代码与 C 相同 & 79 & 552 & 10/10 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+选项查询确认 B/C 的两类向量化均为 enabled，A/D 为 disabled；最终 GIMPLE 没有向量变量声明，目标循环反汇编也没有 SIMD 指令。B 的独立函数、C 的独立函数与 \texttt{main} 内联副本均报告 \texttt{unsupported use in stmt}。详细分析进一步把障碍定位到累计状态：分析 \texttt{sum} 的循环 PHI 后出现 \texttt{reduction used in loop} 和 \texttt{Unknown def-use cycle pattern}，随后将其使用识别为 unknown，未生成向量循环。外围 \texttt{scanf/fwrite} 的 memory-clobber 诊断也被保留，但不能将其误作这个算术循环失败的原因。
+
+GCC 的最终 GIMPLE 仍将累计值用于条件两侧的加法与减法，再由 PHI 合并；例如 B 的对应片段为：
+\begin{lstlisting}[caption={GCC B 的标量累计状态；摘录保留原 GIMPLE 名称}]
+# sum_6 = PHI <0(2), sum_24(6)>
+; even branch
+sum_23 = sum_6 + _17;
+; odd branch
+sum_22 = sum_6 - _17;
+; merge and feed the next iteration
+# sum_24 = PHI <sum_22(5), sum_23(4)>
+\end{lstlisting}
+与 Clang 在向量化前形成“先选带符号项、再统一加到累计值”的结构相比，两者暴露给向量分析的 def-use 形式不同。结合详细失败诊断，本例支持 GCC 11.4 在当前流水线中未接受该循环累计模式；它不能证明 GCC 普遍不支持整数归约，也不能说明只更改某一条 GIMPLE 就必然成功。
+
+B 与 A 的全部目标代码节相同，可执行文件 \texttt{.text} 也相同；C 与 D 同样如此，故开启向量化在本例没有产生预期的向量代码。O3 仍带来另一项可见变化：A/B 的 \texttt{main} 保留 \texttt{alternating\_sum} 调用，C/D 则内联其标量循环。独立函数四组均为 51 B；\texttt{main} 从 195 B 变为 236 B，GIMPLE BB 从 6 变为 11，\texttt{main.o} 分支数从 7 变为 9。因而 O3 比 O2 多出的 32 B、13 条指令，与内联后的循环及布局变化相伴，不能归因于 SIMD 或直接等同于性能提升。
+
+四组新增运行检查合计 40/40。GCC O2 显式向量化与 O3 都尝试了向量化并失败，但二者的内联和其他优化配置不同，最终产物并不相同；GCC O3 与 Clang O2 更不是严格匹配的 pass 流水线。默认优化集合解释了 GCC O2 没有发起同类变换的一部分背景，新增诊断则表明，仅统一“向量化开关”仍不足以统一两种编译器的结果。本轮没有数值化比较代价模型，也没有性能测量。详细证据位于四个 GCC 配置目录中的 \texttt{main.optinfo.txt}、\texttt{main.gimple}、B/C 的 \texttt{main.vect-details.gimple} 及反汇编。
+
+\subsubsection{函数内联对后续循环优化的影响}
+\label{sec:toolchain-noinline}
+为检验内联是否改变后续循环优化机会，保持原始程序不变，在独立文件 \path{src/toolchain/variants/main_noinline.c} 中仅给 \texttt{scale\_and\_bias} 增加 \texttt{noinline} 属性。变体与原文件的差异检查确认只有该属性改变，函数仍计算 $3x+5$。两者均使用与 Clang A 相同的 O2 配置，结果见表\ref{tab:noinline-controlled}。
+
+\begin{table}[H]
+\centering\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{Clang O2 原始程序与 noinline 微扰的对照}
+\label{tab:noinline-controlled}
+\begin{tabularx}{\textwidth}{L{1.4cm}L{1.5cm}L{1.35cm}Y L{1.0cm}L{0.85cm}L{1.0cm}}
+\toprule\rowcolor{tableHead}
+源码 & 循环内辅助调用 & 实际向量化 & 累计／归约结构 & \texttt{.text} B & 指令 & 测试 \\
+\midrule
+原始 & 无，已内联 & 两上下文均有 & 向量 PHI、向量相加及横向归约 & 868 & 154 & 10/10 \\
+noinline & 两上下文均保留 & 两者均无 & 标量 PHI、选择及加法递推保留 & 532 & 91 & 10/10 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+变体诊断明确报告辅助函数因 noinline 属性未被内联；其独立符号实际保留，大小为 7 B。\texttt{alternating\_sum} 本身仍被内联到 \texttt{main}，所以这组实验只禁止辅助函数内联，不能说所有内联都被关闭。最终 IR 在独立和内联上下文中各保留一个辅助调用点，机器汇编也保留相应 \texttt{call}。独立函数的关键片段如下：
+\begin{lstlisting}[caption={noinline 变体的真实循环调用与标量累计链}]
+%6 = phi i32 [ %13, %5 ], [ 0, %1 ]
+%7 = phi i32 [ %14, %5 ], [ 0, %1 ]
+%8 = tail call fastcc i32 @scale_and_bias(i32 noundef %7)
+%11 = sub i32 0, %8
+%12 = select i1 %10, i32 %8, i32 %11
+%13 = add i32 %12, %6
+\end{lstlisting}
+
+\texttt{LoopVectorizePass} 的前后快照保留同一标量累计链与调用，没有产生向量循环或 \texttt{llvm.vector.reduce.add}；诊断在两个上下文均指出 \texttt{call instruction cannot be vectorized}。辅助函数仍被推导为 \texttt{readnone}，因此不能把失败简单归咎于它具有内存副作用。实际证据支持：本程序在该版本和配置下，内联将 $3i+5$ 暴露为循环内算术后能够向量化，而保留的辅助调用成为向量化诊断明确指出的障碍。标量归约形状并未消失；不过现有诊断未单独输出内部归约描述符的识别状态，不能仅凭 PHI/add 形状就声称向量器内部归约识别已经成功。
+
+最终独立函数／\texttt{main} 的 LLVM BB 从 8/16 变为 3/8，符号大小从 299/315 B 变为 55/202 B，另保留 7 B 的辅助函数，\texttt{main.o} 分支数从 18 变为 9。代码缩小与向量入口、向量主体、归约和尾部等结构消失相对应，但调用开销、跨过程分析和后续优化机会也同时变化，不能把全部 336 B、63 条指令差异单独解释为一次内联 pass 的贡献，更不能据此评价运行速度。该变体新增检查为 10/10，连同前述八组共 90/90；边界路径检查另行统计，原有 60/60 基线记录不变。

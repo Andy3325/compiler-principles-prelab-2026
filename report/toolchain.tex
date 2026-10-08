@@ -1,0 +1,213 @@
+\section{基本要求一：编译系统的完整工作过程}
+\label{sec:toolchain}
+\subsection{实验程序与完整编译流程}
+\label{sec:toolchain-flow}
+主程序计算
+\[
+ S(n)=\sum_{i=0}^{n-1}(-1)^i(3i+5),\qquad R(n)=S(n)+11,\quad 0\leq n\leq20.
+\]
+静态函数 \texttt{scale\_and\_bias} 用于观察同单元内联，独立 \path{bonus.c} 中的 \texttt{add\_bonus} 则形成跨文件链接依赖。由相邻两项相消得到预期结果 $S(2k)=-3k$、$S(2k+1)=3k+5$。GCC/Clang 各有 O0、O2、O2-g 三组，每组七个有效输入和三个错误输入，共完成 \textbf{60/60} 次运行测试，输出与退出状态均符合预期。
+
+所有编译器和优化配置均使用相同的两个源文件及同一组输入，以便对照阶段产物和运行结果；O0、O2 与 O2-g 的差异分别用于观察优化和调试信息对产物的影响。
+
+从 C 源程序到可执行文件，需要依次完成预处理、编译、汇编和链接。图\ref{fig:toolchain-flow} 按产物类型标出这些处理的先后关系；保存各阶段产物后，可以分别观察文本变换、目标指令生成与外部符号解析。
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  artifact/.style={draw=nkuPurple,fill=softBlue,rounded corners,align=center,
+    text width=1.55cm,minimum height=1.1cm,font=\small},
+  process/.style={align=center,font=\scriptsize},
+  node distance=1.55cm,>=Latex]
+\node[artifact] (tcsource) {源程序\\\texttt{.c}};
+\node[artifact,right=of tcsource] (tcpre) {预处理文件\\\texttt{.i}};
+\node[artifact,right=of tcpre] (tcasm) {汇编程序\\\texttt{.s}};
+\node[artifact,right=of tcasm] (tcobj) {可重定位\\目标文件\\\texttt{.o}};
+\node[artifact,right=of tcobj] (tcexe) {可执行文件\\ELF};
+\draw[->] (tcsource) -- node[above,process]{预处理器\\\texttt{-E}} (tcpre);
+\draw[->] (tcpre) -- node[above,process]{编译器\\\texttt{-S}} (tcasm);
+\draw[->] (tcasm) -- node[above,process]{汇编器\\\texttt{-c}} (tcobj);
+\draw[->] (tcobj) -- node[above,process]{链接器} (tcexe);
+\node[below=0.35cm of tcexe,align=center,font=\scriptsize] (tclib) {其他目标文件\\与运行库};
+\draw[->] (tclib.west) -| ([xshift=-0.7cm]tcexe.west);
+\end{tikzpicture}
+\caption{C 程序的完整编译流程；箭头表示处理阶段，方框表示输入或输出产物。}
+\label{fig:toolchain-flow}
+\end{figure}
+
+\texttt{-E/-S/-c} 分别停止在预处理文本、汇编文本和目标文件阶段\cite{gcc}，但并非每个理论阶段都对应独立文件。本节机器码为本机 x86\_64，下一节手写汇编统一为 RISC-V。
+
+下面以 Clang O0 展示实验中的分阶段调用。命令在 WSL 工程根目录执行；\texttt{F} 表示公共编译选项，\texttt{P} 表示该组产物目录，文件路径按工程根目录写为相对路径。\texttt{main.c} 和 \texttt{bonus.c} 分别生成目标文件，最后共同参与链接：
+\begin{lstlisting}[language=bash,caption={Clang O0 的预处理、编译、汇编与链接命令},label={lst:toolchain-commands}]
+F='-std=c11 -Wall -Wextra -Werror -march=x86-64 -mtune=generic -fno-pie -O0'
+P=artifacts/toolchain/clang_O0
+clang-14 $F -E src/toolchain/main.c -o "$P/main.i"
+clang-14 $F -E src/toolchain/bonus.c -o "$P/bonus.i"
+clang-14 $F -S "$P/main.i" -o "$P/main.s"
+clang-14 $F -S "$P/bonus.i" -o "$P/bonus.s"
+clang-14 -c "$P/main.s" -o "$P/main.o"
+clang-14 -c "$P/bonus.s" -o "$P/bonus.o"
+clang-14 -no-pie "$P/main.o" "$P/bonus.o" -Wl,-Map,"$P/link.map" -o "$P/demo"
+\end{lstlisting}
+
+GCC 采用同样的分阶段方式。\texttt{-S} 在这里读取已预处理的 \texttt{.i}，\texttt{-c} 则读取 \texttt{.s} 并停止于 \texttt{.o}；链接调用由编译器驱动组织目标文件、系统启动代码与运行库。不同优化配置的结果集中在\ref{sec:toolchain-optimization}节比较。
+
+\subsection{预处理器做了什么？}
+\label{sec:toolchain-preprocessor}
+预处理器负责宏展开、头文件包含、条件编译以及其他预处理指令。它主要完成源代码级文本变换，不会对普通程序表达式求值，也不会生成机器代码；\texttt{\#if} 中的预处理条件表达式则由预处理器判断。\texttt{main.c} 包含 \texttt{stdio.h} 和 \texttt{demo.h}；后者通过头文件保护控制重复包含，并定义 \texttt{SCALE}、\texttt{BIAS} 等宏。
+
+预处理将宏展开为 \texttt{3*x+(12-7)}，尚未计算括号；O0 IR 已使用常数 5。这说明宏替换只把宏定义中的文本放到使用位置，而常量表达式的处理发生在后续前端与 IR 生成过程中。\texttt{.i} 中还包含头文件展开后的声明，供编译器理解函数调用及其类型。
+
+\subsection{编译器做了什么？}
+\label{sec:toolchain-compiler}
+编译器负责理解源程序的词法、语法和语义，建立中间表示，执行分析和优化，最终产生目标体系结构相关代码。本实验以 \texttt{.s} 为编译阶段的输出，并另行导出 AST 和 LLVM IR 观察中间结构。AST 中的 \texttt{ForStmt/IfStmt}、IR 中的基本块和 \texttt{br}、汇编中的指令及 ELF 中的重定位，分别反映前端结构处理、中间表示、代码生成和链接的结果。
+
+\subsubsection{词法分析}
+\label{sec:toolchain-lexing}
+词法分析把字符流划分为 token，包括关键字、标识符、整数或浮点常量、运算符和分隔符。例如 \texttt{int sum = 0;} 中，\texttt{int} 是关键字，\texttt{sum} 是标识符，\texttt{0} 是整数常量，\texttt{=} 和 \texttt{;} 分别承担赋值与语句分隔功能。本实验未单独导出 token 序列，以下使用已保存的 AST 与 IR 观察前端处理结果。
+
+\subsubsection{语法分析}
+\label{sec:toolchain-parsing}
+语法分析按语言文法将 token 组织为抽象语法树。\texttt{alternating\_sum} 的 AST 中，\texttt{ForStmt} 对应循环的初始化、条件、增量和循环体，\texttt{IfStmt} 对应奇偶判断与两个累计分支；\texttt{CallExpr} 对应辅助函数调用。这些节点把源代码的语句嵌套关系表达为树形结构。
+
+\subsubsection{语义分析}
+\label{sec:toolchain-semantics}
+语义分析在语法结构上检查类型、符号绑定、作用域、函数参数及其他合法性约束。本实验主要通过 AST 与后续 IR 结果间接观察语义分析结果，而非将语义分析器本身作为单独程序输出。AST 中的 \texttt{DeclRefExpr} 关联变量或函数声明，\texttt{ImplicitCastExpr} 表示左值到值等隐式转换；后续 IR 中的 \texttt{i32} 参数、整数运算与返回值反映其类型结果。宏中的 \texttt{12-7} 在 O0 IR 中表现为常数 5，说明即使未启用 O2，前端仍需完成常量表达式处理。
+
+\subsubsection{LLVM IR 生成}
+\label{sec:toolchain-ir-generation}
+中间代码生成将 AST 中的程序结构转换为 LLVM IR。O0 的 \texttt{alternating\_sum} 用 \texttt{alloca} 为局部状态分配存储位置，用 \texttt{load/store} 读写变量，用 \texttt{call} 表示 \texttt{scale\_and\_bias} 调用。循环和奇偶判断划分为基本块，\texttt{icmp} 产生条件，\texttt{br} 将各块连接起来，\texttt{ret} 返回累计结果。这里已经表达了程序的控制流与数据操作，但尚未选定每条操作使用哪个 x86 寄存器。
+
+\subsubsection{中间代码优化}
+\label{sec:toolchain-ir-optimization}
+优化在保留程序语义的前提下变换中间表示。本实验的 O2 结果包含函数内联、以 \texttt{select} 表达奇偶项选择、\texttt{phi} 表达循环累计状态，以及整数归约的向量化、展开和标量尾部处理。\ref{sec:toolchain-optimization}节结合 pass 前后 IR、optimization remark 与产物大小完整分析这些变化。
+
+\subsubsection{目标代码生成}
+\label{sec:toolchain-code-generation}
+目标代码生成把 LLVM IR 中的操作映射到目标指令，通过指令选择、寄存器分配等步骤输出汇编。Clang O0 的 \texttt{main.s} 中，辅助函数计算使用 \texttt{imull/addl}，分支使用 \texttt{jge/jne} 等跳转，调用使用 \texttt{callq}；汇编标签对应基本块和分支目标。局部 \texttt{sum} 的栈访问保留了 O0 对局部状态的直接实现。上述汇编尚含符号引用，需经汇编与链接生成可执行程序。
+
+\subsection{汇编器做了什么？}
+\label{sec:toolchain-assembler}
+汇编器把指令助记符、寄存器、地址表达式和 label 转换为机器编码，并生成可重定位目标文件 \texttt{.o}。目标文件同时包含 section、symbol table 和 relocation information：section 组织代码与数据，符号表描述定义及外部引用，重定位信息记录需要链接器修正的地址或位移。
+
+本实验通过 \texttt{clang-14 -c main.s -o main.o} 汇编阶段调用生成 \texttt{main.o}，并用 \texttt{readelf -hSWsrd} 与 \texttt{objdump -drwC -Mintel} 检查其 ELF 结构及指令编码。其文件类型为可重定位 ELF，\texttt{.text} 保存机器码，\texttt{.rodata.str1.1} 保存字符串。静态辅助函数为 LOCAL，\texttt{main} 为 GLOBAL，\texttt{add\_bonus/printf} 则是尚未定义的 UND 符号；\texttt{.rela.text} 为后续链接保存重定位项。
+
+\subsection{链接器做了什么？}
+\label{sec:toolchain-linker}
+链接器合并多个目标文件，完成符号解析、重定位和地址布局，连接所需运行库，生成最终可执行文件。对每个外部引用，它需要在其他目标文件或库中找到定义，并依据重定位类型修正对应位置。
+
+\texttt{main.o} 引用 \texttt{add\_bonus}，\texttt{bonus.o} 提供其定义。省略 \texttt{bonus.o} 时，链接报 \texttt{undefined reference to add\_bonus}；补回后成功，这对应符号解析是否找到定义的两种结果。\texttt{printf} 通过动态链接信息及 PLT/GOT 关联 libc 中的实现。表\ref{tab:link} 将目标文件中的符号、重定位与这项链接负对照放在一起，说明汇编器留下的信息如何被链接阶段使用。
+
+\begin{table}[H]
+\centering\small
+\caption{Clang O0 的目标文件与链接分析}
+\label{tab:link}
+\begin{tabularx}{\textwidth}{L{2.5cm}Y}
+\toprule\rowcolor{tableHead}观察项 & 结果及含义 \\
+\midrule
+代码与符号 & \texttt{.text} 存机器码，\texttt{.rodata.str1.1} 存字符串；静态辅助函数为 LOCAL，\texttt{main} 为 GLOBAL，\texttt{add\_bonus/printf} 为 UND。局部 \texttt{sum} 在栈上。\\
+重定位与解析 & \texttt{.rela.text} 的 12 项中包含两者的 \texttt{R\_X86\_64\_PLT32} 引用；\texttt{bonus.o} 提供前者定义，后者通过动态链接信息与 PLT/GOT 在运行时绑定 libc 中的实现。\\
+链接负对照 & 省略 \texttt{bonus.o} 后报 \texttt{undefined reference to add\_bonus}，补回后成功。该预期失败不计入程序运行通过数。\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{各阶段输入、输出与实验产物总结}
+\label{sec:toolchain-stage-summary}
+表\ref{tab:toolchain-stages} 按输入、命令、功能和输出汇总完整工具链，便于对照各阶段职责。这里的编译器驱动组织各阶段调用；AST 与 LLVM IR 是为观察编译器内部结构而额外导出的中间结果。
+\begin{table}[H]
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\caption{编译系统各阶段的输入、输出与观察结果}
+\label{tab:toolchain-stages}
+\begin{tabularx}{\textwidth}{L{1.25cm}L{1.45cm}L{2.25cm}L{2.45cm}L{1.65cm}Y}
+\toprule\rowcolor{tableHead}阶段 & 输入 & 实际命令 & 主要功能 & 输出 & 本实验观察结果 \\
+\midrule
+预处理 & \texttt{.c} 与头文件 & \makecell[l]{\texttt{clang-14}\\\texttt{-E}} & 宏替换、包含头文件、条件编译 & \texttt{main.i}、\texttt{bonus.i} & 展开为 \texttt{3*x+(12-7)}，括号未求值。\\
+编译 & 预处理后的 \texttt{.i}；导出 IR 时输入 \texttt{.c} & \makecell[l]{\texttt{clang-14}\\\texttt{-S}；另用\\\texttt{-S}\\\texttt{-emit-llvm}} & 前端分析、IR 生成与优化、目标代码生成 & \texttt{.s}；另有 AST、\texttt{.ll} & AST 含 \texttt{ForStmt/IfStmt}，IR 含基本块与 \texttt{br}，汇编含目标指令。\\
+汇编 & \texttt{main.s}、\texttt{bonus.s} & \makecell[l]{\texttt{clang-14}\\\texttt{-c}} & 指令编码，组织节、符号及重定位项 & 可重定位 \texttt{.o} & \texttt{.text}、LOCAL/GLOBAL/UND、\texttt{.rela.text}。\\
+链接 & 两个 \texttt{.o} 与系统运行库 & \makecell[l]{\texttt{clang-14}\\\texttt{-no-pie}\\\texttt{main.o}\\\texttt{bonus.o}} & 符号解析、重定位、地址布局与运行库连接 & 可执行 ELF \texttt{demo} 与 \texttt{link.map} & \texttt{add\_bonus} 由 \texttt{bonus.o} 解析，\texttt{printf} 动态关联 libc；缺少前者时失败。\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{补充探索：优化策略与源程序变化对编译结果的影响}
+\label{sec:toolchain-optimization}
+完整流程说明每个阶段负责什么；下面比较 O0、O2 与 O2-g，解释同一程序在优化配置变化后为何产生不同的 IR、指令结构与文件大小。
+在这些基线分析之后，进一步通过向量化与展开开关、GCC 优化级别以及辅助函数 noinline 微扰，检验优化现象及其阶段依赖；所有新增结果均独立构建、测量与验证。
+
+\subsubsection{从循环依赖到整数归约}
+\label{sec:toolchain-reduction}
+O0 IR 仍以 \texttt{alloca/load/store} 表示局部状态，并在循环内调用辅助函数。内联诊断显示辅助函数被内联；\texttt{LoopVectorizePass} 前的 IR 中，奇偶分支已成为选择带符号项的 \texttt{select}，累计和成为下面的 SSA 递推（摘录省去位置元数据）：
+\begin{lstlisting}[caption={向量化前的归约环；数值名来自 pass 前 IR}]
+%9 = phi i32 [ %17, %8 ], [ 0, %3 ]
+; %16 chooses +(3*i+5) or -(3*i+5)
+%16 = select i1 %14, i32 %12, i32 %15
+%17 = add i32 %16, %9
+\end{lstlisting}
+这里 \texttt{\%9} 依赖上一轮的 \texttt{\%17}，因此循环存在跨迭代依赖；\texttt{i} 则是规律递增的归纳变量。关键在于每项只依赖自己的索引，内联后没有待保留的函数副作用，累计状态仅沿“\texttt{phi}$\to$\texttt{add}$\to$\texttt{phi}”回传。它是可分组求和的整数归约，而非必须保持逐轮处理顺序的一般递推，与 LLVM 的 reduction 识别机制一致\cite{llvmvector14}。该分析针对声明输入域内不溢出的整数求和；C 有符号溢出和浮点求和的舍入顺序不在此结论范围内。
+
+向量化诊断采用 Clang 14 和 \texttt{-O2 -march=x86-64 -mtune=generic -fno-pie} 等选项，并启用 \texttt{-Rpass}、\texttt{-Rpass-missed}、\texttt{-Rpass-analysis} 的 \texttt{loop-vectorize} 过滤及 YAML 记录\cite{clangremarks14}。同一源代码行对应两个不同的函数上下文：
+\begin{table}[H]
+\centering\small
+\caption{optimization remarks 区分的两个循环上下文}
+\label{tab:vector-remarks}
+\begin{tabularx}{\textwidth}{L{3.1cm}L{1.1cm}L{1.1cm}Y}
+\toprule\rowcolor{tableHead}所在函数 & 宽度 & 交错数 & 诊断及最终 IR \\
+\midrule
+\texttt{alternating\_sum} & 4 & 2 & 两个四通道累计器；每轮覆盖八个源迭代。\\
+\texttt{main} 内联副本 & 4 & 1 & 明确报告交错无收益；另有 \texttt{FullyUnrolled}、次数 5 的记录，最终成为常量向量选择及尾部路径。\\
+\bottomrule
+\end{tabularx}
+\end{table}
+诊断没有报告 loop-vectorize 的 missed 项。启用记录选项后，IR 与汇编含有 \texttt{!dbg/.loc} 位置元数据；剔除元数据后的函数体与未启用记录时相同，\texttt{main.o} 代码段内容也相同。
+
+\subsubsection{向量通道、尾部与展开}
+\label{sec:toolchain-vector-tail}
+独立函数的 \texttt{<4 x i32>} 是四个 32 位整数通道，不是四个线程。
+
+设带符号项为 $t_i=(-1)^i(3i+5)$，第 $k$ 个向量循环中，两组累计器的第 $j$ 通道分别累加 $t_{8k+j}$ 与 $t_{8k+4+j}$（$0\leq j<4$）。这是宽度 4、交错数 2 对应的部分展开；最终 IR 中第二组常数 17 来自 $3(i+4)+5=3i+17$，对应索引偏移 4 的同一计算。奇偶条件按通道变成比较及 \texttt{select}，两个累计向量先逐通道相加，再由 \texttt{llvm.vector.reduce.add.v4i32} 将四通道横向求和为一个 i32\cite{llvm}；汇编的 \texttt{paddd/pshufd} 对应这些操作。
+
+循环次数由输入决定，未必被八整除。pass 后的 IR 先计算 $m=n-(n\bmod8)$；最终 IR 将其简化为 \texttt{n \& -8}。$n<8$ 时直接走标量路径，否则向量段处理前 $m$ 项，标量尾部从归约所得的部分和继续处理 $m$ 到 $n-1$，且尾部未再次向量化。内联到 \texttt{main} 后，已知 $n\le20$ 的上下文使用宽度 4、交错数 1；最多五个向量批次的循环被完全展开，与最终按批次数选择预计算向量的结构一致，标量尾循环仍保留。
+
+为直接核验上述尾部路径，另在原 Clang O2 可执行程序及直接调用独立函数的合法入口上执行 $n=7,8,9,15,16,17$。独立入口通过链接器 \texttt{--wrap=main} 选择测试函数，所链接的 \texttt{alternating\_sum} 299 字节机器码与原程序逐字节一致；\texttt{main} 上下文则直接运行原程序。GDB 在反汇编定位的向量循环头、标量循环头和 \texttt{main} 归约块设置断点，实际命中次数见表\ref{tab:vector-boundaries}，不以最终输出相同推断路径。
+
+\begin{table}[H]
+\centering\small
+\caption{Clang O2 边界输入的实际断点命中次数}
+\label{tab:vector-boundaries}
+\begin{tabularx}{\textwidth}{L{0.8cm}Y Y Y Y}
+\toprule\rowcolor{tableHead}
+$n$ & 独立函数向量循环 & 独立函数标量迭代 & \texttt{main} 归约块 & \texttt{main} 标量迭代 \\
+\midrule
+7  & 0 & 7 & 1 & 3 \\
+8  & 1 & 0 & 1 & 0 \\
+9  & 1 & 1 & 1 & 1 \\
+15 & 1 & 7 & 1 & 3 \\
+16 & 2 & 0 & 1 & 0 \\
+17 & 2 & 1 & 1 & 1 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+独立函数的向量批次与标量迭代分别为 $\lfloor n/8\rfloor$ 与 $n\bmod8$，包括小于阈值时的纯标量路径；$n=17$ 的日志实际记录两次向量头命中，以及从索引 16 开始的一次标量迭代。\texttt{main} 已无对应向量回边，其归约块一次命中表示展开后选定向量的归约，不能解释为一个八元素批次；其尾部次数为 $n\bmod4$。特别是 $n=7$，\texttt{main} 已执行常量向量归约，随后处理索引 4、5、6，而独立函数执行七次标量迭代。运行 \texttt{main} 时独立函数入口均未命中，进一步区分了两个上下文。六个输入、两种入口的输出、stderr 与退出状态为 12/12 通过，路径计数也为 12/12 通过；独立数值预期仍由配对求和公式计算。详细地址、断点脚本、寄存器命中日志及机器码一致性证据保存在 \path{artifacts/toolchain/extended_exploration/boundary/}。这些证据验证了当前二进制的边界处理，不代表其他配置或更大输入域。
+
+\input{toolchain_extended}
+
+\subsubsection{代码大小、调试信息与编译器差异}
+\label{sec:toolchain-code-size}
+图\ref{fig:metrics} 对照 GCC 与 Clang 在 O0/O2 下的代码结构指标，用于观察优化对静态代码空间的影响；随后结合 IR、配置和调试节说明这些变化的原因及解释范围。
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/toolchain_metrics.pdf}
+\caption{代码结构指标：左图含链接启动代码，右图只计 \texttt{main.o} 的静态指令行（含填充 nop）。}
+\label{fig:metrics}
+\end{figure}
+Clang O2 的 \texttt{.text} 从 575 B 增至 868 B，静态指令数从 84 增至 154。向量主体、横向归约、入口判断、标量尾部，以及内联后仍保留的独立函数定义都需要空间；\texttt{main} 的有界展开还改变了控制流。这些结构解释了为何优化可能增大代码。本文未进行逐 pass 消融，各结构对代码增量的单独贡献尚未量化。
+
+GCC O2 的对应指标由 581 B/97 条降至 520 B/66 条，其循环改为从 5 开始每轮加 3 的归纳变量，分支变成 \texttt{testb/cmove}。同参数的 \texttt{gcc -Q --help=optimizers} 显示，\texttt{-ftree-loop-vectorize} 和 \texttt{-ftree-slp-vectorize} 均为 \texttt{[disabled]}；GCC 11.4 官方文档也将两者列为 O3 默认开启\cite{gccopt11}。本例的 GCC O2 配置没有启用这两类向量化优化；上述基线未包含 O3；本轮新增比较见\ref{sec:toolchain-gcc-controlled}节。
+
+两者虽均指定通用 x86-64，完整优化流水线没有逐项对齐，GCC 默认安全选项及 O2 的 \texttt{\_FORTIFY\_SOURCE=2} 还改变系统头文件展开，其 O0 和 Clang O2 没有该宏。LLVM 的宽度与交错选择使用代价模型\cite{llvmvector14}；\texttt{main} 的诊断报告“交错无收益”，但没有给出该判断的数值成本。由于 GCC 与 Clang 在 O2 下启用的优化集合不同，代码大小差异不能直接用于评价两种编译器的优劣。本实验未测运行时间，不进行性能比较；文件大小和静态指令数量仅用于描述产物结构，不能据此推断执行时间。
+
+O2 加 \texttt{-g} 后，GCC/Clang 可执行文件分别由 16216/16120 B 增至 21080/19136 B，\texttt{.debug*} 合计为 4239/2315 B。在本例中，两编译器各自 O2 与 O2-g 的整个 \texttt{.text} 内容相同，文件增长还含节表等元数据。跨翻译单元的 \texttt{add\_bonus} 调用仍保留，内联诊断说明其定义不可见；实验没有启用 LTO。
+
+新增实验为上述解释补充了可量化的配置对照：Clang 的空间差异与向量主体、交错、展开及尾部结构共同变化，GCC O3 的差异则在未发生向量化的情况下伴随 \texttt{main} 内联。它们仍不构成逐 pass 的独立消融。诊断构建与普通构建逐一比较目标文件全部可执行代码节，GCC 同时检查 \texttt{.text} 与包含 \texttt{main} 的 \texttt{.text.startup}，九组均保持一致；只检查 GCC 的 \texttt{.text} 会漏掉 \texttt{main}，因此不能据其单节哈希断言整个目标代码相同。原有 60/60、新增配置 90/90 和边界入口 12/12 各自保留统计口径，均未转化为性能结论。

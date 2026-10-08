@@ -1,0 +1,7 @@
+--- add.mlir
++++ 01-parsed.mlir
+@@ -10,3 +10,4 @@
+     return
+   }
+ }
++

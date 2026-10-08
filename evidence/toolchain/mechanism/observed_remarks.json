@@ -1,0 +1,12 @@
+[
+  {
+    "function": "alternating_sum",
+    "vectorization_factor": "4",
+    "interleave_count": "2"
+  },
+  {
+    "function": "main",
+    "vectorization_factor": "4",
+    "interleave_count": "1"
+  }
+]

@@ -1,0 +1,367 @@
+{
+  "baseline_directory": "artifacts/toolchain/clang_O2",
+  "baseline_demo_sha256": "8f4a3544baa194617ee2f00c047cc3eda0edab5a1a50f8679b4c2b14f5e21530",
+  "script_sha256": "d9921d453dc2330d76730ec0d0b3964d17bfc688ee120f3f00bbd8ebbe4e4ff3",
+  "wrapper_source_sha256": "6ba7dc8a8cb1ef20c53c22211ce9088078c12a3510f97a4afe6c884e88dca6d1",
+  "function_identity": {
+    "baseline": {
+      "address": 4198736,
+      "size": 299,
+      "sha256": "57b1587b8b71dc0230f98a8a1ece4506d22bf903deabffa730c7bad64e05ffbd"
+    },
+    "harness": {
+      "address": 4198736,
+      "size": 299,
+      "sha256": "57b1587b8b71dc0230f98a8a1ece4506d22bf903deabffa730c7bad64e05ffbd"
+    },
+    "machine_bytes_identical": true,
+    "original_main_object_sha256": "ef2d8610197bba1e96fc00c8d57a6e4bc849ed0144295830fe33e16878be1f52",
+    "wrapper_source_sha256": "6ba7dc8a8cb1ef20c53c22211ce9088078c12a3510f97a4afe6c884e88dca6d1",
+    "method": "Unmodified baseline main.o + bonus.o, with wrapper.o and --wrap=main; no LTO or recompilation of original source."
+  },
+  "probe_evidence": "probe_addresses.json",
+  "cases": [
+    {
+      "n": 7,
+      "executable": "artifacts/toolchain/extended_exploration/boundary/standalone_demo",
+      "executable_sha256": "2f0b51fbf0744aba7cc9e37209d877f17730895917a362486cff21517d20b75f",
+      "expected_stdout": "n=7 alternating=14 adjusted=25\n",
+      "stdout": "n=7 alternating=14 adjusted=25\n",
+      "stderr": "",
+      "exit": 0,
+      "hits": {
+        "function_entry": 1,
+        "vector_loop": 0,
+        "scalar_loop": 7
+      },
+      "gdb_stdout": "artifacts/toolchain/extended_exploration/boundary/standalone/n_7/gdb.stdout.txt",
+      "gdb_commands": "artifacts/toolchain/extended_exploration/boundary/standalone/n_7/trace.gdb",
+      "output_pass": true,
+      "context": "standalone alternating_sum",
+      "expected_hits_from_cfg": {
+        "function_entry": 1,
+        "vector_loop": 0,
+        "scalar_loop": 7
+      },
+      "path_pass": true
+    },
+    {
+      "n": 7,
+      "executable": "artifacts/toolchain/clang_O2/demo",
+      "executable_sha256": "8f4a3544baa194617ee2f00c047cc3eda0edab5a1a50f8679b4c2b14f5e21530",
+      "expected_stdout": "n=7 alternating=14 adjusted=25\n",
+      "stdout": "n=7 alternating=14 adjusted=25\n",
+      "stderr": "",
+      "exit": 0,
+      "hits": {
+        "main_entry": 1,
+        "standalone_entry": 0,
+        "vector_reduce": 1,
+        "scalar_loop": 3,
+        "constant_vector_0": 1,
+        "constant_vector_1": 0,
+        "constant_vector_2": 0,
+        "constant_vector_3": 0,
+        "constant_vector_4": 0
+      },
+      "gdb_stdout": "artifacts/toolchain/extended_exploration/boundary/main_inlined/n_7/gdb.stdout.txt",
+      "gdb_commands": "artifacts/toolchain/extended_exploration/boundary/main_inlined/n_7/trace.gdb",
+      "output_pass": true,
+      "context": "original main inlined context",
+      "expected_hits_from_cfg": {
+        "main_entry": 1,
+        "standalone_entry": 0,
+        "vector_reduce": 1,
+        "scalar_loop": 3
+      },
+      "path_pass": true
+    },
+    {
+      "n": 8,
+      "executable": "artifacts/toolchain/extended_exploration/boundary/standalone_demo",
+      "executable_sha256": "2f0b51fbf0744aba7cc9e37209d877f17730895917a362486cff21517d20b75f",
+      "expected_stdout": "n=8 alternating=-12 adjusted=-1\n",
+      "stdout": "n=8 alternating=-12 adjusted=-1\n",
+      "stderr": "",
+      "exit": 0,
+      "hits": {
+        "function_entry": 1,
+        "vector_loop": 1,
+        "scalar_loop": 0
+      },
+      "gdb_stdout": "artifacts/toolchain/extended_exploration/boundary/standalone/n_8/gdb.stdout.txt",
+      "gdb_commands": "artifacts/toolchain/extended_exploration/boundary/standalone/n_8/trace.gdb",
+      "output_pass": true,
+      "context": "standalone alternating_sum",
+      "expected_hits_from_cfg": {
+        "function_entry": 1,
+        "vector_loop": 1,
+        "scalar_loop": 0
+      },
+      "path_pass": true
+    },
+    {
+      "n": 8,
+      "executable": "artifacts/toolchain/clang_O2/demo",
+      "executable_sha256": "8f4a3544baa194617ee2f00c047cc3eda0edab5a1a50f8679b4c2b14f5e21530",
+      "expected_stdout": "n=8 alternating=-12 adjusted=-1\n",
+      "stdout": "n=8 alternating=-12 adjusted=-1\n",
+      "stderr": "",
+      "exit": 0,
+      "hits": {
+        "main_entry": 1,
+        "standalone_entry": 0,
+        "vector_reduce": 1,
+        "scalar_loop": 0,
+        "constant_vector_0": 1,
+        "constant_vector_1": 1,
+        "constant_vector_2": 0,
+        "constant_vector_3": 0,
+        "constant_vector_4": 0
+      },
+      "gdb_stdout": "artifacts/toolchain/extended_exploration/boundary/main_inlined/n_8/gdb.stdout.txt",
+      "gdb_commands": "artifacts/toolchain/extended_exploration/boundary/main_inlined/n_8/trace.gdb",
+      "output_pass": true,
+      "context": "original main inlined context",
+      "expected_hits_from_cfg": {
+        "main_entry": 1,
+        "standalone_entry": 0,
+        "vector_reduce": 1,
+        "scalar_loop": 0
+      },
+      "path_pass": true
+    },
+    {
+      "n": 9,
+      "executable": "artifacts/toolchain/extended_exploration/boundary/standalone_demo",
+      "executable_sha256": "2f0b51fbf0744aba7cc9e37209d877f17730895917a362486cff21517d20b75f",
+      "expected_stdout": "n=9 alternating=17 adjusted=28\n",
+      "stdout": "n=9 alternating=17 adjusted=28\n",
+      "stderr": "",
+      "exit": 0,
+      "hits": {
+        "function_entry": 1,
+        "vector_loop": 1,
+        "scalar_loop": 1
+      },
+      "gdb_stdout": "artifacts/toolchain/extended_exploration/boundary/standalone/n_9/gdb.stdout.txt",
+      "gdb_commands": "artifacts/toolchain/extended_exploration/boundary/standalone/n_9/trace.gdb",
+      "output_pass": true,
+      "context": "standalone alternating_sum",
+      "expected_hits_from_cfg": {
+        "function_entry": 1,
+        "vector_loop": 1,
+        "scalar_loop": 1
+      },
+      "path_pass": true
+    },
+    {
+      "n": 9,
+      "executable": "artifacts/toolchain/clang_O2/demo",
+      "executable_sha256": "8f4a3544baa194617ee2f00c047cc3eda0edab5a1a50f8679b4c2b14f5e21530",
+      "expected_stdout": "n=9 alternating=17 adjusted=28\n",
+      "stdout": "n=9 alternating=17 adjusted=28\n",
+      "stderr": "",
+      "exit": 0,
+      "hits": {
+        "main_entry": 1,
+        "standalone_entry": 0,
+        "vector_reduce": 1,
+        "scalar_loop": 1,
+        "constant_vector_0": 1,
+        "constant_vector_1": 1,
+        "constant_vector_2": 0,
+        "constant_vector_3": 0,
+        "constant_vector_4": 0
+      },
+      "gdb_stdout": "artifacts/toolchain/extended_exploration/boundary/main_inlined/n_9/gdb.stdout.txt",
+      "gdb_commands": "artifacts/toolchain/extended_exploration/boundary/main_inlined/n_9/trace.gdb",
+      "output_pass": true,
+      "context": "original main inlined context",
+      "expected_hits_from_cfg": {
+        "main_entry": 1,
+        "standalone_entry": 0,
+        "vector_reduce": 1,
+        "scalar_loop": 1
+      },
+      "path_pass": true
+    },
+    {
+      "n": 15,
+      "executable": "artifacts/toolchain/extended_exploration/boundary/standalone_demo",
+      "executable_sha256": "2f0b51fbf0744aba7cc9e37209d877f17730895917a362486cff21517d20b75f",
+      "expected_stdout": "n=15 alternating=26 adjusted=37\n",
+      "stdout": "n=15 alternating=26 adjusted=37\n",
+      "stderr": "",
+      "exit": 0,
+      "hits": {
+        "function_entry": 1,
+        "vector_loop": 1,
+        "scalar_loop": 7
+      },
+      "gdb_stdout": "artifacts/toolchain/extended_exploration/boundary/standalone/n_15/gdb.stdout.txt",
+      "gdb_commands": "artifacts/toolchain/extended_exploration/boundary/standalone/n_15/trace.gdb",
+      "output_pass": true,
+      "context": "standalone alternating_sum",
+      "expected_hits_from_cfg": {
+        "function_entry": 1,
+        "vector_loop": 1,
+        "scalar_loop": 7
+      },
+      "path_pass": true
+    },
+    {
+      "n": 15,
+      "executable": "artifacts/toolchain/clang_O2/demo",
+      "executable_sha256": "8f4a3544baa194617ee2f00c047cc3eda0edab5a1a50f8679b4c2b14f5e21530",
+      "expected_stdout": "n=15 alternating=26 adjusted=37\n",
+      "stdout": "n=15 alternating=26 adjusted=37\n",
+      "stderr": "",
+      "exit": 0,
+      "hits": {
+        "main_entry": 1,
+        "standalone_entry": 0,
+        "vector_reduce": 1,
+        "scalar_loop": 3,
+        "constant_vector_0": 1,
+        "constant_vector_1": 0,
+        "constant_vector_2": 0,
+        "constant_vector_3": 1,
+        "constant_vector_4": 0
+      },
+      "gdb_stdout": "artifacts/toolchain/extended_exploration/boundary/main_inlined/n_15/gdb.stdout.txt",
+      "gdb_commands": "artifacts/toolchain/extended_exploration/boundary/main_inlined/n_15/trace.gdb",
+      "output_pass": true,
+      "context": "original main inlined context",
+      "expected_hits_from_cfg": {
+        "main_entry": 1,
+        "standalone_entry": 0,
+        "vector_reduce": 1,
+        "scalar_loop": 3
+      },
+      "path_pass": true
+    },
+    {
+      "n": 16,
+      "executable": "artifacts/toolchain/extended_exploration/boundary/standalone_demo",
+      "executable_sha256": "2f0b51fbf0744aba7cc9e37209d877f17730895917a362486cff21517d20b75f",
+      "expected_stdout": "n=16 alternating=-24 adjusted=-13\n",
+      "stdout": "n=16 alternating=-24 adjusted=-13\n",
+      "stderr": "",
+      "exit": 0,
+      "hits": {
+        "function_entry": 1,
+        "vector_loop": 2,
+        "scalar_loop": 0
+      },
+      "gdb_stdout": "artifacts/toolchain/extended_exploration/boundary/standalone/n_16/gdb.stdout.txt",
+      "gdb_commands": "artifacts/toolchain/extended_exploration/boundary/standalone/n_16/trace.gdb",
+      "output_pass": true,
+      "context": "standalone alternating_sum",
+      "expected_hits_from_cfg": {
+        "function_entry": 1,
+        "vector_loop": 2,
+        "scalar_loop": 0
+      },
+      "path_pass": true
+    },
+    {
+      "n": 16,
+      "executable": "artifacts/toolchain/clang_O2/demo",
+      "executable_sha256": "8f4a3544baa194617ee2f00c047cc3eda0edab5a1a50f8679b4c2b14f5e21530",
+      "expected_stdout": "n=16 alternating=-24 adjusted=-13\n",
+      "stdout": "n=16 alternating=-24 adjusted=-13\n",
+      "stderr": "",
+      "exit": 0,
+      "hits": {
+        "main_entry": 1,
+        "standalone_entry": 0,
+        "vector_reduce": 1,
+        "scalar_loop": 0,
+        "constant_vector_0": 1,
+        "constant_vector_1": 0,
+        "constant_vector_2": 0,
+        "constant_vector_3": 0,
+        "constant_vector_4": 1
+      },
+      "gdb_stdout": "artifacts/toolchain/extended_exploration/boundary/main_inlined/n_16/gdb.stdout.txt",
+      "gdb_commands": "artifacts/toolchain/extended_exploration/boundary/main_inlined/n_16/trace.gdb",
+      "output_pass": true,
+      "context": "original main inlined context",
+      "expected_hits_from_cfg": {
+        "main_entry": 1,
+        "standalone_entry": 0,
+        "vector_reduce": 1,
+        "scalar_loop": 0
+      },
+      "path_pass": true
+    },
+    {
+      "n": 17,
+      "executable": "artifacts/toolchain/extended_exploration/boundary/standalone_demo",
+      "executable_sha256": "2f0b51fbf0744aba7cc9e37209d877f17730895917a362486cff21517d20b75f",
+      "expected_stdout": "n=17 alternating=29 adjusted=40\n",
+      "stdout": "n=17 alternating=29 adjusted=40\n",
+      "stderr": "",
+      "exit": 0,
+      "hits": {
+        "function_entry": 1,
+        "vector_loop": 2,
+        "scalar_loop": 1
+      },
+      "gdb_stdout": "artifacts/toolchain/extended_exploration/boundary/standalone/n_17/gdb.stdout.txt",
+      "gdb_commands": "artifacts/toolchain/extended_exploration/boundary/standalone/n_17/trace.gdb",
+      "output_pass": true,
+      "context": "standalone alternating_sum",
+      "expected_hits_from_cfg": {
+        "function_entry": 1,
+        "vector_loop": 2,
+        "scalar_loop": 1
+      },
+      "path_pass": true
+    },
+    {
+      "n": 17,
+      "executable": "artifacts/toolchain/clang_O2/demo",
+      "executable_sha256": "8f4a3544baa194617ee2f00c047cc3eda0edab5a1a50f8679b4c2b14f5e21530",
+      "expected_stdout": "n=17 alternating=29 adjusted=40\n",
+      "stdout": "n=17 alternating=29 adjusted=40\n",
+      "stderr": "",
+      "exit": 0,
+      "hits": {
+        "main_entry": 1,
+        "standalone_entry": 0,
+        "vector_reduce": 1,
+        "scalar_loop": 1,
+        "constant_vector_0": 1,
+        "constant_vector_1": 0,
+        "constant_vector_2": 0,
+        "constant_vector_3": 0,
+        "constant_vector_4": 1
+      },
+      "gdb_stdout": "artifacts/toolchain/extended_exploration/boundary/main_inlined/n_17/gdb.stdout.txt",
+      "gdb_commands": "artifacts/toolchain/extended_exploration/boundary/main_inlined/n_17/trace.gdb",
+      "output_pass": true,
+      "context": "original main inlined context",
+      "expected_hits_from_cfg": {
+        "main_entry": 1,
+        "standalone_entry": 0,
+        "vector_reduce": 1,
+        "scalar_loop": 1
+      },
+      "path_pass": true
+    }
+  ],
+  "summary": {
+    "cases": 12,
+    "output_passed": 12,
+    "path_passed": 12,
+    "original_files_unchanged": true
+  },
+  "limits": [
+    "Breakpoint hits measure executed basic blocks, not elapsed time or speedup.",
+    "Standalone wrapper changes startup selection only; alternating_sum machine bytes are verified identical.",
+    "main has no surviving vector loop. Its vector_reduce hit is not a count of vector iterations.",
+    "These paths describe this exact baseline Clang O2 ELF; other configurations require their own disassembly and probes."
+  ]
+}

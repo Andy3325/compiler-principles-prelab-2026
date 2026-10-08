@@ -1,0 +1,116 @@
+\subsection{SysY 运行时库的构建与集成}
+\label{sec:sysy-runtime}
+输入输出函数由链接的 SysY 运行库提供；程序只调用相应接口，目标 glibc 承担底层输入输出。运行库编译为目标对象并归档为 \texttt{libsylib.a}，再参与各程序的最终静态链接。
+实验参考 SysY2022 语言定义与运行库说明\cite{sysyspec}。由于课程专用运行库原件未提供，本实验采用公开的 SysY2022 兼容实现\cite{runtime}；\texttt{getint/getfloat/putint/putfloat/putch} 由该运行库提供，并调用目标 glibc。
+
+运行库的构建命令如下，目标架构与三个程序路径均为 RV64GC/LP64D：
+\begin{lstlisting}[caption={SysY 运行库对象与静态归档的构建},label={lst:sysy-runtime-build}]
+riscv64-linux-gnu-gcc -std=c11 -O2 -fcommon -march=rv64gc -mabi=lp64d -c runtime/sylib.c -o artifacts/sysy/objects/sylib.o
+riscv64-linux-gnu-ar rcs artifacts/sysy/objects/libsylib.a artifacts/sysy/objects/sylib.o
+\end{lstlisting}
+运行库头文件含全局暂定定义，使用 \texttt{-fcommon} 兼容其定义方式。链接 map 显示 \texttt{sylib.o} 满足 getint 等引用。运行库 stderr 的 \texttt{TOTAL: 0H-0M-0S-0us} 表示未启用计时接口时的累计时间，不用于性能分析。
+
+\subsection{三种程序实现的编译与链接}
+\label{sec:sysy-build}
+本节将源程序基准、手写 LLVM IR 和手写 RISC-V 汇编分别编译为目标对象，并链接为独立的 RISC-V ELF 程序。源实现由 Clang 以 \texttt{-x c} 按 C 兼容子集处理 \texttt{.sy} 文件，通过 \texttt{-include runtime/sylib.h} 注入运行库声明；这一构建基准不等同于自行实现完整 SysY 编译器。LLVM 14 有类型指针 IR 与 RV64GC/LP64D 汇编分别构建。自动生成的 IR 与汇编仅用于结果对照。手写 IR 经验证后由 llc 生成目标文件，手写汇编独立汇编，二者均按 SysY 源语义编写，互不作为对方的自动生成结果。两个示例的六个程序均静态链接 \texttt{libsylib.a} 和目标 glibc，以 \texttt{qemu-riscv64} 执行。目标对象的 ELF 记录显示 RISC-V、RVC、double-float ABI 标志。
+
+图\ref{fig:sysy-build-paths}显示源程序、手写 IR 与手写汇编三条构建路径。由 SysY 到手写 IR/汇编的虚线表示按源语义编写等价实现；后续实线表示工具处理。每条路径分别链接生成一个 ELF 程序，再使用相同输入比较输出。
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  sysybox/.style={draw=blueGray,rounded corners=2pt,fill=softBlue,align=center,text width=3.85cm,minimum height=1.08cm,font=\small},
+  sysywide/.style={sysybox,text width=6.6cm},
+  buildarrow/.style={-{Stealth[length=2mm]},thick,draw=blueGray},
+  writearrow/.style={buildarrow,dashed}
+]
+\node[sysywide] (meaning) at (0,0) {SysY 示例程序与语义};
+\node[sysybox] (source) at (-4.7,-1.75) {SysY 源实现 \texttt{.sy}\\Clang 14 交叉编译};
+\node[sysybox] (ir) at (0,-1.75) {手写 LLVM IR \texttt{.ll}\\\texttt{llvm-as / opt / llc}};
+\node[sysybox] (asm) at (4.7,-1.75) {手写 RISC-V \texttt{.S}\\交叉 GCC 调用汇编器};
+\node[sysybox] (so) at (-4.7,-3.35) {\texttt{source.o}};
+\node[sysybox] (io) at (0,-3.35) {\texttt{llvm.o}};
+\node[sysybox] (ao) at (4.7,-3.35) {\texttt{asm.o}};
+\node[sysywide] (link) at (0,-5.05) {各路径分别静态链接\\\texttt{libsylib.a + glibc}};
+\node[sysywide] (elf) at (0,-6.55) {三种 RISC-V ELF 程序};
+\node[sysywide] (qemu) at (0,-8.05) {\texttt{qemu-riscv64}：相同输入与输出比较};
+\draw[buildarrow] (meaning.south west) -- (source.north);
+\draw[writearrow] (meaning.south) -- (ir.north);
+\draw[writearrow] (meaning.south east) -- (asm.north);
+\draw[buildarrow] (source) -- (so);
+\draw[buildarrow] (ir) -- (io);
+\draw[buildarrow] (asm) -- (ao);
+\draw[buildarrow] (so.south) -- (link.north west);
+\draw[buildarrow] (io.south) -- (link.north);
+\draw[buildarrow] (ao.south) -- (link.north east);
+\draw[buildarrow] (link) -- (elf);
+\draw[buildarrow] (elf) -- (qemu);
+\end{tikzpicture}
+\caption{SysY、手写 LLVM IR 与手写 RISC-V 汇编的三条构建路径。虚线表示按语义手写，实线表示构建与执行；三种实现分别生成可执行程序。}
+\label{fig:sysy-build-paths}
+\end{figure}
+
+以下以 \texttt{control\_matrix} 为例列出构建命令；\texttt{float\_stats} 使用同一脚本和选项，仅替换程序名。
+\begin{lstlisting}[caption={源程序、手写 IR 与手写汇编分别生成目标文件},label={lst:sysy-object-build}]
+clang-14 --target=riscv64-linux-gnu --gcc-toolchain=/usr -march=rv64gc -mabi=lp64d -std=c11 -fcommon -ffp-contract=off -O0 -x c -include runtime/sylib.h -c src/sysy/control_matrix.sy -o artifacts/sysy/objects/control_matrix.source.o
+llvm-as-14 src/llvm/control_matrix.ll -o artifacts/sysy/objects/control_matrix.bc
+opt-14 -verify -disable-output artifacts/sysy/objects/control_matrix.bc
+llc-14 -O0 -mtriple=riscv64-linux-gnu -mattr=+m,+a,+f,+d,+c -target-abi=lp64d -filetype=obj artifacts/sysy/objects/control_matrix.bc -o artifacts/sysy/objects/control_matrix.llvm.o
+riscv64-linux-gnu-gcc -march=rv64gc -mabi=lp64d -c src/riscv/control_matrix.S -o artifacts/sysy/objects/control_matrix.asm.o
+\end{lstlisting}
+\texttt{llvm-as-14} 将 IR 文本解析为 bitcode，\texttt{opt-14 -verify} 检查结构合法性，\texttt{llc-14 -filetype=obj} 直接生成目标对象。\texttt{riscv64-linux-gnu-gcc -c} 对 \texttt{.S} 文件调用汇编器，保留独立手写汇编路径。源程序的 \texttt{-ffp-contract=off} 关闭乘加融合，与手写 IR 和汇编的分离乘加一致。
+
+\noindent\begin{minipage}{\linewidth}
+下列命令链接 IR 路径；源实现和汇编实现分别替换为 \texttt{source.o} 与 \texttt{asm.o}。运行时由测试程序将输入送入标准输入，并比较标准输出与退出状态。
+\begin{lstlisting}[caption={IR 路径的静态链接与执行工具},label={lst:sysy-link-run}]
+riscv64-linux-gnu-gcc -static -no-pie -march=rv64gc -mabi=lp64d artifacts/sysy/objects/control_matrix.llvm.o artifacts/sysy/objects/libsylib.a -Wl,-Map,artifacts/sysy/control_matrix.llvm.map -o artifacts/sysy/bin/control_matrix.llvm
+qemu-riscv64 artifacts/sysy/bin/control_matrix.llvm
+\end{lstlisting}
+\end{minipage}
+
+三条路径分别生成可执行程序后，还需在相同输入下与独立预期逐一比较。仅让三份程序相互比较无法排除共同实现错误，因而下面同时检验输出、退出状态和针对特定语义风险的负对照。
+
+\subsection{运行结果与语义一致性验证}
+\label{sec:sysy-results}
+本节依据两个示例的源语义检验三种独立实现，依次说明测试设计、实际运行结果、注错负对照和验证范围，以区分结构合法、正常退出与语义正确这几种不同条件。
+
+\subsubsection{测试用例与独立预期}
+\label{sec:sysy-test-design}
+三种实现使用同一组测试输入，并分别与独立数学 oracle 的预期输出比较，同时检查程序退出状态。整数用例限定在前述有效域，排除数组越界、整数溢出和除零；浮点 oracle 按 binary32 逐步舍入，结果按正文给出的绝对/相对组合容差判断，整数输出精确比较。
+
+整数测试包括 20 个固定用例与 80 个按固定种子生成的用例，覆盖空循环、不同停止位置、零值跳过、短路分支、正负除余与增量边界。浮点测试包括 10 个固定用例与 50 个生成用例，覆盖空输入、零或负 scale、正负值筛选、非整数结果与输入边界。生成器先将浮点输入舍入为 binary32，再以十六进制浮点形式送入运行库，减少十进制文本转换歧义。
+
+预期输出独立于三种实现计算：整数采用前述加权前缀和与显式符号除余定义，浮点采用式\eqref{eq:sysy-float-oracle}的逐步舍入过程，再计算偏置、截断与归一化结果；五个手算锚点用于核对 oracle 本身。每次执行保存输入、预期、标准输出、标准错误和退出码，只有退出 0 且输出满足判据才计为通过。浮点输出按数值解析比较，而非字符串逐字比较；容差适用于两个浮点输出，中间的整数输出仍要求精确相同。
+
+\subsubsection{三种实现的运行结果}
+\label{sec:sysy-run-results}
+100 个整数和 60 个浮点用例在三种实现上共运行 480 次，\textbf{480/480 次通过}，失败0，均退出0；随机种子为 \texttt{24115602412565}。180次浮点结果与 binary32 oracle 数值精确一致。完整初值例的加权和 $1+4-12+20+30=43$，加偏置后53；第四位置 $-3$ 触发 break 时仅累加 $1+4$，得到15。手算结果作为独立参考值，用于验证三种实现的输出。
+
+$n=1,scale=1,a=[0.5]$ 的输出是 \texttt{0x1.8p-1 0 0x1.8p-2}，即0.75、0、0.375；$n=3,scale=0.1,a=[0.1,0.2,0.3]$ 对应的 binary32 结果为3.309999942779541，打印为 \texttt{0x1.a7ae14p+1}，相对于精确实数3.31存在舍入误差。180 次数值精确一致是当前用例的实际观察；测试仍使用既定容差判据，不由这一观察推断所有输入均严格相等。
+
+\subsubsection{错误注入与测试有效性分析}
+\label{sec:sysy-mutation-analysis}
+
+为检查测试集对特定语义错误的辨识力，表\ref{tab:cases}列出用例、注错方式及输出差异。
+
+\begin{table}[H]
+\centering\small
+\caption{测试用例与注错变体的检出结果}
+\label{tab:cases}
+\begin{tabularx}{\textwidth}{L{2.05cm}L{3.75cm}L{3.7cm}Y}
+\toprule\rowcolor{tableHead}语义风险 & 用例设计 & 注错变体/输出差异 & 检出结论 \\
+\midrule
+短路副作用 & gate=0，tick 修改 calls & 删首个短路跳转；calls 从应有0变1，tag 从6变7 & 已检出；退出0仍错误。\\
+有符号余数 & 被除数 $-5$、除数3；应为商$-1$、余$-2$ & \texttt{remw}$\to$\texttt{divw}；余数输出$-1$ & 已检出；区分商与余。\\
+浮点转整数 & 仿射结果加偏置得到0.75 & \texttt{rtz}$\to$\texttt{rne}；整数从应有0变1 & 已检出；浮点输出仍正确。\\
+二维数组寻址 & 六个位置、不同增量及位置权重 & 数组用例均通过；未构造错误行跨度变体 & \textbf{未测试错误行跨度的检出能力}。\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+另外构造 3 个注错变体，\textbf{3/3 均被测试集检出}；这些负对照不计入480次正常程序测试。三个变体分别改变右侧调用是否执行、余数运算及浮点到整数的舍入模式。它们均正常退出，但 \texttt{calls/tag}、负数余数或整数转换值偏离独立预期，说明退出成功本身不足以判定语义正确。该结果仅表明当前用例能够辨识这三种实际注入的错误；二维数组用例虽然全部通过，尚未实施错误行跨度变体，不能将其写成已经验证的检出能力。
+
+\subsubsection{语义验证的适用范围与局限}
+\label{sec:sysy-validation-limits}
+测试覆盖上述有效域中的有限样本，未进行全输入空间的形式化等价证明。整数有效域排除数组越界、有符号溢出、除零及 \texttt{INT\_MIN/-1}；浮点验证不扩展到 NaN/Inf、次正规数或越界转换，也不包含未声明支持的输入情况。因此，480 次执行通过支持的是指定样本和判据下的功能与输出一致性。
+
+这里的 \texttt{qemu-riscv64} 用户态模拟用于检查 RISC-V 指令在 Linux ABI 下的功能行为，不构成真实 RISC-V 硬件上的性能测量\cite{qemu}。

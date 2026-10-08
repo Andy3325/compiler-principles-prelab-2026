@@ -1,0 +1,141 @@
+--- gcc_C_O3
++++ gcc_D_O3_no_vector
+@@ -7,12 +7,12 @@
+ Removing basic block 11
+ int alternating_sum (int n)
+ {
+-  unsigned int ivtmp.18;
++  unsigned int ivtmp.17;
+   int i;
+   int sum;
+-  unsigned int _16;
+-  int _17;
+-  unsigned int _18;
++  unsigned int _2;
++  unsigned int _5;
++  int _14;
+ 
+   <bb 2> [local count: 118111600]:
+   if (n_8(D) > 0)
+@@ -21,35 +21,35 @@
+     goto <bb 7>; [11.00%]
+ 
+   <bb 3> [local count: 955630225]:
+-  # sum_6 = PHI <0(2), sum_24(6)>
+-  # i_5 = PHI <0(2), i_25(6)>
+-  # ivtmp.18_20 = PHI <5(2), ivtmp.18_19(6)>
+-  _17 = (int) ivtmp.18_20;
+-  _16 = (unsigned int) i_5;
+-  _18 = _16 & 1;
+-  if (_18 == 0)
++  # sum_16 = PHI <sum_3(6), 0(2)>
++  # i_19 = PHI <i_13(6), 0(2)>
++  # ivtmp.17_20 = PHI <ivtmp.17_6(6), 5(2)>
++  _14 = (int) ivtmp.17_20;
++  _5 = (unsigned int) i_19;
++  _2 = _5 & 1;
++  if (_2 == 0)
+     goto <bb 4>; [50.00%]
+   else
+     goto <bb 5>; [50.00%]
+ 
+   <bb 4> [local count: 477815112]:
+-  sum_23 = sum_6 + _17;
++  sum_12 = _14 + sum_16;
+   goto <bb 6>; [100.00%]
+ 
+   <bb 5> [local count: 477815112]:
+-  sum_22 = sum_6 - _17;
++  sum_11 = sum_16 - _14;
+ 
+   <bb 6> [local count: 955630225]:
+-  # sum_24 = PHI <sum_22(5), sum_23(4)>
+-  i_25 = i_5 + 1;
+-  ivtmp.18_19 = ivtmp.18_20 + 3;
+-  if (n_8(D) != i_25)
++  # sum_3 = PHI <sum_12(4), sum_11(5)>
++  i_13 = i_19 + 1;
++  ivtmp.17_6 = ivtmp.17_20 + 3;
++  if (n_8(D) != i_13)
+     goto <bb 3>; [89.00%]
+   else
+     goto <bb 7>; [11.00%]
+ 
+   <bb 7> [local count: 118111600]:
+-  # sum_15 = PHI <sum_24(6), 0(2)>
++  # sum_15 = PHI <sum_3(6), 0(2)>
+   return sum_15;
+ 
+ }
+@@ -64,7 +64,7 @@
+ Removing basic block 16
+ int main ()
+ {
+-  unsigned int ivtmp.29;
++  unsigned int ivtmp.27;
+   int sum;
+   int i;
+   int adjusted;
+@@ -76,9 +76,9 @@
+   struct FILE * stderr.4_5;
+   int n.6_7;
+   int _8;
+-  unsigned int _31;
+-  int _33;
+-  unsigned int _35;
++  int _19;
++  unsigned int _21;
++  unsigned int _32;
+ 
+   <bb 2> [local count: 200370505]:
+   _1 = scanf ("%d", &n);
+@@ -112,35 +112,35 @@
+   goto <bb 12>; [100.00%]
+ 
+   <bb 7> [local count: 955630226]:
+-  # i_6 = PHI <0(5), i_39(10)>
+-  # sum_32 = PHI <0(5), sum_38(10)>
+-  # ivtmp.29_17 = PHI <5(5), ivtmp.29_30(10)>
+-  _33 = (int) ivtmp.29_17;
+-  _31 = (unsigned int) i_6;
+-  _35 = _31 & 1;
+-  if (_35 == 0)
++  # i_31 = PHI <i_25(10), 0(5)>
++  # sum_30 = PHI <sum_26(10), 0(5)>
++  # ivtmp.27_17 = PHI <ivtmp.27_6(10), 5(5)>
++  _19 = (int) ivtmp.27_17;
++  _32 = (unsigned int) i_31;
++  _21 = _32 & 1;
++  if (_21 == 0)
+     goto <bb 8>; [50.00%]
+   else
+     goto <bb 9>; [50.00%]
+ 
+   <bb 8> [local count: 477815113]:
+-  sum_37 = sum_32 + _33;
++  sum_23 = _19 + sum_30;
+   goto <bb 10>; [100.00%]
+ 
+   <bb 9> [local count: 477815113]:
+-  sum_36 = sum_32 - _33;
++  sum_24 = sum_30 - _19;
+ 
+   <bb 10> [local count: 955630226]:
+-  # sum_38 = PHI <sum_36(9), sum_37(8)>
+-  i_39 = i_6 + 1;
+-  ivtmp.29_30 = ivtmp.29_17 + 3;
+-  if (n.2_3 != i_39)
++  # sum_26 = PHI <sum_23(8), sum_24(9)>
++  i_25 = i_31 + 1;
++  ivtmp.27_6 = ivtmp.27_17 + 3;
++  if (n.2_3 != i_25)
+     goto <bb 7>; [89.00%]
+   else
+     goto <bb 11>; [11.00%]
+ 
+   <bb 11> [local count: 118111600]:
+-  # sum_29 = PHI <sum_38(10), n.2_3(5)>
++  # sum_29 = PHI <sum_26(10), n.2_3(5)>
+   adjusted_13 = add_bonus (sum_29);
+   n.6_7 = n;
+   __printf_chk (1, "n=%d alternating=%d adjusted=%d\n", n.6_7, sum_29, adjusted_13);

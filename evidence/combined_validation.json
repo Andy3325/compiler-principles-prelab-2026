@@ -1,0 +1,20 @@
+{
+  "completed_at": "2026-10-03T18:05:12.779257+08:00",
+  "toolchain_functional_runs": {
+    "passed": 60,
+    "total": 60
+  },
+  "sysy_functional_runs": {
+    "passed": 480,
+    "total": 480,
+    "logical_cases": 160
+  },
+  "ascend_host_commands": 6,
+  "ascend_evidence_checks": {
+    "passed": 18,
+    "total": 18
+  },
+  "ascend_device_binary": false,
+  "ascend_device_execution": "NOT_RUN_NO_CANN_OR_DEVICE",
+  "note": "Structural IR checks are separate from program executions. The expected backend blockage is not a successful device compile."
+}

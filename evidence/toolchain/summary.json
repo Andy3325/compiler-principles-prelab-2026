@@ -1,0 +1,10 @@
+{
+  "completed_at": "2026-10-03T18:04:52.395825+08:00",
+  "variants": 6,
+  "test_count": 60,
+  "passed": 60,
+  "failed": 0,
+  "negative_link_control": "PASS: omitting bonus.o fails with undefined reference to add_bonus; excluded from execution-test count",
+  "target": "x86_64 Linux, WSL2, dynamically linked non-PIE, generic x86-64 ISA",
+  "timing_performance_claim": "No performance benchmark was performed. Sizes and static counts are not speed measurements."
+}

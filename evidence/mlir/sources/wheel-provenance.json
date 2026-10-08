@@ -1,0 +1,8 @@
+{
+  "url": "https://files.pythonhosted.org/packages/c1/af/9c3c3fb493d11572d64a2a0ca4511a1236da5aecf8ff9b54f4184a58d801/ascendnpu_ir-1.1.0-cp310-cp310-manylinux_2_28_x86_64.whl",
+  "filename": "ascendnpu_ir-1.1.0-cp310-cp310-manylinux_2_28_x86_64.whl",
+  "sha256": "0dc9e8436de8373a4bb68a8fcbfd346c8a0d3160cb338047cbdf4ecfdb1776ab",
+  "bytes": 142831025,
+  "unpacked": "<USER_HOME>/.cache/compiler-coursework/ascendnpu-ir-1.1.0/unpacked",
+  "wheel_version": "1.1.0"
+}

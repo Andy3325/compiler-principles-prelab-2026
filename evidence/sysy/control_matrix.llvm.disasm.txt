@@ -1,0 +1,291 @@
+
+artifacts/sysy/objects/control_matrix.llvm.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <tick>:
+   0:	00000637          	lui	a2,0x0
+			0: R_RISCV_HI20	calls
+   4:	00062583          	lw	a1,0(a2) # 0 <tick>
+			4: R_RISCV_LO12_I	calls
+   8:	2585                	addiw	a1,a1,1
+   a:	00b62023          	sw	a1,0(a2)
+			a: R_RISCV_LO12_S	calls
+   e:	8082                	ret
+
+0000000000000010 <cell>:
+  10:	46b1                	li	a3,12
+  12:	02d585b3          	mul	a1,a1,a3
+  16:	952e                	add	a0,a0,a1
+  18:	00261593          	slli	a1,a2,0x2
+  1c:	952e                	add	a0,a0,a1
+  1e:	4108                	lw	a0,0(a0)
+  20:	8082                	ret
+
+0000000000000022 <fold>:
+  22:	711d                	addi	sp,sp,-96
+  24:	ec86                	sd	ra,88(sp)
+  26:	f82a                	sd	a0,48(sp)
+  28:	fc32                	sd	a2,56(sp)
+  2a:	fff5851b          	addiw	a0,a1,-1
+  2e:	e0aa                	sd	a0,64(sp)
+  30:	4501                	li	a0,0
+  32:	85aa                	mv	a1,a0
+  34:	e4ae                	sd	a1,72(sp)
+  36:	e8aa                	sd	a0,80(sp)
+  38:	a009                	j	3a <fold+0x18>
+  3a:	6506                	ld	a0,64(sp)
+  3c:	65a6                	ld	a1,72(sp)
+  3e:	6646                	ld	a2,80(sp)
+  40:	f032                	sd	a2,32(sp)
+  42:	f42e                	sd	a1,40(sp)
+  44:	2581                	sext.w	a1,a1
+  46:	06b54663          	blt	a0,a1,b2 <fold+0x90>
+  4a:	a009                	j	4c <fold+0x2a>
+  4c:	7622                	ld	a2,40(sp)
+  4e:	7542                	ld	a0,48(sp)
+  50:	0006059b          	sext.w	a1,a2
+  54:	555556b7          	lui	a3,0x55555
+  58:	5566869b          	addiw	a3,a3,1366 # 55555556 <main+0x55555484>
+  5c:	02d585b3          	mul	a1,a1,a3
+  60:	03f5d693          	srli	a3,a1,0x3f
+  64:	9181                	srli	a1,a1,0x20
+  66:	9db5                	addw	a1,a1,a3
+  68:	0015969b          	slliw	a3,a1,0x1
+  6c:	9ead                	addw	a3,a3,a1
+  6e:	9e15                	subw	a2,a2,a3
+  70:	00000097          	auipc	ra,0x0
+			70: R_RISCV_CALL_PLT	cell
+  74:	000080e7          	jalr	ra # 70 <fold+0x4e>
+  78:	75a2                	ld	a1,40(sp)
+  7a:	7602                	ld	a2,32(sp)
+  7c:	86aa                	mv	a3,a0
+  7e:	e436                	sd	a3,8(sp)
+  80:	2585                	addiw	a1,a1,1
+  82:	e82e                	sd	a1,16(sp)
+  84:	4581                	li	a1,0
+  86:	ec32                	sd	a2,24(sp)
+  88:	02b50063          	beq	a0,a1,a8 <fold+0x86>
+  8c:	a009                	j	8e <fold+0x6c>
+  8e:	6522                	ld	a0,8(sp)
+  90:	75e2                	ld	a1,56(sp)
+  92:	02b50063          	beq	a0,a1,b2 <fold+0x90>
+  96:	a009                	j	98 <fold+0x76>
+  98:	7502                	ld	a0,32(sp)
+  9a:	65a2                	ld	a1,8(sp)
+  9c:	6642                	ld	a2,16(sp)
+  9e:	02c585bb          	mulw	a1,a1,a2
+  a2:	9d2d                	addw	a0,a0,a1
+  a4:	ec2a                	sd	a0,24(sp)
+  a6:	a009                	j	a8 <fold+0x86>
+  a8:	65c2                	ld	a1,16(sp)
+  aa:	6562                	ld	a0,24(sp)
+  ac:	e4ae                	sd	a1,72(sp)
+  ae:	e8aa                	sd	a0,80(sp)
+  b0:	b769                	j	3a <fold+0x18>
+  b2:	7502                	ld	a0,32(sp)
+  b4:	2501                	sext.w	a0,a0
+  b6:	60e6                	ld	ra,88(sp)
+  b8:	6125                	addi	sp,sp,96
+  ba:	8082                	ret
+
+00000000000000bc <separator>:
+  bc:	1141                	addi	sp,sp,-16
+  be:	e406                	sd	ra,8(sp)
+  c0:	02000513          	li	a0,32
+  c4:	00000097          	auipc	ra,0x0
+			c4: R_RISCV_CALL_PLT	putch
+  c8:	000080e7          	jalr	ra # c4 <separator+0x8>
+  cc:	60a2                	ld	ra,8(sp)
+  ce:	0141                	addi	sp,sp,16
+  d0:	8082                	ret
+
+00000000000000d2 <main>:
+  d2:	7171                	addi	sp,sp,-176
+  d4:	f506                	sd	ra,168(sp)
+  d6:	5575                	li	a0,-3
+  d8:	1502                	slli	a0,a0,0x20
+  da:	ed2a                	sd	a0,152(sp)
+  dc:	4515                	li	a0,5
+  de:	1502                	slli	a0,a0,0x20
+  e0:	0511                	addi	a0,a0,4
+  e2:	f12a                	sd	a0,160(sp)
+  e4:	4505                	li	a0,1
+  e6:	1506                	slli	a0,a0,0x21
+  e8:	0505                	addi	a0,a0,1
+  ea:	e92a                	sd	a0,144(sp)
+  ec:	00000097          	auipc	ra,0x0
+			ec: R_RISCV_CALL_PLT	getint
+  f0:	000080e7          	jalr	ra # ec <main+0x1a>
+  f4:	f0aa                	sd	a0,96(sp)
+  f6:	00000097          	auipc	ra,0x0
+			f6: R_RISCV_CALL_PLT	getint
+  fa:	000080e7          	jalr	ra # f6 <main+0x24>
+  fe:	f4aa                	sd	a0,104(sp)
+ 100:	00000097          	auipc	ra,0x0
+			100: R_RISCV_CALL_PLT	getint
+ 104:	000080e7          	jalr	ra # 100 <main+0x2e>
+ 108:	f8aa                	sd	a0,112(sp)
+ 10a:	4501                	li	a0,0
+ 10c:	fcaa                	sd	a0,120(sp)
+ 10e:	00000097          	auipc	ra,0x0
+			10e: R_RISCV_CALL_PLT	getint
+ 112:	000080e7          	jalr	ra # 10e <main+0x3c>
+ 116:	85aa                	mv	a1,a0
+ 118:	7566                	ld	a0,120(sp)
+ 11a:	e12e                	sd	a1,128(sp)
+ 11c:	e52a                	sd	a0,136(sp)
+ 11e:	a009                	j	120 <main+0x4e>
+ 120:	652a                	ld	a0,136(sp)
+ 122:	ecaa                	sd	a0,88(sp)
+ 124:	0005059b          	sext.w	a1,a0
+ 128:	4515                	li	a0,5
+ 12a:	04b54b63          	blt	a0,a1,180 <main+0xae>
+ 12e:	a009                	j	130 <main+0x5e>
+ 130:	65e6                	ld	a1,88(sp)
+ 132:	0005851b          	sext.w	a0,a1
+ 136:	55555637          	lui	a2,0x55555
+ 13a:	5566061b          	addiw	a2,a2,1366 # 55555556 <main+0x55555484>
+ 13e:	02c50533          	mul	a0,a0,a2
+ 142:	03f55613          	srli	a2,a0,0x3f
+ 146:	9101                	srli	a0,a0,0x20
+ 148:	9d31                	addw	a0,a0,a2
+ 14a:	0015161b          	slliw	a2,a0,0x1
+ 14e:	9e29                	addw	a2,a2,a0
+ 150:	9d91                	subw	a1,a1,a2
+ 152:	058a                	slli	a1,a1,0x2
+ 154:	4631                	li	a2,12
+ 156:	02c50633          	mul	a2,a0,a2
+ 15a:	0908                	addi	a0,sp,144
+ 15c:	9532                	add	a0,a0,a2
+ 15e:	952e                	add	a0,a0,a1
+ 160:	e8aa                	sd	a0,80(sp)
+ 162:	4108                	lw	a0,0(a0)
+ 164:	e4aa                	sd	a0,72(sp)
+ 166:	00000097          	auipc	ra,0x0
+			166: R_RISCV_CALL_PLT	getint
+ 16a:	000080e7          	jalr	ra # 166 <main+0x94>
+ 16e:	65a6                	ld	a1,72(sp)
+ 170:	6646                	ld	a2,80(sp)
+ 172:	86aa                	mv	a3,a0
+ 174:	6566                	ld	a0,88(sp)
+ 176:	9db5                	addw	a1,a1,a3
+ 178:	c20c                	sw	a1,0(a2)
+ 17a:	2505                	addiw	a0,a0,1
+ 17c:	e52a                	sd	a0,136(sp)
+ 17e:	b74d                	j	120 <main+0x4e>
+ 180:	7546                	ld	a0,112(sp)
+ 182:	00a035b3          	snez	a1,a0
+ 186:	fc2e                	sd	a1,56(sp)
+ 188:	4581                	li	a1,0
+ 18a:	862e                	mv	a2,a1
+ 18c:	e0b2                	sd	a2,64(sp)
+ 18e:	00b50e63          	beq	a0,a1,1aa <main+0xd8>
+ 192:	a009                	j	194 <main+0xc2>
+ 194:	454a                	lw	a0,144(sp)
+ 196:	00000097          	auipc	ra,0x0
+			196: R_RISCV_CALL_PLT	tick
+ 19a:	000080e7          	jalr	ra # 196 <main+0xc4>
+ 19e:	85aa                	mv	a1,a0
+ 1a0:	4501                	li	a0,0
+ 1a2:	00b52533          	slt	a0,a0,a1
+ 1a6:	e0aa                	sd	a0,64(sp)
+ 1a8:	a009                	j	1aa <main+0xd8>
+ 1aa:	7562                	ld	a0,56(sp)
+ 1ac:	6586                	ld	a1,64(sp)
+ 1ae:	f82e                	sd	a1,48(sp)
+ 1b0:	4581                	li	a1,0
+ 1b2:	02b50663          	beq	a0,a1,1de <main+0x10c>
+ 1b6:	a009                	j	1b8 <main+0xe6>
+ 1b8:	7642                	ld	a2,48(sp)
+ 1ba:	551a                	lw	a0,164(sp)
+ 1bc:	f02a                	sd	a0,32(sp)
+ 1be:	4581                	li	a1,0
+ 1c0:	f432                	sd	a2,40(sp)
+ 1c2:	02b55363          	bge	a0,a1,1e8 <main+0x116>
+ 1c6:	a009                	j	1c8 <main+0xf6>
+ 1c8:	7502                	ld	a0,32(sp)
+ 1ca:	00000097          	auipc	ra,0x0
+			1ca: R_RISCV_CALL_PLT	tick
+ 1ce:	000080e7          	jalr	ra # 1ca <main+0xf8>
+ 1d2:	7642                	ld	a2,48(sp)
+ 1d4:	4581                	li	a1,0
+ 1d6:	f432                	sd	a2,40(sp)
+ 1d8:	00b50863          	beq	a0,a1,1e8 <main+0x116>
+ 1dc:	a009                	j	1de <main+0x10c>
+ 1de:	7542                	ld	a0,48(sp)
+ 1e0:	00256513          	ori	a0,a0,2
+ 1e4:	f42a                	sd	a0,40(sp)
+ 1e6:	a009                	j	1e8 <main+0x116>
+ 1e8:	7562                	ld	a0,56(sp)
+ 1ea:	7622                	ld	a2,40(sp)
+ 1ec:	e832                	sd	a2,16(sp)
+ 1ee:	4581                	li	a1,0
+ 1f0:	ec32                	sd	a2,24(sp)
+ 1f2:	00b51863          	bne	a0,a1,202 <main+0x130>
+ 1f6:	a009                	j	1f8 <main+0x126>
+ 1f8:	6542                	ld	a0,16(sp)
+ 1fa:	00456513          	ori	a0,a0,4
+ 1fe:	ec2a                	sd	a0,24(sp)
+ 200:	a009                	j	202 <main+0x130>
+ 202:	7626                	ld	a2,104(sp)
+ 204:	7586                	ld	a1,96(sp)
+ 206:	6562                	ld	a0,24(sp)
+ 208:	e02a                	sd	a0,0(sp)
+ 20a:	0908                	addi	a0,sp,144
+ 20c:	00000097          	auipc	ra,0x0
+			20c: R_RISCV_CALL_PLT	fold
+ 210:	000080e7          	jalr	ra # 20c <main+0x13a>
+ 214:	000005b7          	lui	a1,0x0
+			214: R_RISCV_HI20	bias
+ 218:	0005a583          	lw	a1,0(a1) # 0 <tick>
+			218: R_RISCV_LO12_I	bias
+ 21c:	9d2d                	addw	a0,a0,a1
+ 21e:	250d                	addiw	a0,a0,3
+ 220:	00000097          	auipc	ra,0x0
+			220: R_RISCV_CALL_PLT	putint
+ 224:	000080e7          	jalr	ra # 220 <main+0x14e>
+ 228:	00000097          	auipc	ra,0x0
+			228: R_RISCV_CALL_PLT	separator
+ 22c:	000080e7          	jalr	ra # 228 <main+0x156>
+ 230:	00000537          	lui	a0,0x0
+			230: R_RISCV_HI20	calls
+ 234:	00052503          	lw	a0,0(a0) # 0 <tick>
+			234: R_RISCV_LO12_I	calls
+ 238:	00000097          	auipc	ra,0x0
+			238: R_RISCV_CALL_PLT	putint
+ 23c:	000080e7          	jalr	ra # 238 <main+0x166>
+ 240:	00000097          	auipc	ra,0x0
+			240: R_RISCV_CALL_PLT	separator
+ 244:	000080e7          	jalr	ra # 240 <main+0x16e>
+ 248:	6502                	ld	a0,0(sp)
+ 24a:	00000097          	auipc	ra,0x0
+			24a: R_RISCV_CALL_PLT	putint
+ 24e:	000080e7          	jalr	ra # 24a <main+0x178>
+ 252:	00000097          	auipc	ra,0x0
+			252: R_RISCV_CALL_PLT	separator
+ 256:	000080e7          	jalr	ra # 252 <main+0x180>
+ 25a:	660a                	ld	a2,128(sp)
+ 25c:	45da                	lw	a1,148(sp)
+ 25e:	02c5c53b          	divw	a0,a1,a2
+ 262:	02c5e5bb          	remw	a1,a1,a2
+ 266:	e42e                	sd	a1,8(sp)
+ 268:	00000097          	auipc	ra,0x0
+			268: R_RISCV_CALL_PLT	putint
+ 26c:	000080e7          	jalr	ra # 268 <main+0x196>
+ 270:	00000097          	auipc	ra,0x0
+			270: R_RISCV_CALL_PLT	separator
+ 274:	000080e7          	jalr	ra # 270 <main+0x19e>
+ 278:	6522                	ld	a0,8(sp)
+ 27a:	00000097          	auipc	ra,0x0
+			27a: R_RISCV_CALL_PLT	putint
+ 27e:	000080e7          	jalr	ra # 27a <main+0x1a8>
+ 282:	4529                	li	a0,10
+ 284:	00000097          	auipc	ra,0x0
+			284: R_RISCV_CALL_PLT	putch
+ 288:	000080e7          	jalr	ra # 284 <main+0x1b2>
+ 28c:	4501                	li	a0,0
+ 28e:	70aa                	ld	ra,168(sp)
+ 290:	614d                	addi	sp,sp,176
+ 292:	8082                	ret

@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.ps1 text eol=crlf
+*.png binary
+*.pdf binary
+src/** -text
+runtime/** -text
+evidence/** -text

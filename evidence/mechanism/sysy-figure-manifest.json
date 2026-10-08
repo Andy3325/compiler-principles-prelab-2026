@@ -1,0 +1,52 @@
+{
+  "timestamp_utc": "2026-10-04T14:02:44.009950+00:00",
+  "source_sha256": {
+    "src\\llvm\\control_matrix.ll": "a03bce0f37c960834f8d0bb95a26bc1fbd6681361956e1057a7303efad7886b7",
+    "src\\riscv\\float_stats.S": "b85adab26aaa6727bc80b80a036011ee8ee1e9911869e9842233cfad11997985",
+    "artifacts\\sysy\\mutations\\summary.json": "6440dd86bd0e7bcd6dd0b8f8d7ff217584c5d71b3940bec2911f9bde6b62cf80",
+    "src\\sysy\\control_matrix.sy": "80d318beec50e9c5d40879727211f04a0fb43fc0d12e76f6d383db63b365c40a"
+  },
+  "script_sha256": "d0e0dee5e36b9a649c160360dbbb66dd52811db48a674798c8ba6b8c2372ad7d",
+  "commands": [
+    {
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "opt-14",
+        "-verify",
+        "-disable-output",
+        "<PROJECT>/src/llvm/control_matrix.ll"
+      ],
+      "exit_code": 0,
+      "evidence": "artifacts/mechanism/sysy-verify.txt"
+    },
+    {
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "opt-14",
+        "-enable-new-pm=0",
+        "-analyze",
+        "-domtree",
+        "<PROJECT>/src/llvm/control_matrix.ll"
+      ],
+      "exit_code": 0,
+      "evidence": "artifacts/mechanism/sysy-dominators.txt"
+    }
+  ],
+  "matplotlib": "3.11.2",
+  "presentation": "Manually positioned layout; every displayed CFG edge, block, stack slot and instruction is asserted against parsed final files.",
+  "source_unchanged": true,
+  "new_test_executions": 0,
+  "new_compilation_of_programs": 0,
+  "outputs": {
+    "report\\figures\\llvm-fold-cfg.pdf": "327689e8bf1bfe10e33825ae84cebf1647de8b81551ff90f34a6f14673bbbaee",
+    "report\\figures\\llvm-fold-cfg.png": "86b6f60223e2276d946ccd52dfa5c8369a098fad92988dadaae2ba2f68f4ebda",
+    "report\\figures\\riscv-call-frame.pdf": "8bab4ced4d436a1b887237bf312d486f148e8ad4fc782bd5d48af2ced5718b56",
+    "report\\figures\\riscv-call-frame.png": "668f81b8e067d366333ef3201c6a94fe39ec273f2a403c92b1ea5ea3700d0d9c"
+  }
+}

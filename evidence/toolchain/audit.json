@@ -1,0 +1,10 @@
+{
+  "audited_at": "2026-10-03T18:04:53.174282+08:00",
+  "status": "PASS",
+  "raw_executions_checked": 60,
+  "build_variants_checked": 6,
+  "clang_ir_modules_checked": 6,
+  "negative_link_control_checked": 1,
+  "debug_text_hash_pairs_checked": 2,
+  "source_hashes_checked": 3
+}

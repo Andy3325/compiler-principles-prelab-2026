@@ -1,0 +1,66 @@
+\documentclass[UTF8,a4paper,12pt]{ctexart}
+\input{template}
+\usepackage{longtable}
+\usepackage{xurl}
+\setcounter{tocdepth}{3}
+\input{authors}
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\vspace*{0.65cm}
+\includegraphics[width=0.48\textwidth]{figures/nku.png}
+\vspace{1.1cm}
+
+{\color{nkuPurple}\rule{0.72\textwidth}{1.1pt}}\par
+\vspace{0.48cm}
+{\zihao{3}\bfseries 计算机学院\quad 编译原理}\par
+\vspace{0.68cm}
+{\zihao{2}\bfseries 预备工作：了解你的编译器}\par
+\vspace{0.34cm}
+{\zihao{3}\bfseries LLVM IR 编程与汇编编程}\par
+\vspace{0.4cm}
+{\zihao{-4}完整工具链、语义等价实现与 AscendNPU IR 探索}\par
+\vspace{0.5cm}
+{\color{nkuPurple}\rule{0.72\textwidth}{1.1pt}}\par
+\vspace{1.35cm}
+\renewcommand{\arraystretch}{1.55}
+\begin{tabularx}{0.76\textwidth}{>{\zihao{4}\bfseries\raggedleft\arraybackslash}p{2.7cm}X}
+小组成员 & \MemberOne\quad\StudentOne \\
+小组成员 & \MemberTwo\quad\StudentTwo \\
+目标架构 & RISC-V RV64GC / LP64D \\
+执行环境 & WSL2 + QEMU 用户态模拟 \\
+报告性质 & 双人小组共同报告 \\
+\end{tabularx}
+\renewcommand{\arraystretch}{1.18}
+\vfill
+{\color{nkuPurple}\rule{0.24\textwidth}{0.8pt}}\par
+\vspace{0.35cm}
+{\zihao{4}\ExperimentDate}
+\end{titlepage}
+\pagenumbering{Roman}
+\hypersetup{pageanchor=true}
+\section*{成员分工}
+
+\textbf{朱泽帅}主要负责完整编译工具链实验及 LLVM IR 编程部分，包括 GCC/Clang 预处理、编译、汇编和链接各阶段的功能与产物分析，不同优化选项下的中间代码和目标代码比较，以及 SysY 示例程序的 LLVM IR 等价实现、控制流图（CFG）、静态单赋值形式（SSA）、短路求值和数组寻址等机制分析。
+
+\textbf{张宸笛}主要负责 RISC-V 汇编编程部分，包括 SysY 示例程序的 RISC-V 汇编等价实现、整数与浮点运算、条件分支与循环、函数调用、LP64D ABI、寄存器分配与保存、栈帧组织，以及汇编程序的构建与执行分析。
+
+\textbf{进阶实验由两人共同完成}，包括 AscendNPU IR 实验环境配置、官方 VecAdd 示例研究、MLIR 中端逐层 lowering 过程分析，以及核类型推导、UB 内存规划、跨流水同步、模板转换和设备后端限制等内容的探索与验证。
+
+此外，两人共同设计 SysY 示例程序并确定语言特性覆盖范围，共同完成 SysY 运行时库链接、三种实现的构建与语义等价验证、测试结果分析，并合作完成实验报告的撰写、图表整理、结论讨论与最终审阅。
+
+\input{abstract}
+\clearpage
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+\input{introduction}
+\input{toolchain}
+\input{sysy}
+\input{advanced}
+\input{conclusion}
+\input{references}
+\input{appendix}
+\end{document}

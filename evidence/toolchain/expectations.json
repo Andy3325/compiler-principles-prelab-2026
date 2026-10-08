@@ -1,0 +1,76 @@
+{
+  "created_before_compilation": "2026-10-03T18:04:39.656733+08:00",
+  "derivation": "For n=2k, paired terms give -3k; for n=2k+1, -3k+(6k+5)=3k+5. adjusted=sum+11.",
+  "cases": [
+    {
+      "name": "valid_0",
+      "input": "0\n",
+      "stdout": "n=0 alternating=0 adjusted=11\n",
+      "stderr": "",
+      "exit": 0
+    },
+    {
+      "name": "valid_1",
+      "input": "1\n",
+      "stdout": "n=1 alternating=5 adjusted=16\n",
+      "stderr": "",
+      "exit": 0
+    },
+    {
+      "name": "valid_2",
+      "input": "2\n",
+      "stdout": "n=2 alternating=-3 adjusted=8\n",
+      "stderr": "",
+      "exit": 0
+    },
+    {
+      "name": "valid_5",
+      "input": "5\n",
+      "stdout": "n=5 alternating=11 adjusted=22\n",
+      "stderr": "",
+      "exit": 0
+    },
+    {
+      "name": "valid_6",
+      "input": "6\n",
+      "stdout": "n=6 alternating=-9 adjusted=2\n",
+      "stderr": "",
+      "exit": 0
+    },
+    {
+      "name": "valid_10",
+      "input": "10\n",
+      "stdout": "n=10 alternating=-15 adjusted=-4\n",
+      "stderr": "",
+      "exit": 0
+    },
+    {
+      "name": "valid_20",
+      "input": "20\n",
+      "stdout": "n=20 alternating=-30 adjusted=-19\n",
+      "stderr": "",
+      "exit": 0
+    },
+    {
+      "name": "negative",
+      "input": "-1\n",
+      "stdout": "",
+      "stderr": "n must be in [0, 20]\n",
+      "exit": 2
+    },
+    {
+      "name": "too_large",
+      "input": "21\n",
+      "stdout": "",
+      "stderr": "n must be in [0, 20]\n",
+      "exit": 2
+    },
+    {
+      "name": "not_integer",
+      "input": "abc\n",
+      "stdout": "",
+      "stderr": "expected one integer\n",
+      "exit": 1
+    }
+  ]
+}

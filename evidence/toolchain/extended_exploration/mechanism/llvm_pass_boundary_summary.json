@@ -1,0 +1,624 @@
+{
+  "clang_A_O2": {
+    "alternating_sum": {
+      "before": {
+        "basic_blocks": 5,
+        "explicit_labels": [
+          "3",
+          "4",
+          "6",
+          "8"
+        ],
+        "conditional_branches": 2,
+        "all_branches": 4,
+        "phi_nodes": 4,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%9 = phi i32 [ %17, %8 ], [ 0, %3 ]",
+            "incoming": "%17",
+            "add_chain": [
+              "%17 = add i32 %16, %9"
+            ]
+          }
+        ]
+      },
+      "after": {
+        "basic_blocks": 9,
+        "explicit_labels": [
+          "3",
+          "5",
+          "8",
+          "31",
+          "35",
+          "38",
+          "40",
+          "42"
+        ],
+        "conditional_branches": 5,
+        "all_branches": 8,
+        "phi_nodes": 10,
+        "has_vector_integer_type": true,
+        "vector_reduce_add_calls": 1,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%43 = phi i32 [ %51, %42 ], [ %37, %35 ]",
+            "incoming": "%51",
+            "add_chain": [
+              "%51 = add i32 %50, %43"
+            ]
+          }
+        ]
+      },
+      "printed_function_body_byte_equal": false,
+      "trace_log": "artifacts/toolchain/extended_exploration/configs/clang_A_O2/loop_vectorize_trace.stderr.txt"
+    },
+    "main": {
+      "before": {
+        "basic_blocks": 10,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "17",
+          "29",
+          "31",
+          "36"
+        ],
+        "conditional_branches": 4,
+        "all_branches": 9,
+        "phi_nodes": 5,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%18 = phi i32 [ %26, %17 ], [ 0, %16 ]",
+            "incoming": "%26",
+            "add_chain": [
+              "%26 = add i32 %25, %18"
+            ]
+          }
+        ]
+      },
+      "after": {
+        "basic_blocks": 14,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "18",
+          "21",
+          "35",
+          "38",
+          "41",
+          "53",
+          "55",
+          "60"
+        ],
+        "conditional_branches": 7,
+        "all_branches": 13,
+        "phi_nodes": 10,
+        "has_vector_integer_type": true,
+        "vector_reduce_add_calls": 1,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%42 = phi i32 [ %50, %41 ], [ %40, %38 ]",
+            "incoming": "%50",
+            "add_chain": [
+              "%50 = add i32 %49, %42"
+            ]
+          }
+        ]
+      },
+      "printed_function_body_byte_equal": false,
+      "trace_log": "artifacts/toolchain/extended_exploration/configs/clang_A_O2/loop_vectorize_trace.stderr.txt"
+    }
+  },
+  "clang_B_no_vector": {
+    "alternating_sum": {
+      "before": {
+        "basic_blocks": 5,
+        "explicit_labels": [
+          "3",
+          "4",
+          "6",
+          "8"
+        ],
+        "conditional_branches": 2,
+        "all_branches": 4,
+        "phi_nodes": 4,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%9 = phi i32 [ %17, %8 ], [ 0, %3 ]",
+            "incoming": "%17",
+            "add_chain": [
+              "%17 = add i32 %16, %9"
+            ]
+          }
+        ]
+      },
+      "after": {
+        "basic_blocks": 5,
+        "explicit_labels": [
+          "3",
+          "4",
+          "6",
+          "8"
+        ],
+        "conditional_branches": 2,
+        "all_branches": 4,
+        "phi_nodes": 4,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%9 = phi i32 [ %17, %8 ], [ 0, %3 ]",
+            "incoming": "%17",
+            "add_chain": [
+              "%17 = add i32 %16, %9"
+            ]
+          }
+        ]
+      },
+      "printed_function_body_byte_equal": true,
+      "trace_log": "artifacts/toolchain/extended_exploration/configs/clang_B_no_vector/loop_vectorize_trace.stderr.txt"
+    },
+    "main": {
+      "before": {
+        "basic_blocks": 10,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "17",
+          "29",
+          "31",
+          "36"
+        ],
+        "conditional_branches": 4,
+        "all_branches": 9,
+        "phi_nodes": 5,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%18 = phi i32 [ %26, %17 ], [ 0, %16 ]",
+            "incoming": "%26",
+            "add_chain": [
+              "%26 = add i32 %25, %18"
+            ]
+          }
+        ]
+      },
+      "after": {
+        "basic_blocks": 10,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "17",
+          "29",
+          "31",
+          "36"
+        ],
+        "conditional_branches": 4,
+        "all_branches": 9,
+        "phi_nodes": 5,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%18 = phi i32 [ %26, %17 ], [ 0, %16 ]",
+            "incoming": "%26",
+            "add_chain": [
+              "%26 = add i32 %25, %18"
+            ]
+          }
+        ]
+      },
+      "printed_function_body_byte_equal": true,
+      "trace_log": "artifacts/toolchain/extended_exploration/configs/clang_B_no_vector/loop_vectorize_trace.stderr.txt"
+    }
+  },
+  "clang_C_no_unroll": {
+    "alternating_sum": {
+      "before": {
+        "basic_blocks": 5,
+        "explicit_labels": [
+          "3",
+          "4",
+          "6",
+          "8"
+        ],
+        "conditional_branches": 2,
+        "all_branches": 4,
+        "phi_nodes": 4,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%9 = phi i32 [ %17, %8 ], [ 0, %3 ]",
+            "incoming": "%17",
+            "add_chain": [
+              "%17 = add i32 %16, %9"
+            ]
+          }
+        ]
+      },
+      "after": {
+        "basic_blocks": 9,
+        "explicit_labels": [
+          "3",
+          "5",
+          "8",
+          "22",
+          "25",
+          "28",
+          "30",
+          "32"
+        ],
+        "conditional_branches": 5,
+        "all_branches": 8,
+        "phi_nodes": 9,
+        "has_vector_integer_type": true,
+        "vector_reduce_add_calls": 1,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%33 = phi i32 [ %41, %32 ], [ %27, %25 ]",
+            "incoming": "%41",
+            "add_chain": [
+              "%41 = add i32 %40, %33"
+            ]
+          }
+        ]
+      },
+      "printed_function_body_byte_equal": false,
+      "trace_log": "artifacts/toolchain/extended_exploration/configs/clang_C_no_unroll/loop_vectorize_trace.stderr.txt"
+    },
+    "main": {
+      "before": {
+        "basic_blocks": 10,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "17",
+          "29",
+          "31",
+          "36"
+        ],
+        "conditional_branches": 4,
+        "all_branches": 9,
+        "phi_nodes": 5,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%18 = phi i32 [ %26, %17 ], [ 0, %16 ]",
+            "incoming": "%26",
+            "add_chain": [
+              "%26 = add i32 %25, %18"
+            ]
+          }
+        ]
+      },
+      "after": {
+        "basic_blocks": 14,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "18",
+          "21",
+          "35",
+          "38",
+          "41",
+          "53",
+          "55",
+          "60"
+        ],
+        "conditional_branches": 7,
+        "all_branches": 13,
+        "phi_nodes": 10,
+        "has_vector_integer_type": true,
+        "vector_reduce_add_calls": 1,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%42 = phi i32 [ %50, %41 ], [ %40, %38 ]",
+            "incoming": "%50",
+            "add_chain": [
+              "%50 = add i32 %49, %42"
+            ]
+          }
+        ]
+      },
+      "printed_function_body_byte_equal": false,
+      "trace_log": "artifacts/toolchain/extended_exploration/configs/clang_C_no_unroll/loop_vectorize_trace.stderr.txt"
+    }
+  },
+  "clang_D_no_vector_no_unroll": {
+    "alternating_sum": {
+      "before": {
+        "basic_blocks": 5,
+        "explicit_labels": [
+          "3",
+          "4",
+          "6",
+          "8"
+        ],
+        "conditional_branches": 2,
+        "all_branches": 4,
+        "phi_nodes": 4,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%9 = phi i32 [ %17, %8 ], [ 0, %3 ]",
+            "incoming": "%17",
+            "add_chain": [
+              "%17 = add i32 %16, %9"
+            ]
+          }
+        ]
+      },
+      "after": {
+        "basic_blocks": 5,
+        "explicit_labels": [
+          "3",
+          "4",
+          "6",
+          "8"
+        ],
+        "conditional_branches": 2,
+        "all_branches": 4,
+        "phi_nodes": 4,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%9 = phi i32 [ %17, %8 ], [ 0, %3 ]",
+            "incoming": "%17",
+            "add_chain": [
+              "%17 = add i32 %16, %9"
+            ]
+          }
+        ]
+      },
+      "printed_function_body_byte_equal": true,
+      "trace_log": "artifacts/toolchain/extended_exploration/configs/clang_D_no_vector_no_unroll/loop_vectorize_trace.stderr.txt"
+    },
+    "main": {
+      "before": {
+        "basic_blocks": 10,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "17",
+          "29",
+          "31",
+          "36"
+        ],
+        "conditional_branches": 4,
+        "all_branches": 9,
+        "phi_nodes": 5,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%18 = phi i32 [ %26, %17 ], [ 0, %16 ]",
+            "incoming": "%26",
+            "add_chain": [
+              "%26 = add i32 %25, %18"
+            ]
+          }
+        ]
+      },
+      "after": {
+        "basic_blocks": 10,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "17",
+          "29",
+          "31",
+          "36"
+        ],
+        "conditional_branches": 4,
+        "all_branches": 9,
+        "phi_nodes": 5,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%18 = phi i32 [ %26, %17 ], [ 0, %16 ]",
+            "incoming": "%26",
+            "add_chain": [
+              "%26 = add i32 %25, %18"
+            ]
+          }
+        ]
+      },
+      "printed_function_body_byte_equal": true,
+      "trace_log": "artifacts/toolchain/extended_exploration/configs/clang_D_no_vector_no_unroll/loop_vectorize_trace.stderr.txt"
+    }
+  },
+  "clang_noinline_O2": {
+    "alternating_sum": {
+      "before": {
+        "basic_blocks": 5,
+        "explicit_labels": [
+          "3",
+          "4",
+          "6",
+          "8"
+        ],
+        "conditional_branches": 2,
+        "all_branches": 4,
+        "phi_nodes": 4,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 1,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%9 = phi i32 [ %16, %8 ], [ 0, %3 ]",
+            "incoming": "%16",
+            "add_chain": [
+              "%16 = add i32 %15, %9"
+            ]
+          }
+        ]
+      },
+      "after": {
+        "basic_blocks": 5,
+        "explicit_labels": [
+          "3",
+          "4",
+          "6",
+          "8"
+        ],
+        "conditional_branches": 2,
+        "all_branches": 4,
+        "phi_nodes": 4,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 1,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%9 = phi i32 [ %16, %8 ], [ 0, %3 ]",
+            "incoming": "%16",
+            "add_chain": [
+              "%16 = add i32 %15, %9"
+            ]
+          }
+        ]
+      },
+      "printed_function_body_byte_equal": true,
+      "trace_log": "artifacts/toolchain/extended_exploration/configs/clang_noinline_O2/loop_vectorize_trace.stderr.txt"
+    },
+    "scale_and_bias": {
+      "before": {
+        "basic_blocks": 1,
+        "explicit_labels": [],
+        "conditional_branches": 0,
+        "all_branches": 0,
+        "phi_nodes": 0,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": []
+      },
+      "after": {
+        "basic_blocks": 1,
+        "explicit_labels": [],
+        "conditional_branches": 0,
+        "all_branches": 0,
+        "phi_nodes": 0,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 0,
+        "scalar_phi_add_recurrences": []
+      },
+      "printed_function_body_byte_equal": true,
+      "trace_log": "artifacts/toolchain/extended_exploration/configs/clang_noinline_O2/loop_vectorize_trace.stderr.txt"
+    },
+    "main": {
+      "before": {
+        "basic_blocks": 10,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "17",
+          "28",
+          "30",
+          "35"
+        ],
+        "conditional_branches": 4,
+        "all_branches": 9,
+        "phi_nodes": 5,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 1,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%18 = phi i32 [ %25, %17 ], [ 0, %16 ]",
+            "incoming": "%25",
+            "add_chain": [
+              "%25 = add i32 %24, %18"
+            ]
+          }
+        ]
+      },
+      "after": {
+        "basic_blocks": 10,
+        "explicit_labels": [
+          "5",
+          "8",
+          "11",
+          "14",
+          "16",
+          "17",
+          "28",
+          "30",
+          "35"
+        ],
+        "conditional_branches": 4,
+        "all_branches": 9,
+        "phi_nodes": 5,
+        "has_vector_integer_type": false,
+        "vector_reduce_add_calls": 0,
+        "scale_calls": 1,
+        "scalar_phi_add_recurrences": [
+          {
+            "phi": "%18 = phi i32 [ %25, %17 ], [ 0, %16 ]",
+            "incoming": "%25",
+            "add_chain": [
+              "%25 = add i32 %24, %18"
+            ]
+          }
+        ]
+      },
+      "printed_function_body_byte_equal": true,
+      "trace_log": "artifacts/toolchain/extended_exploration/configs/clang_noinline_O2/loop_vectorize_trace.stderr.txt"
+    }
+  }
+}

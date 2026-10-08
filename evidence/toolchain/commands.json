@@ -1,0 +1,2749 @@
+[
+  {
+    "started": "2026-10-03T18:04:39.661385+08:00",
+    "finished": "2026-10-03T18:04:39.677043+08:00",
+    "command": [
+      "uname",
+      "-a"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/environment/uname"
+  },
+  {
+    "started": "2026-10-03T18:04:39.679482+08:00",
+    "finished": "2026-10-03T18:04:39.696123+08:00",
+    "command": [
+      "cat",
+      "/etc/os-release"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/environment/os_release"
+  },
+  {
+    "started": "2026-10-03T18:04:39.698800+08:00",
+    "finished": "2026-10-03T18:04:39.713834+08:00",
+    "command": [
+      "gcc",
+      "--version"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/environment/gcc"
+  },
+  {
+    "started": "2026-10-03T18:04:39.715987+08:00",
+    "finished": "2026-10-03T18:04:39.842136+08:00",
+    "command": [
+      "clang-14",
+      "--version"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/environment/clang"
+  },
+  {
+    "started": "2026-10-03T18:04:39.844772+08:00",
+    "finished": "2026-10-03T18:04:39.875517+08:00",
+    "command": [
+      "llvm-as-14",
+      "--version"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/environment/llvm_as"
+  },
+  {
+    "started": "2026-10-03T18:04:39.877769+08:00",
+    "finished": "2026-10-03T18:04:39.899684+08:00",
+    "command": [
+      "ld",
+      "--version"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/environment/ld"
+  },
+  {
+    "started": "2026-10-03T18:04:39.902884+08:00",
+    "finished": "2026-10-03T18:04:39.924039+08:00",
+    "command": [
+      "as",
+      "--version"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/environment/as"
+  },
+  {
+    "started": "2026-10-03T18:04:39.926693+08:00",
+    "finished": "2026-10-03T18:04:39.942422+08:00",
+    "command": [
+      "python3",
+      "--version"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/environment/python"
+  },
+  {
+    "started": "2026-10-03T18:04:39.945058+08:00",
+    "finished": "2026-10-03T18:04:40.148070+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Xclang",
+      "-ast-dump",
+      "-Xclang",
+      "-ast-dump-filter",
+      "-Xclang",
+      "alternating_sum",
+      "-fsyntax-only",
+      "<PROJECT>/src/toolchain/main.c"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/frontend_ast_alternating_sum"
+  },
+  {
+    "started": "2026-10-03T18:04:40.152757+08:00",
+    "finished": "2026-10-03T18:04:40.179196+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-###",
+      "-no-pie",
+      "<PROJECT>/src/toolchain/main.c",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/driver_dry_run_only"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_driver_dry_run"
+  },
+  {
+    "started": "2026-10-03T18:04:40.181964+08:00",
+    "finished": "2026-10-03T18:04:40.236964+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-dM",
+      "-E",
+      "<PROJECT>/src/toolchain/main.c"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_preprocessor_macros"
+  },
+  {
+    "started": "2026-10-03T18:04:40.239857+08:00",
+    "finished": "2026-10-03T18:04:40.276649+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-E",
+      "<PROJECT>/src/toolchain/main.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/main.i"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/01_preprocess_main"
+  },
+  {
+    "started": "2026-10-03T18:04:40.279202+08:00",
+    "finished": "2026-10-03T18:04:40.347621+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/main.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/main.s"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/02_compile_main"
+  },
+  {
+    "started": "2026-10-03T18:04:40.350242+08:00",
+    "finished": "2026-10-03T18:04:40.391417+08:00",
+    "command": [
+      "gcc",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/main.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/03_assemble_main"
+  },
+  {
+    "started": "2026-10-03T18:04:40.394277+08:00",
+    "finished": "2026-10-03T18:04:40.424803+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-E",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/bonus.i"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/01_preprocess_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:40.427090+08:00",
+    "finished": "2026-10-03T18:04:40.466358+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/bonus.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/bonus.s"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/02_compile_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:40.468889+08:00",
+    "finished": "2026-10-03T18:04:40.506630+08:00",
+    "command": [
+      "gcc",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/bonus.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/03_assemble_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:40.508756+08:00",
+    "finished": "2026-10-03T18:04:40.784226+08:00",
+    "command": [
+      "gcc",
+      "-no-pie",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/main.o",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/bonus.o",
+      "-Wl,-Map,<PROJECT>/artifacts/toolchain/gcc_O0/link.map",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/04_link"
+  },
+  {
+    "started": "2026-10-03T18:04:40.787156+08:00",
+    "finished": "2026-10-03T18:04:40.807632+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_main_object_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:40.809958+08:00",
+    "finished": "2026-10-03T18:04:40.855969+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_main_object_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:40.858178+08:00",
+    "finished": "2026-10-03T18:04:40.881565+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_main_object_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:40.884094+08:00",
+    "finished": "2026-10-03T18:04:40.901103+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_bonus_object_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:40.903801+08:00",
+    "finished": "2026-10-03T18:04:40.943485+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_bonus_object_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:40.946343+08:00",
+    "finished": "2026-10-03T18:04:40.968510+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_bonus_object_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:40.972047+08:00",
+    "finished": "2026-10-03T18:04:40.992050+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_executable_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:40.994521+08:00",
+    "finished": "2026-10-03T18:04:41.036711+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_executable_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:41.039378+08:00",
+    "finished": "2026-10-03T18:04:41.064304+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_executable_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:41.067562+08:00",
+    "finished": "2026-10-03T18:04:41.090056+08:00",
+    "command": [
+      "size",
+      "-A",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_size"
+  },
+  {
+    "started": "2026-10-03T18:04:41.092491+08:00",
+    "finished": "2026-10-03T18:04:41.128306+08:00",
+    "command": [
+      "file",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_file"
+  },
+  {
+    "started": "2026-10-03T18:04:41.131082+08:00",
+    "finished": "2026-10-03T18:04:41.166937+08:00",
+    "command": [
+      "ldd",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_ldd"
+  },
+  {
+    "started": "2026-10-03T18:04:41.170059+08:00",
+    "finished": "2026-10-03T18:04:41.193576+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/tests/valid_0"
+  },
+  {
+    "started": "2026-10-03T18:04:41.195910+08:00",
+    "finished": "2026-10-03T18:04:41.217185+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/tests/valid_1"
+  },
+  {
+    "started": "2026-10-03T18:04:41.220055+08:00",
+    "finished": "2026-10-03T18:04:41.241515+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/tests/valid_2"
+  },
+  {
+    "started": "2026-10-03T18:04:41.243977+08:00",
+    "finished": "2026-10-03T18:04:41.266028+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/tests/valid_5"
+  },
+  {
+    "started": "2026-10-03T18:04:41.268367+08:00",
+    "finished": "2026-10-03T18:04:41.292021+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/tests/valid_6"
+  },
+  {
+    "started": "2026-10-03T18:04:41.294315+08:00",
+    "finished": "2026-10-03T18:04:41.315533+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/tests/valid_10"
+  },
+  {
+    "started": "2026-10-03T18:04:41.318157+08:00",
+    "finished": "2026-10-03T18:04:41.343231+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/tests/valid_20"
+  },
+  {
+    "started": "2026-10-03T18:04:41.346156+08:00",
+    "finished": "2026-10-03T18:04:41.368104+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 2,
+    "log": "artifacts/toolchain/gcc_O0/tests/negative"
+  },
+  {
+    "started": "2026-10-03T18:04:41.371039+08:00",
+    "finished": "2026-10-03T18:04:41.395192+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 2,
+    "log": "artifacts/toolchain/gcc_O0/tests/too_large"
+  },
+  {
+    "started": "2026-10-03T18:04:41.397555+08:00",
+    "finished": "2026-10-03T18:04:41.419975+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 1,
+    "log": "artifacts/toolchain/gcc_O0/tests/not_integer"
+  },
+  {
+    "started": "2026-10-03T18:04:41.439104+08:00",
+    "finished": "2026-10-03T18:04:41.471796+08:00",
+    "command": [
+      "objcopy",
+      "--dump-section",
+      ".text=<PROJECT>/artifacts/toolchain/gcc_O0/executable.text.bin",
+      "<PROJECT>/artifacts/toolchain/gcc_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O0/inspect_extract_text"
+  },
+  {
+    "started": "2026-10-03T18:04:41.479133+08:00",
+    "finished": "2026-10-03T18:04:41.505099+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-###",
+      "-no-pie",
+      "<PROJECT>/src/toolchain/main.c",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/driver_dry_run_only"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_driver_dry_run"
+  },
+  {
+    "started": "2026-10-03T18:04:41.507541+08:00",
+    "finished": "2026-10-03T18:04:41.534371+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-dM",
+      "-E",
+      "<PROJECT>/src/toolchain/main.c"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_preprocessor_macros"
+  },
+  {
+    "started": "2026-10-03T18:04:41.537906+08:00",
+    "finished": "2026-10-03T18:04:41.573278+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-E",
+      "<PROJECT>/src/toolchain/main.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/main.i"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/01_preprocess_main"
+  },
+  {
+    "started": "2026-10-03T18:04:41.575694+08:00",
+    "finished": "2026-10-03T18:04:41.632401+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/main.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/main.s"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/02_compile_main"
+  },
+  {
+    "started": "2026-10-03T18:04:41.635240+08:00",
+    "finished": "2026-10-03T18:04:41.674002+08:00",
+    "command": [
+      "gcc",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/main.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/03_assemble_main"
+  },
+  {
+    "started": "2026-10-03T18:04:41.676595+08:00",
+    "finished": "2026-10-03T18:04:41.707389+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-E",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/bonus.i"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/01_preprocess_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:41.710090+08:00",
+    "finished": "2026-10-03T18:04:41.750520+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/bonus.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/bonus.s"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/02_compile_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:41.753633+08:00",
+    "finished": "2026-10-03T18:04:41.788905+08:00",
+    "command": [
+      "gcc",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/bonus.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/03_assemble_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:41.791518+08:00",
+    "finished": "2026-10-03T18:04:42.072229+08:00",
+    "command": [
+      "gcc",
+      "-no-pie",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/main.o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/bonus.o",
+      "-Wl,-Map,<PROJECT>/artifacts/toolchain/gcc_O2/link.map",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/04_link"
+  },
+  {
+    "started": "2026-10-03T18:04:42.075317+08:00",
+    "finished": "2026-10-03T18:04:42.094739+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_main_object_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:42.097156+08:00",
+    "finished": "2026-10-03T18:04:42.141206+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_main_object_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:42.143944+08:00",
+    "finished": "2026-10-03T18:04:42.167078+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_main_object_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:42.170697+08:00",
+    "finished": "2026-10-03T18:04:42.191261+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_bonus_object_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:42.194097+08:00",
+    "finished": "2026-10-03T18:04:42.233377+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_bonus_object_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:42.236477+08:00",
+    "finished": "2026-10-03T18:04:42.257404+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_bonus_object_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:42.260347+08:00",
+    "finished": "2026-10-03T18:04:42.279874+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_executable_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:42.282867+08:00",
+    "finished": "2026-10-03T18:04:42.324480+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_executable_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:42.327043+08:00",
+    "finished": "2026-10-03T18:04:42.350635+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_executable_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:42.354244+08:00",
+    "finished": "2026-10-03T18:04:42.376087+08:00",
+    "command": [
+      "size",
+      "-A",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_size"
+  },
+  {
+    "started": "2026-10-03T18:04:42.379299+08:00",
+    "finished": "2026-10-03T18:04:42.409544+08:00",
+    "command": [
+      "file",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_file"
+  },
+  {
+    "started": "2026-10-03T18:04:42.412170+08:00",
+    "finished": "2026-10-03T18:04:42.443900+08:00",
+    "command": [
+      "ldd",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_ldd"
+  },
+  {
+    "started": "2026-10-03T18:04:42.446855+08:00",
+    "finished": "2026-10-03T18:04:42.468367+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/tests/valid_0"
+  },
+  {
+    "started": "2026-10-03T18:04:42.472236+08:00",
+    "finished": "2026-10-03T18:04:42.494898+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/tests/valid_1"
+  },
+  {
+    "started": "2026-10-03T18:04:42.497669+08:00",
+    "finished": "2026-10-03T18:04:42.518575+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/tests/valid_2"
+  },
+  {
+    "started": "2026-10-03T18:04:42.522280+08:00",
+    "finished": "2026-10-03T18:04:42.543773+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/tests/valid_5"
+  },
+  {
+    "started": "2026-10-03T18:04:42.546443+08:00",
+    "finished": "2026-10-03T18:04:42.568388+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/tests/valid_6"
+  },
+  {
+    "started": "2026-10-03T18:04:42.572136+08:00",
+    "finished": "2026-10-03T18:04:42.594277+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/tests/valid_10"
+  },
+  {
+    "started": "2026-10-03T18:04:42.596697+08:00",
+    "finished": "2026-10-03T18:04:42.617561+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/tests/valid_20"
+  },
+  {
+    "started": "2026-10-03T18:04:42.621135+08:00",
+    "finished": "2026-10-03T18:04:42.642975+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 2,
+    "log": "artifacts/toolchain/gcc_O2/tests/negative"
+  },
+  {
+    "started": "2026-10-03T18:04:42.645882+08:00",
+    "finished": "2026-10-03T18:04:42.668082+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 2,
+    "log": "artifacts/toolchain/gcc_O2/tests/too_large"
+  },
+  {
+    "started": "2026-10-03T18:04:42.671711+08:00",
+    "finished": "2026-10-03T18:04:42.692161+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 1,
+    "log": "artifacts/toolchain/gcc_O2/tests/not_integer"
+  },
+  {
+    "started": "2026-10-03T18:04:42.713565+08:00",
+    "finished": "2026-10-03T18:04:42.747069+08:00",
+    "command": [
+      "objcopy",
+      "--dump-section",
+      ".text=<PROJECT>/artifacts/toolchain/gcc_O2/executable.text.bin",
+      "<PROJECT>/artifacts/toolchain/gcc_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2/inspect_extract_text"
+  },
+  {
+    "started": "2026-10-03T18:04:42.756633+08:00",
+    "finished": "2026-10-03T18:04:42.782966+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-###",
+      "-no-pie",
+      "<PROJECT>/src/toolchain/main.c",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/driver_dry_run_only"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_driver_dry_run"
+  },
+  {
+    "started": "2026-10-03T18:04:42.786554+08:00",
+    "finished": "2026-10-03T18:04:42.813707+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-dM",
+      "-E",
+      "<PROJECT>/src/toolchain/main.c"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_preprocessor_macros"
+  },
+  {
+    "started": "2026-10-03T18:04:42.816659+08:00",
+    "finished": "2026-10-03T18:04:42.851927+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-E",
+      "<PROJECT>/src/toolchain/main.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/main.i"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/01_preprocess_main"
+  },
+  {
+    "started": "2026-10-03T18:04:42.855966+08:00",
+    "finished": "2026-10-03T18:04:42.906568+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/main.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/main.s"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/02_compile_main"
+  },
+  {
+    "started": "2026-10-03T18:04:42.909716+08:00",
+    "finished": "2026-10-03T18:04:42.948573+08:00",
+    "command": [
+      "gcc",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/main.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/03_assemble_main"
+  },
+  {
+    "started": "2026-10-03T18:04:42.951570+08:00",
+    "finished": "2026-10-03T18:04:42.984171+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-E",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/bonus.i"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/01_preprocess_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:42.987402+08:00",
+    "finished": "2026-10-03T18:04:43.031071+08:00",
+    "command": [
+      "gcc",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/bonus.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/bonus.s"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/02_compile_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:43.033964+08:00",
+    "finished": "2026-10-03T18:04:43.070830+08:00",
+    "command": [
+      "gcc",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/bonus.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/03_assemble_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:43.074349+08:00",
+    "finished": "2026-10-03T18:04:43.349611+08:00",
+    "command": [
+      "gcc",
+      "-no-pie",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/main.o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/bonus.o",
+      "-Wl,-Map,<PROJECT>/artifacts/toolchain/gcc_O2_g/link.map",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/04_link"
+  },
+  {
+    "started": "2026-10-03T18:04:43.353510+08:00",
+    "finished": "2026-10-03T18:04:43.375213+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_main_object_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:43.378729+08:00",
+    "finished": "2026-10-03T18:04:43.422597+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_main_object_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:43.425714+08:00",
+    "finished": "2026-10-03T18:04:43.447511+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_main_object_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:43.450452+08:00",
+    "finished": "2026-10-03T18:04:43.469767+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_bonus_object_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:43.473835+08:00",
+    "finished": "2026-10-03T18:04:43.514437+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_bonus_object_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:43.517295+08:00",
+    "finished": "2026-10-03T18:04:43.538912+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_bonus_object_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:43.541651+08:00",
+    "finished": "2026-10-03T18:04:43.560475+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_executable_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:43.563333+08:00",
+    "finished": "2026-10-03T18:04:43.603971+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_executable_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:43.606962+08:00",
+    "finished": "2026-10-03T18:04:43.631057+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_executable_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:43.633867+08:00",
+    "finished": "2026-10-03T18:04:43.654967+08:00",
+    "command": [
+      "size",
+      "-A",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_size"
+  },
+  {
+    "started": "2026-10-03T18:04:43.658206+08:00",
+    "finished": "2026-10-03T18:04:43.688144+08:00",
+    "command": [
+      "file",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_file"
+  },
+  {
+    "started": "2026-10-03T18:04:43.691331+08:00",
+    "finished": "2026-10-03T18:04:43.725219+08:00",
+    "command": [
+      "ldd",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_ldd"
+  },
+  {
+    "started": "2026-10-03T18:04:43.728051+08:00",
+    "finished": "2026-10-03T18:04:43.749904+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/tests/valid_0"
+  },
+  {
+    "started": "2026-10-03T18:04:43.753075+08:00",
+    "finished": "2026-10-03T18:04:43.773577+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/tests/valid_1"
+  },
+  {
+    "started": "2026-10-03T18:04:43.776435+08:00",
+    "finished": "2026-10-03T18:04:43.797051+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/tests/valid_2"
+  },
+  {
+    "started": "2026-10-03T18:04:43.799850+08:00",
+    "finished": "2026-10-03T18:04:43.821929+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/tests/valid_5"
+  },
+  {
+    "started": "2026-10-03T18:04:43.824678+08:00",
+    "finished": "2026-10-03T18:04:43.845634+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/tests/valid_6"
+  },
+  {
+    "started": "2026-10-03T18:04:43.848925+08:00",
+    "finished": "2026-10-03T18:04:43.870025+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/tests/valid_10"
+  },
+  {
+    "started": "2026-10-03T18:04:43.873211+08:00",
+    "finished": "2026-10-03T18:04:43.894916+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/tests/valid_20"
+  },
+  {
+    "started": "2026-10-03T18:04:43.897844+08:00",
+    "finished": "2026-10-03T18:04:43.920701+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 2,
+    "log": "artifacts/toolchain/gcc_O2_g/tests/negative"
+  },
+  {
+    "started": "2026-10-03T18:04:43.923881+08:00",
+    "finished": "2026-10-03T18:04:43.946314+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 2,
+    "log": "artifacts/toolchain/gcc_O2_g/tests/too_large"
+  },
+  {
+    "started": "2026-10-03T18:04:43.949489+08:00",
+    "finished": "2026-10-03T18:04:43.972318+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 1,
+    "log": "artifacts/toolchain/gcc_O2_g/tests/not_integer"
+  },
+  {
+    "started": "2026-10-03T18:04:43.991843+08:00",
+    "finished": "2026-10-03T18:04:44.026278+08:00",
+    "command": [
+      "objcopy",
+      "--dump-section",
+      ".text=<PROJECT>/artifacts/toolchain/gcc_O2_g/executable.text.bin",
+      "<PROJECT>/artifacts/toolchain/gcc_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/gcc_O2_g/inspect_extract_text"
+  },
+  {
+    "started": "2026-10-03T18:04:44.033633+08:00",
+    "finished": "2026-10-03T18:04:44.277904+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-###",
+      "-no-pie",
+      "<PROJECT>/src/toolchain/main.c",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/driver_dry_run_only"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_driver_dry_run"
+  },
+  {
+    "started": "2026-10-03T18:04:44.280945+08:00",
+    "finished": "2026-10-03T18:04:44.430890+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-dM",
+      "-E",
+      "<PROJECT>/src/toolchain/main.c"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_preprocessor_macros"
+  },
+  {
+    "started": "2026-10-03T18:04:44.434093+08:00",
+    "finished": "2026-10-03T18:04:44.587590+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-E",
+      "<PROJECT>/src/toolchain/main.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.i"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/01_preprocess_main"
+  },
+  {
+    "started": "2026-10-03T18:04:44.590790+08:00",
+    "finished": "2026-10-03T18:04:44.756098+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.s"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/02_compile_main"
+  },
+  {
+    "started": "2026-10-03T18:04:44.759245+08:00",
+    "finished": "2026-10-03T18:04:44.899653+08:00",
+    "command": [
+      "clang-14",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/03_assemble_main"
+  },
+  {
+    "started": "2026-10-03T18:04:44.903223+08:00",
+    "finished": "2026-10-03T18:04:45.059313+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-E",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/bonus.i"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/01_preprocess_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:45.062109+08:00",
+    "finished": "2026-10-03T18:04:45.214470+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/clang_O0/bonus.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/bonus.s"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/02_compile_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:45.217347+08:00",
+    "finished": "2026-10-03T18:04:45.362920+08:00",
+    "command": [
+      "clang-14",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/clang_O0/bonus.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/03_assemble_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:45.366055+08:00",
+    "finished": "2026-10-03T18:04:45.631605+08:00",
+    "command": [
+      "clang-14",
+      "-no-pie",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/bonus.o",
+      "-Wl,-Map,<PROJECT>/artifacts/toolchain/clang_O0/link.map",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/04_link"
+  },
+  {
+    "started": "2026-10-03T18:04:45.634966+08:00",
+    "finished": "2026-10-03T18:04:45.907006+08:00",
+    "command": [
+      "clang-14",
+      "-no-pie",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.o",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/missing_bonus_expected_failure"
+    ],
+    "exit": 1,
+    "log": "artifacts/toolchain/clang_O0/negative_control_missing_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:45.910075+08:00",
+    "finished": "2026-10-03T18:04:46.065786+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-S",
+      "-emit-llvm",
+      "<PROJECT>/src/toolchain/main.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.ll"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/05_emit_ir_main"
+  },
+  {
+    "started": "2026-10-03T18:04:46.068954+08:00",
+    "finished": "2026-10-03T18:04:46.108858+08:00",
+    "command": [
+      "llvm-as-14",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.ll",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.bc"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/06_verify_ir_main"
+  },
+  {
+    "started": "2026-10-03T18:04:46.111806+08:00",
+    "finished": "2026-10-03T18:04:46.268084+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O0",
+      "-S",
+      "-emit-llvm",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/bonus.ll"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/05_emit_ir_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:46.271913+08:00",
+    "finished": "2026-10-03T18:04:46.307706+08:00",
+    "command": [
+      "llvm-as-14",
+      "<PROJECT>/artifacts/toolchain/clang_O0/bonus.ll",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O0/bonus.bc"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/06_verify_ir_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:46.311178+08:00",
+    "finished": "2026-10-03T18:04:46.330113+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_main_object_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:46.332877+08:00",
+    "finished": "2026-10-03T18:04:46.375590+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_main_object_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:46.379262+08:00",
+    "finished": "2026-10-03T18:04:46.399513+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/clang_O0/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_main_object_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:46.403478+08:00",
+    "finished": "2026-10-03T18:04:46.420646+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/clang_O0/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_bonus_object_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:46.423837+08:00",
+    "finished": "2026-10-03T18:04:46.463568+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/clang_O0/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_bonus_object_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:46.466756+08:00",
+    "finished": "2026-10-03T18:04:46.488800+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/clang_O0/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_bonus_object_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:46.492419+08:00",
+    "finished": "2026-10-03T18:04:46.513472+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_executable_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:46.516737+08:00",
+    "finished": "2026-10-03T18:04:46.559123+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_executable_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:46.562840+08:00",
+    "finished": "2026-10-03T18:04:46.586251+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_executable_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:46.589975+08:00",
+    "finished": "2026-10-03T18:04:46.610243+08:00",
+    "command": [
+      "size",
+      "-A",
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_size"
+  },
+  {
+    "started": "2026-10-03T18:04:46.614717+08:00",
+    "finished": "2026-10-03T18:04:46.642150+08:00",
+    "command": [
+      "file",
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_file"
+  },
+  {
+    "started": "2026-10-03T18:04:46.645569+08:00",
+    "finished": "2026-10-03T18:04:46.681374+08:00",
+    "command": [
+      "ldd",
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_ldd"
+  },
+  {
+    "started": "2026-10-03T18:04:46.684763+08:00",
+    "finished": "2026-10-03T18:04:46.709800+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/tests/valid_0"
+  },
+  {
+    "started": "2026-10-03T18:04:46.713276+08:00",
+    "finished": "2026-10-03T18:04:46.734953+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/tests/valid_1"
+  },
+  {
+    "started": "2026-10-03T18:04:46.739203+08:00",
+    "finished": "2026-10-03T18:04:46.760754+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/tests/valid_2"
+  },
+  {
+    "started": "2026-10-03T18:04:46.764146+08:00",
+    "finished": "2026-10-03T18:04:46.785033+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/tests/valid_5"
+  },
+  {
+    "started": "2026-10-03T18:04:46.789287+08:00",
+    "finished": "2026-10-03T18:04:46.811170+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/tests/valid_6"
+  },
+  {
+    "started": "2026-10-03T18:04:46.814552+08:00",
+    "finished": "2026-10-03T18:04:46.837080+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/tests/valid_10"
+  },
+  {
+    "started": "2026-10-03T18:04:46.840975+08:00",
+    "finished": "2026-10-03T18:04:46.861914+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/tests/valid_20"
+  },
+  {
+    "started": "2026-10-03T18:04:46.865351+08:00",
+    "finished": "2026-10-03T18:04:46.886264+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 2,
+    "log": "artifacts/toolchain/clang_O0/tests/negative"
+  },
+  {
+    "started": "2026-10-03T18:04:46.889958+08:00",
+    "finished": "2026-10-03T18:04:46.910989+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 2,
+    "log": "artifacts/toolchain/clang_O0/tests/too_large"
+  },
+  {
+    "started": "2026-10-03T18:04:46.914278+08:00",
+    "finished": "2026-10-03T18:04:46.934831+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 1,
+    "log": "artifacts/toolchain/clang_O0/tests/not_integer"
+  },
+  {
+    "started": "2026-10-03T18:04:46.957121+08:00",
+    "finished": "2026-10-03T18:04:46.989108+08:00",
+    "command": [
+      "objcopy",
+      "--dump-section",
+      ".text=<PROJECT>/artifacts/toolchain/clang_O0/executable.text.bin",
+      "<PROJECT>/artifacts/toolchain/clang_O0/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O0/inspect_extract_text"
+  },
+  {
+    "started": "2026-10-03T18:04:46.997206+08:00",
+    "finished": "2026-10-03T18:04:47.244719+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-###",
+      "-no-pie",
+      "<PROJECT>/src/toolchain/main.c",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/driver_dry_run_only"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_driver_dry_run"
+  },
+  {
+    "started": "2026-10-03T18:04:47.248914+08:00",
+    "finished": "2026-10-03T18:04:47.390503+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-dM",
+      "-E",
+      "<PROJECT>/src/toolchain/main.c"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_preprocessor_macros"
+  },
+  {
+    "started": "2026-10-03T18:04:47.393811+08:00",
+    "finished": "2026-10-03T18:04:47.535540+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-E",
+      "<PROJECT>/src/toolchain/main.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.i"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/01_preprocess_main"
+  },
+  {
+    "started": "2026-10-03T18:04:47.540116+08:00",
+    "finished": "2026-10-03T18:04:47.722111+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.s"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/02_compile_main"
+  },
+  {
+    "started": "2026-10-03T18:04:47.726364+08:00",
+    "finished": "2026-10-03T18:04:47.861905+08:00",
+    "command": [
+      "clang-14",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/03_assemble_main"
+  },
+  {
+    "started": "2026-10-03T18:04:47.865326+08:00",
+    "finished": "2026-10-03T18:04:48.009883+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-E",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/bonus.i"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/01_preprocess_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:48.013663+08:00",
+    "finished": "2026-10-03T18:04:48.172265+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/clang_O2/bonus.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/bonus.s"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/02_compile_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:48.176346+08:00",
+    "finished": "2026-10-03T18:04:48.315491+08:00",
+    "command": [
+      "clang-14",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/clang_O2/bonus.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/03_assemble_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:48.318841+08:00",
+    "finished": "2026-10-03T18:04:48.587107+08:00",
+    "command": [
+      "clang-14",
+      "-no-pie",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/bonus.o",
+      "-Wl,-Map,<PROJECT>/artifacts/toolchain/clang_O2/link.map",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/04_link"
+  },
+  {
+    "started": "2026-10-03T18:04:48.590653+08:00",
+    "finished": "2026-10-03T18:04:48.752279+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-S",
+      "-emit-llvm",
+      "<PROJECT>/src/toolchain/main.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.ll"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/05_emit_ir_main"
+  },
+  {
+    "started": "2026-10-03T18:04:48.756554+08:00",
+    "finished": "2026-10-03T18:04:48.791134+08:00",
+    "command": [
+      "llvm-as-14",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.ll",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.bc"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/06_verify_ir_main"
+  },
+  {
+    "started": "2026-10-03T18:04:48.794435+08:00",
+    "finished": "2026-10-03T18:04:48.946061+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-S",
+      "-emit-llvm",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/bonus.ll"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/05_emit_ir_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:48.949857+08:00",
+    "finished": "2026-10-03T18:04:48.983496+08:00",
+    "command": [
+      "llvm-as-14",
+      "<PROJECT>/artifacts/toolchain/clang_O2/bonus.ll",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2/bonus.bc"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/06_verify_ir_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:48.987717+08:00",
+    "finished": "2026-10-03T18:04:49.006448+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_main_object_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:49.009929+08:00",
+    "finished": "2026-10-03T18:04:49.050585+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_main_object_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:49.055015+08:00",
+    "finished": "2026-10-03T18:04:49.075928+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/clang_O2/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_main_object_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:49.079642+08:00",
+    "finished": "2026-10-03T18:04:49.098297+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/clang_O2/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_bonus_object_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:49.102009+08:00",
+    "finished": "2026-10-03T18:04:49.143167+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/clang_O2/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_bonus_object_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:49.146792+08:00",
+    "finished": "2026-10-03T18:04:49.167308+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/clang_O2/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_bonus_object_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:49.172303+08:00",
+    "finished": "2026-10-03T18:04:49.191870+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_executable_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:49.195312+08:00",
+    "finished": "2026-10-03T18:04:49.234886+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_executable_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:49.239344+08:00",
+    "finished": "2026-10-03T18:04:49.262737+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_executable_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:49.266463+08:00",
+    "finished": "2026-10-03T18:04:49.289546+08:00",
+    "command": [
+      "size",
+      "-A",
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_size"
+  },
+  {
+    "started": "2026-10-03T18:04:49.293198+08:00",
+    "finished": "2026-10-03T18:04:49.322085+08:00",
+    "command": [
+      "file",
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_file"
+  },
+  {
+    "started": "2026-10-03T18:04:49.325617+08:00",
+    "finished": "2026-10-03T18:04:49.358062+08:00",
+    "command": [
+      "ldd",
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_ldd"
+  },
+  {
+    "started": "2026-10-03T18:04:49.361461+08:00",
+    "finished": "2026-10-03T18:04:49.383448+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/tests/valid_0"
+  },
+  {
+    "started": "2026-10-03T18:04:49.387740+08:00",
+    "finished": "2026-10-03T18:04:49.410153+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/tests/valid_1"
+  },
+  {
+    "started": "2026-10-03T18:04:49.414305+08:00",
+    "finished": "2026-10-03T18:04:49.435284+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/tests/valid_2"
+  },
+  {
+    "started": "2026-10-03T18:04:49.440237+08:00",
+    "finished": "2026-10-03T18:04:49.461491+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/tests/valid_5"
+  },
+  {
+    "started": "2026-10-03T18:04:49.464816+08:00",
+    "finished": "2026-10-03T18:04:49.487005+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/tests/valid_6"
+  },
+  {
+    "started": "2026-10-03T18:04:49.490534+08:00",
+    "finished": "2026-10-03T18:04:49.511963+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/tests/valid_10"
+  },
+  {
+    "started": "2026-10-03T18:04:49.515658+08:00",
+    "finished": "2026-10-03T18:04:49.536884+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/tests/valid_20"
+  },
+  {
+    "started": "2026-10-03T18:04:49.540544+08:00",
+    "finished": "2026-10-03T18:04:49.562023+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 2,
+    "log": "artifacts/toolchain/clang_O2/tests/negative"
+  },
+  {
+    "started": "2026-10-03T18:04:49.565645+08:00",
+    "finished": "2026-10-03T18:04:49.587352+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 2,
+    "log": "artifacts/toolchain/clang_O2/tests/too_large"
+  },
+  {
+    "started": "2026-10-03T18:04:49.591094+08:00",
+    "finished": "2026-10-03T18:04:49.612230+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 1,
+    "log": "artifacts/toolchain/clang_O2/tests/not_integer"
+  },
+  {
+    "started": "2026-10-03T18:04:49.633054+08:00",
+    "finished": "2026-10-03T18:04:49.666110+08:00",
+    "command": [
+      "objcopy",
+      "--dump-section",
+      ".text=<PROJECT>/artifacts/toolchain/clang_O2/executable.text.bin",
+      "<PROJECT>/artifacts/toolchain/clang_O2/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2/inspect_extract_text"
+  },
+  {
+    "started": "2026-10-03T18:04:49.674740+08:00",
+    "finished": "2026-10-03T18:04:49.901746+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-###",
+      "-no-pie",
+      "<PROJECT>/src/toolchain/main.c",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/driver_dry_run_only"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_driver_dry_run"
+  },
+  {
+    "started": "2026-10-03T18:04:49.906567+08:00",
+    "finished": "2026-10-03T18:04:50.044881+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-dM",
+      "-E",
+      "<PROJECT>/src/toolchain/main.c"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_preprocessor_macros"
+  },
+  {
+    "started": "2026-10-03T18:04:50.049241+08:00",
+    "finished": "2026-10-03T18:04:50.197206+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-E",
+      "<PROJECT>/src/toolchain/main.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/main.i"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/01_preprocess_main"
+  },
+  {
+    "started": "2026-10-03T18:04:50.201067+08:00",
+    "finished": "2026-10-03T18:04:50.366336+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/main.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/main.s"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/02_compile_main"
+  },
+  {
+    "started": "2026-10-03T18:04:50.370318+08:00",
+    "finished": "2026-10-03T18:04:50.510385+08:00",
+    "command": [
+      "clang-14",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/main.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/03_assemble_main"
+  },
+  {
+    "started": "2026-10-03T18:04:50.514591+08:00",
+    "finished": "2026-10-03T18:04:50.661754+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-E",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/bonus.i"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/01_preprocess_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:50.665682+08:00",
+    "finished": "2026-10-03T18:04:50.818267+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-S",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/bonus.i",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/bonus.s"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/02_compile_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:50.823056+08:00",
+    "finished": "2026-10-03T18:04:50.961759+08:00",
+    "command": [
+      "clang-14",
+      "-c",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/bonus.s",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/03_assemble_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:50.965600+08:00",
+    "finished": "2026-10-03T18:04:51.255746+08:00",
+    "command": [
+      "clang-14",
+      "-no-pie",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/main.o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/bonus.o",
+      "-Wl,-Map,<PROJECT>/artifacts/toolchain/clang_O2_g/link.map",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/04_link"
+  },
+  {
+    "started": "2026-10-03T18:04:51.259911+08:00",
+    "finished": "2026-10-03T18:04:51.416845+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-S",
+      "-emit-llvm",
+      "<PROJECT>/src/toolchain/main.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/main.ll"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/05_emit_ir_main"
+  },
+  {
+    "started": "2026-10-03T18:04:51.421150+08:00",
+    "finished": "2026-10-03T18:04:51.458641+08:00",
+    "command": [
+      "llvm-as-14",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/main.ll",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/main.bc"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/06_verify_ir_main"
+  },
+  {
+    "started": "2026-10-03T18:04:51.462461+08:00",
+    "finished": "2026-10-03T18:04:51.612294+08:00",
+    "command": [
+      "clang-14",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-march=x86-64",
+      "-mtune=generic",
+      "-fno-pie",
+      "-O2",
+      "-g",
+      "-S",
+      "-emit-llvm",
+      "<PROJECT>/src/toolchain/bonus.c",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/bonus.ll"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/05_emit_ir_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:51.616673+08:00",
+    "finished": "2026-10-03T18:04:51.651478+08:00",
+    "command": [
+      "llvm-as-14",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/bonus.ll",
+      "-o",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/bonus.bc"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/06_verify_ir_bonus"
+  },
+  {
+    "started": "2026-10-03T18:04:51.656308+08:00",
+    "finished": "2026-10-03T18:04:51.678576+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_main_object_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:51.683000+08:00",
+    "finished": "2026-10-03T18:04:51.723919+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_main_object_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:51.728541+08:00",
+    "finished": "2026-10-03T18:04:51.752319+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/main.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_main_object_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:51.757321+08:00",
+    "finished": "2026-10-03T18:04:51.777282+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_bonus_object_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:51.781826+08:00",
+    "finished": "2026-10-03T18:04:51.823755+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_bonus_object_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:51.827546+08:00",
+    "finished": "2026-10-03T18:04:51.848274+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/bonus.o"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_bonus_object_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:51.852247+08:00",
+    "finished": "2026-10-03T18:04:51.872383+08:00",
+    "command": [
+      "readelf",
+      "-hSWsrd",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_executable_readelf"
+  },
+  {
+    "started": "2026-10-03T18:04:51.876656+08:00",
+    "finished": "2026-10-03T18:04:51.916948+08:00",
+    "command": [
+      "nm",
+      "-a",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_executable_nm"
+  },
+  {
+    "started": "2026-10-03T18:04:51.922190+08:00",
+    "finished": "2026-10-03T18:04:51.945502+08:00",
+    "command": [
+      "objdump",
+      "-drwC",
+      "-Mintel",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_executable_objdump"
+  },
+  {
+    "started": "2026-10-03T18:04:51.949698+08:00",
+    "finished": "2026-10-03T18:04:51.969812+08:00",
+    "command": [
+      "size",
+      "-A",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_size"
+  },
+  {
+    "started": "2026-10-03T18:04:51.973489+08:00",
+    "finished": "2026-10-03T18:04:52.001091+08:00",
+    "command": [
+      "file",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_file"
+  },
+  {
+    "started": "2026-10-03T18:04:52.005517+08:00",
+    "finished": "2026-10-03T18:04:52.040207+08:00",
+    "command": [
+      "ldd",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_ldd"
+  },
+  {
+    "started": "2026-10-03T18:04:52.044874+08:00",
+    "finished": "2026-10-03T18:04:52.067686+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/tests/valid_0"
+  },
+  {
+    "started": "2026-10-03T18:04:52.072677+08:00",
+    "finished": "2026-10-03T18:04:52.094231+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/tests/valid_1"
+  },
+  {
+    "started": "2026-10-03T18:04:52.098728+08:00",
+    "finished": "2026-10-03T18:04:52.121700+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/tests/valid_2"
+  },
+  {
+    "started": "2026-10-03T18:04:52.125550+08:00",
+    "finished": "2026-10-03T18:04:52.147035+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/tests/valid_5"
+  },
+  {
+    "started": "2026-10-03T18:04:52.151635+08:00",
+    "finished": "2026-10-03T18:04:52.175619+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/tests/valid_6"
+  },
+  {
+    "started": "2026-10-03T18:04:52.180227+08:00",
+    "finished": "2026-10-03T18:04:52.203382+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/tests/valid_10"
+  },
+  {
+    "started": "2026-10-03T18:04:52.207389+08:00",
+    "finished": "2026-10-03T18:04:52.229506+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/tests/valid_20"
+  },
+  {
+    "started": "2026-10-03T18:04:52.233958+08:00",
+    "finished": "2026-10-03T18:04:52.257077+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 2,
+    "log": "artifacts/toolchain/clang_O2_g/tests/negative"
+  },
+  {
+    "started": "2026-10-03T18:04:52.261317+08:00",
+    "finished": "2026-10-03T18:04:52.283520+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 2,
+    "log": "artifacts/toolchain/clang_O2_g/tests/too_large"
+  },
+  {
+    "started": "2026-10-03T18:04:52.288713+08:00",
+    "finished": "2026-10-03T18:04:52.311522+08:00",
+    "command": [
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 1,
+    "log": "artifacts/toolchain/clang_O2_g/tests/not_integer"
+  },
+  {
+    "started": "2026-10-03T18:04:52.334211+08:00",
+    "finished": "2026-10-03T18:04:52.366392+08:00",
+    "command": [
+      "objcopy",
+      "--dump-section",
+      ".text=<PROJECT>/artifacts/toolchain/clang_O2_g/executable.text.bin",
+      "<PROJECT>/artifacts/toolchain/clang_O2_g/demo"
+    ],
+    "exit": 0,
+    "log": "artifacts/toolchain/clang_O2_g/inspect_extract_text"
+  }
+]

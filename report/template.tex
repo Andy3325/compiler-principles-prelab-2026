@@ -1,0 +1,101 @@
+% Adapted from supplied lab4_mpi_report/main.tex; experiment contents not copied.
+
+
+\usepackage[a4paper,margin=2.4cm,headheight=15pt]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{makecell}
+\usepackage{siunitx}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit}
+\usepackage{needspace}
+\AddToHook{cmd/section/before}{\Needspace{9\baselineskip}}
+\AddToHook{cmd/subsection/before}{\Needspace{4\baselineskip}}
+\AddToHook{cmd/subsubsection/before}{\Needspace{4\baselineskip}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\raggedbottom
+
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+\setlist[itemize]{leftmargin=2em,itemsep=0.25em,topsep=0.25em}
+\setlist[enumerate]{leftmargin=2em,itemsep=0.25em,topsep=0.25em}
+\captionsetup{font=small,labelfont=bf,skip=3pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{3pt}
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\floatsep}{6pt plus 2pt minus 2pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.82}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.80}
+\setlength{\abovedisplayskip}{6pt plus 1pt minus 1pt}
+\setlength{\belowdisplayskip}{6pt plus 1pt minus 1pt}
+\setlength{\emergencystretch}{2.5em}
+\hfuzz=0pt
+\titlespacing*{\section}{0pt}{1.0ex plus 0.2ex minus 0.1ex}{0.75ex}
+\titlespacing*{\subsection}{0pt}{0.85ex plus 0.2ex minus 0.1ex}{0.50ex}
+\titlespacing*{\subsubsection}{0pt}{0.65ex plus 0.1ex minus 0.1ex}{0.40ex}
+\renewcommand{\arraystretch}{1.18}
+
+\definecolor{nkuPurple}{RGB}{121,42,104}
+\definecolor{blueGray}{RGB}{71,96,121}
+\definecolor{tableHead}{RGB}{241,232,239}
+\definecolor{codebg}{RGB}{255,247,236}
+\definecolor{codeframe}{RGB}{232,156,78}
+\definecolor{bestCell}{RGB}{255,243,214}
+\definecolor{noteBg}{RGB}{245,248,252}
+\definecolor{softBlue}{RGB}{235,241,248}
+
+\lstdefinestyle{codebox}{
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue!70!black},
+  commentstyle=\color{green!45!black},
+  stringstyle=\color{purple!70!black},
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  xleftmargin=1.5em,
+  framexleftmargin=1.2em,
+  aboveskip=0.25em,
+  belowskip=0.25em
+}
+\lstset{style=codebox}
+
+\renewcommand{\thesection}{\chinese{section}}
+\renewcommand{\thesubsection}{（\chinese{subsection}）}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}.}
+\titleformat{\section}{\centering\zihao{3}\bfseries}{\thesection、}{0.25em}{}
+\titleformat{\subsection}{\zihao{4}\bfseries}{\thesubsection}{0.25em}{}
+\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{0.25em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{编译原理预备实验}
+\rhead{LLVM IR 与 RISC-V 编程}
+\cfoot{\thepage}
+
+\newcommand{\figdir}{figures}
+\newcommand{\metric}[1]{\textsf{#1}}
+\newcommand{\codefile}[1]{\path{#1}}
+

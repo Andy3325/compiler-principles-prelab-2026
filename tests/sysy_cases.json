@@ -1,0 +1,1805 @@
+{
+  "seed": 24115602412565,
+  "cases": [
+    {
+      "program": "control_matrix",
+      "case": "empty_gate_zero",
+      "input": "0 40 0 3 0 0 0 0 0 0\n",
+      "expected": [
+        10,
+        0,
+        6,
+        0,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "initial_full",
+      "input": "6 40 1 3 0 0 0 0 0 0\n",
+      "expected": [
+        53,
+        1,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "break_first",
+      "input": "6 1 1 -3 0 0 0 0 0 0\n",
+      "expected": [
+        10,
+        1,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "break_middle",
+      "input": "6 -3 -1 3 0 0 0 0 0 0\n",
+      "expected": [
+        15,
+        1,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "break_last",
+      "input": "6 5 2 -3 0 0 0 0 0 0\n",
+      "expected": [
+        23,
+        1,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "zero_continue_before_break",
+      "input": "6 0 0 1 -1 -2 0 3 -4 -5\n",
+      "expected": [
+        10,
+        0,
+        6,
+        0,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "short_circuit_two_calls",
+      "input": "6 40 1 3 0 0 0 0 0 -6\n",
+      "expected": [
+        17,
+        2,
+        3,
+        0,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "short_circuit_first_false",
+      "input": "6 40 1 3 -2 0 0 0 0 -6\n",
+      "expected": [
+        15,
+        2,
+        2,
+        0,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "short_circuit_zero_first",
+      "input": "1 40 1 3 -1 0 0 0 0 0\n",
+      "expected": [
+        10,
+        1,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "negative_dividend",
+      "input": "6 40 0 3 0 -7 0 0 0 0\n",
+      "expected": [
+        39,
+        0,
+        6,
+        -1,
+        -2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "both_negative_division",
+      "input": "6 40 -2 -3 0 -7 0 0 0 0\n",
+      "expected": [
+        39,
+        1,
+        1,
+        1,
+        -2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "exact_division",
+      "input": "2 40 1 -7 0 12 0 0 0 0\n",
+      "expected": [
+        39,
+        1,
+        1,
+        -2,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "zero_dividend",
+      "input": "6 40 1 -7 0 -2 0 0 0 0\n",
+      "expected": [
+        49,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "upper_delta_bound",
+      "input": "6 40 2 7 30 30 30 30 30 30\n",
+      "expected": [
+        683,
+        1,
+        1,
+        4,
+        4
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "lower_delta_bound",
+      "input": "6 40 -2 -7 -30 -30 -30 -30 -30 -30\n",
+      "expected": [
+        -577,
+        2,
+        2,
+        4,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "one_element",
+      "input": "1 40 0 1 3 0 0 0 0 -5\n",
+      "expected": [
+        14,
+        0,
+        6,
+        2,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "two_elements",
+      "input": "2 40 1 2 3 -7 0 0 0 0\n",
+      "expected": [
+        4,
+        1,
+        1,
+        -2,
+        -1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "three_elements",
+      "input": "3 40 1 4 0 0 6 0 0 0\n",
+      "expected": [
+        33,
+        1,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "four_elements",
+      "input": "4 40 1 -2 0 0 0 0 0 0\n",
+      "expected": [
+        3,
+        1,
+        1,
+        -1,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "five_elements",
+      "input": "5 40 1 5 0 0 0 0 0 0\n",
+      "expected": [
+        23,
+        1,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_00",
+      "input": "4 18 -2 -2 17 6 8 -22 -26 -6\n",
+      "expected": [
+        10,
+        2,
+        3,
+        -4,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_01",
+      "input": "2 40 -1 6 -7 29 -28 10 29 23\n",
+      "expected": [
+        66,
+        1,
+        0,
+        5,
+        1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_02",
+      "input": "5 40 1 -6 25 6 18 -21 -8 -8\n",
+      "expected": [
+        -10,
+        2,
+        3,
+        -1,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_03",
+      "input": "6 0 -1 1 19 -9 -23 24 22 -1\n",
+      "expected": [
+        185,
+        1,
+        1,
+        -7,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_04",
+      "input": "5 3 1 -7 -18 15 -1 11 -1 13\n",
+      "expected": [
+        56,
+        1,
+        0,
+        -2,
+        3
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_05",
+      "input": "6 40 -1 -5 15 -26 9 -2 -16 18\n",
+      "expected": [
+        63,
+        1,
+        1,
+        4,
+        -4
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_06",
+      "input": "2 -17 1 -5 -18 -23 -22 -18 -17 4\n",
+      "expected": [
+        10,
+        1,
+        0,
+        4,
+        -1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_07",
+      "input": "1 0 1 -1 6 17 -9 3 12 -25\n",
+      "expected": [
+        17,
+        2,
+        3,
+        -19,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_08",
+      "input": "0 0 -2 -1 -25 30 -20 22 1 4\n",
+      "expected": [
+        10,
+        1,
+        0,
+        -32,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_09",
+      "input": "4 40 2 -1 13 -15 -17 17 24 8\n",
+      "expected": [
+        3,
+        1,
+        1,
+        13,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_10",
+      "input": "2 0 0 -7 11 6 15 -28 -18 21\n",
+      "expected": [
+        38,
+        0,
+        6,
+        -1,
+        1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_11",
+      "input": "0 33 0 3 0 -2 11 -16 17 28\n",
+      "expected": [
+        10,
+        0,
+        6,
+        0,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_12",
+      "input": "3 -27 1 -4 -28 -23 -18 -9 -26 -5\n",
+      "expected": [
+        10,
+        1,
+        0,
+        5,
+        -1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_13",
+      "input": "1 -16 -1 2 -26 -18 -12 30 10 3\n",
+      "expected": [
+        -15,
+        1,
+        0,
+        -8,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_14",
+      "input": "3 0 -1 7 23 25 11 -17 -2 -23\n",
+      "expected": [
+        121,
+        2,
+        3,
+        3,
+        6
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_15",
+      "input": "1 8 0 7 -9 -8 20 11 5 9\n",
+      "expected": [
+        2,
+        0,
+        6,
+        0,
+        -6
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_16",
+      "input": "0 40 2 -6 29 -17 21 -15 -21 -23\n",
+      "expected": [
+        10,
+        2,
+        3,
+        2,
+        -3
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_17",
+      "input": "5 0 -2 -2 -5 10 6 11 -22 -7\n",
+      "expected": [
+        -10,
+        2,
+        2,
+        -6,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_18",
+      "input": "2 40 2 -7 21 -10 29 14 5 -3\n",
+      "expected": [
+        16,
+        1,
+        1,
+        1,
+        -1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_19",
+      "input": "6 40 0 1 -5 23 -20 15 -18 19\n",
+      "expected": [
+        118,
+        0,
+        6,
+        25,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_20",
+      "input": "1 -17 0 2 20 27 -17 10 29 -7\n",
+      "expected": [
+        31,
+        0,
+        6,
+        14,
+        1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_21",
+      "input": "0 40 -2 6 8 -17 1 0 -6 -22\n",
+      "expected": [
+        10,
+        2,
+        3,
+        -2,
+        -3
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_22",
+      "input": "3 40 -2 1 -3 14 30 30 5 14\n",
+      "expected": [
+        130,
+        1,
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_23",
+      "input": "1 14 -2 -6 -28 2 7 19 21 9\n",
+      "expected": [
+        -17,
+        1,
+        0,
+        0,
+        4
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_24",
+      "input": "6 40 2 5 20 -26 -28 -17 16 -19\n",
+      "expected": [
+        -165,
+        2,
+        3,
+        -4,
+        -4
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_25",
+      "input": "0 0 1 -2 0 -26 29 18 26 24\n",
+      "expected": [
+        10,
+        1,
+        1,
+        12,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_26",
+      "input": "1 25 -1 2 -1 -7 25 30 -23 16\n",
+      "expected": [
+        10,
+        1,
+        0,
+        -2,
+        -1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_27",
+      "input": "1 -13 2 -1 29 27 25 -10 6 -11\n",
+      "expected": [
+        40,
+        2,
+        3,
+        -29,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_28",
+      "input": "1 0 2 -5 30 -16 23 -2 -3 16\n",
+      "expected": [
+        41,
+        1,
+        1,
+        2,
+        -4
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_29",
+      "input": "3 40 -1 4 -30 -27 13 19 -15 21\n",
+      "expected": [
+        -30,
+        1,
+        0,
+        -6,
+        -1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_30",
+      "input": "1 6 2 1 5 -5 1 -3 4 12\n",
+      "expected": [
+        10,
+        1,
+        1,
+        -3,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_31",
+      "input": "4 -8 2 -1 19 -10 14 -4 -23 -21\n",
+      "expected": [
+        30,
+        2,
+        3,
+        8,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_32",
+      "input": "6 40 2 7 -28 12 -9 22 13 27\n",
+      "expected": [
+        337,
+        1,
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_33",
+      "input": "2 13 -1 6 8 -23 24 16 7 -24\n",
+      "expected": [
+        -23,
+        2,
+        3,
+        -3,
+        -3
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_34",
+      "input": "2 -12 2 7 -24 -8 14 -9 -16 17\n",
+      "expected": [
+        -25,
+        1,
+        0,
+        0,
+        -6
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_35",
+      "input": "1 40 0 6 12 11 -21 0 14 -15\n",
+      "expected": [
+        23,
+        0,
+        6,
+        2,
+        1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_36",
+      "input": "4 40 0 2 -23 6 20 12 -29 6\n",
+      "expected": [
+        100,
+        0,
+        6,
+        4,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_37",
+      "input": "2 -19 0 -4 18 -21 13 -16 0 -27\n",
+      "expected": [
+        29,
+        0,
+        6,
+        4,
+        -3
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_38",
+      "input": "0 -13 -2 7 -20 -5 -13 -17 16 -26\n",
+      "expected": [
+        10,
+        2,
+        2,
+        0,
+        -3
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_39",
+      "input": "4 0 -1 6 -21 -27 8 14 -16 -27\n",
+      "expected": [
+        8,
+        2,
+        2,
+        -4,
+        -1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_40",
+      "input": "1 0 -1 2 0 6 -30 29 -12 -25\n",
+      "expected": [
+        11,
+        2,
+        3,
+        4,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_41",
+      "input": "0 0 -2 3 30 -25 2 26 12 13\n",
+      "expected": [
+        10,
+        1,
+        1,
+        -7,
+        -2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_42",
+      "input": "1 40 0 6 9 27 30 -19 -23 -2\n",
+      "expected": [
+        20,
+        0,
+        6,
+        4,
+        5
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_43",
+      "input": "0 -2 -2 -4 23 -4 -28 21 -20 -21\n",
+      "expected": [
+        10,
+        2,
+        3,
+        0,
+        -2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_44",
+      "input": "4 0 -1 6 -3 -2 4 -18 0 -6\n",
+      "expected": [
+        -64,
+        2,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_45",
+      "input": "4 16 -1 3 1 -24 9 19 0 -16\n",
+      "expected": [
+        -5,
+        2,
+        3,
+        -7,
+        -1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_46",
+      "input": "5 0 -1 -6 -3 -4 -8 -14 -12 6\n",
+      "expected": [
+        -128,
+        1,
+        0,
+        0,
+        -2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_47",
+      "input": "6 0 2 -3 17 0 -1 -22 -4 -28\n",
+      "expected": [
+        -209,
+        2,
+        3,
+        0,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_48",
+      "input": "1 40 0 4 -24 -26 19 9 19 28\n",
+      "expected": [
+        -13,
+        0,
+        6,
+        -6,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_49",
+      "input": "5 40 0 6 1 -15 6 -11 -15 -21\n",
+      "expected": [
+        -107,
+        0,
+        6,
+        -2,
+        -1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_50",
+      "input": "6 -24 2 -2 3 -12 -24 -2 1 11\n",
+      "expected": [
+        -6,
+        1,
+        1,
+        5,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_51",
+      "input": "4 -14 1 3 23 17 4 -11 -25 -16\n",
+      "expected": [
+        84,
+        2,
+        3,
+        6,
+        1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_52",
+      "input": "3 0 2 7 27 5 -5 -10 29 4\n",
+      "expected": [
+        37,
+        1,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_53",
+      "input": "0 40 1 -4 -4 26 -14 -27 25 30\n",
+      "expected": [
+        10,
+        1,
+        0,
+        -7,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_54",
+      "input": "2 -18 -2 -5 -19 -14 6 -19 21 5\n",
+      "expected": [
+        10,
+        1,
+        0,
+        2,
+        -2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_55",
+      "input": "3 0 -2 6 0 9 -13 -12 -25 23\n",
+      "expected": [
+        -6,
+        1,
+        1,
+        1,
+        5
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_56",
+      "input": "0 40 1 -7 -17 5 -15 -29 4 21\n",
+      "expected": [
+        10,
+        1,
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_57",
+      "input": "4 -24 -2 6 -17 20 1 -21 21 23\n",
+      "expected": [
+        41,
+        1,
+        0,
+        3,
+        4
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_58",
+      "input": "1 26 1 3 -7 -18 1 -23 22 30\n",
+      "expected": [
+        4,
+        1,
+        0,
+        -5,
+        -1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_59",
+      "input": "1 -12 -1 -2 20 11 -6 -10 16 -17\n",
+      "expected": [
+        31,
+        2,
+        3,
+        -6,
+        1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_60",
+      "input": "1 0 -2 1 -10 7 -22 15 12 9\n",
+      "expected": [
+        1,
+        1,
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_61",
+      "input": "2 11 1 -5 19 9 -5 10 10 23\n",
+      "expected": [
+        30,
+        1,
+        1,
+        -2,
+        1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_62",
+      "input": "2 0 1 -7 4 -19 5 -4 -4 -27\n",
+      "expected": [
+        -19,
+        2,
+        3,
+        2,
+        -3
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_63",
+      "input": "5 40 1 3 1 -13 -29 -8 -8 13\n",
+      "expected": [
+        -161,
+        1,
+        1,
+        -3,
+        -2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_64",
+      "input": "5 8 0 7 -16 25 -17 20 4 -26\n",
+      "expected": [
+        66,
+        0,
+        6,
+        3,
+        6
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_65",
+      "input": "5 0 -2 7 12 21 -15 -29 11 -25\n",
+      "expected": [
+        -29,
+        2,
+        3,
+        3,
+        2
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_66",
+      "input": "1 40 1 3 10 8 13 2 10 17\n",
+      "expected": [
+        21,
+        1,
+        1,
+        3,
+        1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_67",
+      "input": "2 9 1 2 20 7 2 23 -16 27\n",
+      "expected": [
+        31,
+        1,
+        1,
+        4,
+        1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_68",
+      "input": "4 0 1 5 24 28 1 -13 -15 3\n",
+      "expected": [
+        34,
+        1,
+        1,
+        6,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_69",
+      "input": "3 24 -1 5 23 29 14 27 -21 18\n",
+      "expected": [
+        10,
+        1,
+        1,
+        6,
+        1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_70",
+      "input": "0 0 -1 -3 -27 16 4 24 26 -13\n",
+      "expected": [
+        10,
+        2,
+        2,
+        -6,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_71",
+      "input": "2 0 0 1 26 2 0 7 25 4\n",
+      "expected": [
+        45,
+        0,
+        6,
+        4,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_72",
+      "input": "2 40 -2 -6 27 23 15 -25 -1 -10\n",
+      "expected": [
+        88,
+        2,
+        3,
+        -4,
+        1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_73",
+      "input": "5 -9 1 -5 10 -11 28 10 -11 25\n",
+      "expected": [
+        21,
+        1,
+        1,
+        1,
+        -4
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_74",
+      "input": "3 0 0 6 -12 16 -4 -25 2 6\n",
+      "expected": [
+        23,
+        0,
+        6,
+        3,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_75",
+      "input": "1 0 1 -7 0 -13 12 -2 18 5\n",
+      "expected": [
+        11,
+        1,
+        1,
+        1,
+        -4
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_76",
+      "input": "2 0 2 -5 20 19 22 -20 23 -10\n",
+      "expected": [
+        73,
+        2,
+        3,
+        -4,
+        1
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_77",
+      "input": "1 40 0 -2 -3 20 -22 -18 8 -19\n",
+      "expected": [
+        8,
+        0,
+        6,
+        -11,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_78",
+      "input": "3 40 2 -1 -9 -1 -6 21 27 -1\n",
+      "expected": [
+        -14,
+        1,
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "program": "control_matrix",
+      "case": "generated_79",
+      "input": "2 -18 1 -4 26 -20 28 22 11 -2\n",
+      "expected": [
+        37,
+        1,
+        1,
+        4,
+        -2
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "empty",
+      "input": "0 0x1.0000000000000p+0 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "zero_scale",
+      "input": "4 0x0.0p+0 0x1.0000000000000p+0 -0x1.0000000000000p+1 0x1.8000000000000p+1 -0x1.0000000000000p+2\n",
+      "expected": [
+        6.25,
+        6,
+        1.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "positive_and_negative",
+      "input": "4 0x1.0000000000000p+0 0x1.0000000000000p+0 -0x1.0000000000000p+1 0x1.0000000000000p-1 -0x1.0000000000000p+2\n",
+      "expected": [
+        3.75,
+        3,
+        0.75
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "negative_scale",
+      "input": "4 -0x1.0000000000000p+1 0x1.0000000000000p+0 -0x1.0000000000000p+1 0x1.8000000000000p+1 -0x1.0000000000000p+2\n",
+      "expected": [
+        16.25,
+        16,
+        3.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "fractional",
+      "input": "3 0x1.99999a0000000p-4 0x1.99999a0000000p-4 0x1.99999a0000000p-3 0x1.3333340000000p-2\n",
+      "expected": [
+        3.309999942779541,
+        3,
+        0.8274999856948853
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "all_filtered",
+      "input": "4 0x1.0000000000000p+1 -0x1.4000000000000p+3 -0x1.4000000000000p+3 -0x1.4000000000000p+3 -0x1.4000000000000p+3\n",
+      "expected": [
+        0.25,
+        0,
+        0.05000000074505806
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "truncation_not_rounding",
+      "input": "1 0x1.0000000000000p+0 0x1.0000000000000p-1\n",
+      "expected": [
+        0.75,
+        0,
+        0.375
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "small_positive",
+      "input": "1 0x1.a36e2e0000000p-14 0x1.a36e2e0000000p-14\n",
+      "expected": [
+        0.25,
+        0,
+        0.125
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "upper_bound",
+      "input": "4 0x1.0000000000000p+3 0x1.0000000000000p+5 0x1.0000000000000p+5 0x1.0000000000000p+5 0x1.0000000000000p+5\n",
+      "expected": [
+        1030.25,
+        1030,
+        206.0500030517578
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "negative_bounds",
+      "input": "4 -0x1.0000000000000p+3 -0x1.0000000000000p+5 -0x1.0000000000000p+5 -0x1.0000000000000p+5 -0x1.0000000000000p+5\n",
+      "expected": [
+        1030.25,
+        1030,
+        206.0500030517578
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_00",
+      "input": "3 -0x1.f07bb20000000p+1 0x1.faafaa0000000p+0 -0x1.9d95160000000p+4 -0x1.97fe000000000p+0\n",
+      "expected": [
+        109.69373321533203,
+        109,
+        27.423433303833008
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_01",
+      "input": "3 0x1.48f1380000000p+2 0x1.cdc3580000000p+2 -0x1.e53e600000000p+4 0x1.fc73400000000p+4\n",
+      "expected": [
+        202.66415405273438,
+        202,
+        50.666038513183594
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_02",
+      "input": "3 0x1.e375c00000000p+0 0x1.b27c180000000p+0 -0x1.13c6f00000000p+4 0x1.b8c1c80000000p+4\n",
+      "expected": [
+        57.478721618652344,
+        57,
+        14.369680404663086
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_03",
+      "input": "0 -0x1.ea86360000000p+2 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_04",
+      "input": "1 0x1.a316d20000000p+2 -0x1.a6de760000000p+4\n",
+      "expected": [
+        0.25,
+        0,
+        0.125
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_05",
+      "input": "0 0x1.b623cc0000000p+0 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_06",
+      "input": "4 0x1.31b39c0000000p+1 -0x1.c3baee0000000p+4 -0x1.41edb00000000p+4 -0x1.f373d20000000p+4 0x1.5d3ace0000000p+3\n",
+      "expected": [
+        29.314472198486328,
+        29,
+        5.862894535064697
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_07",
+      "input": "3 0x1.8e62da0000000p+2 -0x1.42c71e0000000p+2 0x1.c515880000000p+4 0x1.a62ad00000000p+3\n",
+      "expected": [
+        261.6437683105469,
+        261,
+        65.41094207763672
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_08",
+      "input": "2 -0x1.8362a00000000p+1 -0x1.ad3a740000000p+4 -0x1.47dd0a0000000p+4\n",
+      "expected": [
+        144.45614624023438,
+        144,
+        48.15205001831055
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_09",
+      "input": "4 0x1.e91d360000000p+1 -0x1.2e08c40000000p+4 -0x1.d575ca0000000p+3 -0x1.c4da040000000p+3 -0x1.72fea60000000p+4\n",
+      "expected": [
+        0.25,
+        0,
+        0.05000000074505806
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_10",
+      "input": "3 -0x1.5269420000000p-1 -0x1.eba84a0000000p+4 -0x1.81f3fa0000000p+3 0x1.0f36160000000p+4\n",
+      "expected": [
+        29.532196044921875,
+        29,
+        7.383049011230469
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_11",
+      "input": "1 0x1.8275740000000p+0 -0x1.8554540000000p+4\n",
+      "expected": [
+        0.25,
+        0,
+        0.125
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_12",
+      "input": "4 -0x1.fff00a0000000p+2 -0x1.9d31d60000000p+4 0x1.6490420000000p+3 0x1.9a11ba0000000p+4 0x1.1c758e0000000p+4\n",
+      "expected": [
+        206.82217407226562,
+        206,
+        41.36443328857422
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_13",
+      "input": "1 0x1.63c93c0000000p+0 0x1.b7d4500000000p+4\n",
+      "expected": [
+        38.454383850097656,
+        38,
+        19.227191925048828
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_14",
+      "input": "2 0x1.b80e9e0000000p+2 -0x1.cae76e0000000p+4 0x1.9a51ac0000000p+3\n",
+      "expected": [
+        89.4159164428711,
+        89,
+        29.80530548095703
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_15",
+      "input": "0 0x1.7dbbc00000000p+1 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_16",
+      "input": "0 0x1.c3ce560000000p+1 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_17",
+      "input": "4 0x1.530d900000000p+2 0x1.aa9ea60000000p+3 0x1.a110b20000000p+4 0x1.7e958a0000000p+4 0x1.4684de0000000p+3\n",
+      "expected": [
+        395.70355224609375,
+        395,
+        79.14070892333984
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_18",
+      "input": "2 0x1.4f23ea0000000p+2 0x1.e1a99e0000000p+3 0x1.fd89800000000p+4\n",
+      "expected": [
+        246.83465576171875,
+        246,
+        82.2782211303711
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_19",
+      "input": "1 -0x1.a938640000000p-1 0x1.ecb66c0000000p+0\n",
+      "expected": [
+        0.25,
+        0,
+        0.125
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_20",
+      "input": "1 0x1.eaed620000000p+1 0x1.97c7f80000000p+4\n",
+      "expected": [
+        97.99945068359375,
+        97,
+        48.999725341796875
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_21",
+      "input": "0 -0x1.13256e0000000p-1 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_22",
+      "input": "0 0x1.8d9d1e0000000p+2 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_23",
+      "input": "3 0x1.210e700000000p+2 0x1.fbcf200000000p+4 -0x1.b483aa0000000p+4 -0x1.9210b80000000p+4\n",
+      "expected": [
+        143.59518432617188,
+        143,
+        35.89879608154297
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_24",
+      "input": "0 0x1.f0d6820000000p+2 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_25",
+      "input": "3 0x1.ce4cd40000000p+1 -0x1.d0c38e0000000p-2 -0x1.1e90980000000p+2 -0x1.8f52a20000000p+4\n",
+      "expected": [
+        0.25,
+        0,
+        0.0625
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_26",
+      "input": "0 -0x1.8e650c0000000p+2 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_27",
+      "input": "0 -0x1.7d1b5c0000000p+0 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_28",
+      "input": "0 0x1.ccfd440000000p+0 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_29",
+      "input": "4 -0x1.b9146c0000000p-3 -0x1.770e1a0000000p+4 0x1.fa2c3a0000000p+4 0x1.30405e0000000p+3 0x1.d653220000000p+3\n",
+      "expected": [
+        5.29849910736084,
+        5,
+        1.0596997737884521
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_30",
+      "input": "2 0x1.8e27b60000000p+1 -0x1.fa5c3c0000000p+1 -0x1.5ede2a0000000p+3\n",
+      "expected": [
+        0.25,
+        0,
+        0.0833333358168602
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_31",
+      "input": "1 -0x1.2776a40000000p+1 0x1.9dd6a00000000p+4\n",
+      "expected": [
+        0.25,
+        0,
+        0.125
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_32",
+      "input": "0 0x1.aabeba0000000p+2 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_33",
+      "input": "2 -0x1.0343560000000p+2 0x1.90bf620000000p+4 0x1.0d25aa0000000p+3\n",
+      "expected": [
+        0.25,
+        0,
+        0.0833333358168602
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_34",
+      "input": "1 0x1.5fc4440000000p+0 0x1.e4afec0000000p-1\n",
+      "expected": [
+        1.550787329673767,
+        1,
+        0.7753936648368835
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_35",
+      "input": "2 -0x1.4c68840000000p+1 0x1.c490b40000000p+2 -0x1.1e70960000000p+4\n",
+      "expected": [
+        47.741676330566406,
+        47,
+        15.913891792297363
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_36",
+      "input": "4 0x1.3023440000000p+0 -0x1.8daf820000000p+0 0x1.4852280000000p+4 -0x1.bcc6280000000p+4 -0x1.85a92e0000000p+4\n",
+      "expected": [
+        25.628610610961914,
+        25,
+        5.1257219314575195
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_37",
+      "input": "1 0x1.d14bd40000000p+2 0x1.02fa260000000p+2\n",
+      "expected": [
+        29.669208526611328,
+        29,
+        14.834604263305664
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_38",
+      "input": "1 0x1.7e1efc0000000p+2 0x1.8cd0960000000p+3\n",
+      "expected": [
+        74.28871154785156,
+        74,
+        37.14435577392578
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_39",
+      "input": "0 0x1.0ee0bc0000000p-1 \n",
+      "expected": [
+        0.25,
+        0,
+        0.25
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_40",
+      "input": "4 0x1.d087360000000p+2 -0x1.7183b80000000p+2 0x1.4ea0e00000000p+4 -0x1.de09240000000p+4 -0x1.a5fd980000000p+4\n",
+      "expected": [
+        153.0511016845703,
+        153,
+        30.610219955444336
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_41",
+      "input": "1 0x1.6bfddc0000000p-1 -0x1.8490300000000p+3\n",
+      "expected": [
+        0.25,
+        0,
+        0.125
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_42",
+      "input": "2 -0x1.40daa20000000p+2 0x1.b5c71a0000000p+4 0x1.9a10b40000000p+4\n",
+      "expected": [
+        0.25,
+        0,
+        0.0833333358168602
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_43",
+      "input": "1 -0x1.13abea0000000p+0 -0x1.a59ef40000000p+4\n",
+      "expected": [
+        28.626192092895508,
+        28,
+        14.313096046447754
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_44",
+      "input": "1 -0x1.3099a60000000p+1 -0x1.5041aa0000000p+0\n",
+      "expected": [
+        3.3757262229919434,
+        3,
+        1.6878631114959717
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_45",
+      "input": "3 -0x1.df92c80000000p+2 0x1.d13f3c0000000p+4 0x1.352b520000000p+4 -0x1.5b17400000000p+4\n",
+      "expected": [
+        164.80421447753906,
+        164,
+        41.201053619384766
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_46",
+      "input": "3 -0x1.42f81a0000000p+0 -0x1.dcedea0000000p+4 -0x1.733e9c0000000p+4 0x1.597c080000000p+1\n",
+      "expected": [
+        68.12841796875,
+        68,
+        17.0321044921875
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_47",
+      "input": "4 0x1.6e17ac0000000p+1 0x1.72147e0000000p+4 0x1.b9b9960000000p+4 -0x1.f5ffec0000000p+4 -0x1.c92d1a0000000p+4\n",
+      "expected": [
+        146.36508178710938,
+        146,
+        29.27301597595215
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_48",
+      "input": "4 -0x1.918a640000000p+2 0x1.44f0be0000000p+4 -0x1.9b12020000000p+3 -0x1.dc641a0000000p-2 -0x1.dd24d20000000p+4\n",
+      "expected": [
+        276.867431640625,
+        276,
+        55.37348556518555
+      ]
+    },
+    {
+      "program": "float_stats",
+      "case": "generated_49",
+      "input": "1 -0x1.c5abd20000000p+2 -0x1.41fc4c0000000p+4\n",
+      "expected": [
+        142.90191650390625,
+        142,
+        71.45095825195312
+      ]
+    }
+  ]
+}

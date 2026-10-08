@@ -1,0 +1,269 @@
+
+artifacts/sysy/objects/control_matrix.asm.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <tick>:
+   0:	00000297          	auipc	t0,0x0
+			0: R_RISCV_PCREL_HI20	calls
+			0: R_RISCV_RELAX	*ABS*
+   4:	00028293          	mv	t0,t0
+			4: R_RISCV_PCREL_LO12_I	.L0 
+			4: R_RISCV_RELAX	*ABS*
+   8:	0002a303          	lw	t1,0(t0) # 0 <tick>
+   c:	2305                	addiw	t1,t1,1
+   e:	0062a023          	sw	t1,0(t0)
+  12:	8082                	ret
+
+0000000000000014 <cell>:
+  14:	428d                	li	t0,3
+  16:	025582bb          	mulw	t0,a1,t0
+  1a:	00c282bb          	addw	t0,t0,a2
+  1e:	028a                	slli	t0,t0,0x2
+  20:	92aa                	add	t0,t0,a0
+  22:	0002a503          	lw	a0,0(t0)
+  26:	8082                	ret
+
+0000000000000028 <fold>:
+  28:	7139                	addi	sp,sp,-64
+  2a:	fc06                	sd	ra,56(sp)
+  2c:	f822                	sd	s0,48(sp)
+  2e:	f426                	sd	s1,40(sp)
+  30:	f04a                	sd	s2,32(sp)
+  32:	ec4e                	sd	s3,24(sp)
+  34:	e852                	sd	s4,16(sp)
+  36:	e456                	sd	s5,8(sp)
+  38:	842a                	mv	s0,a0
+  3a:	fff5849b          	addiw	s1,a1,-1
+  3e:	8932                	mv	s2,a2
+  40:	4981                	li	s3,0
+  42:	4a01                	li	s4,0
+
+0000000000000044 <.Lfold_loop>:
+  44:	0334c763          	blt	s1,s3,72 <.Lfold_exit>
+			44: R_RISCV_BRANCH	.Lfold_exit
+  48:	8522                	mv	a0,s0
+  4a:	428d                	li	t0,3
+  4c:	0259c5bb          	divw	a1,s3,t0
+  50:	0259e63b          	remw	a2,s3,t0
+  54:	00000097          	auipc	ra,0x0
+			54: R_RISCV_CALL	cell
+			54: R_RISCV_RELAX	*ABS*
+  58:	000080e7          	jalr	ra # 54 <.Lfold_loop+0x10>
+  5c:	8aaa                	mv	s5,a0
+  5e:	2985                	addiw	s3,s3,1
+  60:	fe0a82e3          	beqz	s5,44 <.Lfold_loop>
+			60: R_RISCV_BRANCH	.Lfold_loop
+  64:	012a8763          	beq	s5,s2,72 <.Lfold_exit>
+			64: R_RISCV_BRANCH	.Lfold_exit
+  68:	033a82bb          	mulw	t0,s5,s3
+  6c:	005a0a3b          	addw	s4,s4,t0
+  70:	bfd1                	j	44 <.Lfold_loop>
+			70: R_RISCV_RVC_JUMP	.Lfold_loop
+
+0000000000000072 <.Lfold_exit>:
+  72:	8552                	mv	a0,s4
+  74:	6aa2                	ld	s5,8(sp)
+  76:	6a42                	ld	s4,16(sp)
+  78:	69e2                	ld	s3,24(sp)
+  7a:	7902                	ld	s2,32(sp)
+  7c:	74a2                	ld	s1,40(sp)
+  7e:	7442                	ld	s0,48(sp)
+  80:	70e2                	ld	ra,56(sp)
+  82:	6121                	addi	sp,sp,64
+  84:	8082                	ret
+
+0000000000000086 <separator>:
+  86:	1141                	addi	sp,sp,-16
+  88:	e406                	sd	ra,8(sp)
+  8a:	02000513          	li	a0,32
+  8e:	00000097          	auipc	ra,0x0
+			8e: R_RISCV_CALL	putch
+			8e: R_RISCV_RELAX	*ABS*
+  92:	000080e7          	jalr	ra # 8e <separator+0x8>
+  96:	60a2                	ld	ra,8(sp)
+  98:	0141                	addi	sp,sp,16
+  9a:	8082                	ret
+
+000000000000009c <main>:
+  9c:	7119                	addi	sp,sp,-128
+  9e:	fc86                	sd	ra,120(sp)
+  a0:	f8a2                	sd	s0,112(sp)
+  a2:	f4a6                	sd	s1,104(sp)
+  a4:	f0ca                	sd	s2,96(sp)
+  a6:	ecce                	sd	s3,88(sp)
+  a8:	e8d2                	sd	s4,80(sp)
+  aa:	e4d6                	sd	s5,72(sp)
+  ac:	e0da                	sd	s6,64(sp)
+  ae:	fc5e                	sd	s7,56(sp)
+  b0:	00000297          	auipc	t0,0x0
+			b0: R_RISCV_PCREL_HI20	initial
+			b0: R_RISCV_RELAX	*ABS*
+  b4:	00028293          	mv	t0,t0
+			b4: R_RISCV_PCREL_LO12_I	.L0 
+			b4: R_RISCV_RELAX	*ABS*
+  b8:	4301                	li	t1,0
+
+00000000000000ba <.Linitialize>:
+  ba:	00231393          	slli	t2,t1,0x2
+  be:	00728e33          	add	t3,t0,t2
+  c2:	000e2e83          	lw	t4,0(t3)
+  c6:	00710e33          	add	t3,sp,t2
+  ca:	01de2023          	sw	t4,0(t3)
+  ce:	2305                	addiw	t1,t1,1
+  d0:	4399                	li	t2,6
+  d2:	fe7344e3          	blt	t1,t2,ba <.Linitialize>
+			d2: R_RISCV_BRANCH	.Linitialize
+  d6:	00000097          	auipc	ra,0x0
+			d6: R_RISCV_CALL	getint
+			d6: R_RISCV_RELAX	*ABS*
+  da:	000080e7          	jalr	ra # d6 <.Linitialize+0x1c>
+  de:	842a                	mv	s0,a0
+  e0:	00000097          	auipc	ra,0x0
+			e0: R_RISCV_CALL	getint
+			e0: R_RISCV_RELAX	*ABS*
+  e4:	000080e7          	jalr	ra # e0 <.Linitialize+0x26>
+  e8:	84aa                	mv	s1,a0
+  ea:	00000097          	auipc	ra,0x0
+			ea: R_RISCV_CALL	getint
+			ea: R_RISCV_RELAX	*ABS*
+  ee:	000080e7          	jalr	ra # ea <.Linitialize+0x30>
+  f2:	892a                	mv	s2,a0
+  f4:	00000097          	auipc	ra,0x0
+			f4: R_RISCV_CALL	getint
+			f4: R_RISCV_RELAX	*ABS*
+  f8:	000080e7          	jalr	ra # f4 <.Linitialize+0x3a>
+  fc:	89aa                	mv	s3,a0
+  fe:	4a01                	li	s4,0
+
+0000000000000100 <.Lread>:
+ 100:	00000097          	auipc	ra,0x0
+			100: R_RISCV_CALL	getint
+			100: R_RISCV_RELAX	*ABS*
+ 104:	000080e7          	jalr	ra # 100 <.Lread>
+ 108:	002a1293          	slli	t0,s4,0x2
+ 10c:	928a                	add	t0,t0,sp
+ 10e:	0002a303          	lw	t1,0(t0) # b0 <main+0x14>
+ 112:	00a3033b          	addw	t1,t1,a0
+ 116:	0062a023          	sw	t1,0(t0)
+ 11a:	2a05                	addiw	s4,s4,1
+ 11c:	4299                	li	t0,6
+ 11e:	fe5a41e3          	blt	s4,t0,100 <.Lread>
+			11e: R_RISCV_BRANCH	.Lread
+ 122:	4a81                	li	s5,0
+ 124:	00090a63          	beqz	s2,138 <.Lsc_or>
+			124: R_RISCV_BRANCH	.Lsc_or
+ 128:	4502                	lw	a0,0(sp)
+ 12a:	00000097          	auipc	ra,0x0
+			12a: R_RISCV_CALL	tick
+			12a: R_RISCV_RELAX	*ABS*
+ 12e:	000080e7          	jalr	ra # 12a <.Lread+0x2a>
+ 132:	00a05363          	blez	a0,138 <.Lsc_or>
+			132: R_RISCV_BRANCH	.Lsc_or
+ 136:	2a85                	addiw	s5,s5,1
+
+0000000000000138 <.Lsc_or>:
+ 138:	00090a63          	beqz	s2,14c <.Lsc_add2>
+			138: R_RISCV_BRANCH	.Lsc_add2
+ 13c:	4552                	lw	a0,20(sp)
+ 13e:	00055863          	bgez	a0,14e <.Lsc_not>
+			13e: R_RISCV_BRANCH	.Lsc_not
+ 142:	00000097          	auipc	ra,0x0
+			142: R_RISCV_CALL	tick
+			142: R_RISCV_RELAX	*ABS*
+ 146:	000080e7          	jalr	ra # 142 <.Lsc_or+0xa>
+ 14a:	c111                	beqz	a0,14e <.Lsc_not>
+			14a: R_RISCV_RVC_BRANCH	.Lsc_not
+
+000000000000014c <.Lsc_add2>:
+ 14c:	2a89                	addiw	s5,s5,2
+
+000000000000014e <.Lsc_not>:
+ 14e:	00091363          	bnez	s2,154 <.Lcompute>
+			14e: R_RISCV_BRANCH	.Lcompute
+ 152:	2a91                	addiw	s5,s5,4
+
+0000000000000154 <.Lcompute>:
+ 154:	850a                	mv	a0,sp
+ 156:	85a2                	mv	a1,s0
+ 158:	8626                	mv	a2,s1
+ 15a:	00000097          	auipc	ra,0x0
+			15a: R_RISCV_CALL	fold
+			15a: R_RISCV_RELAX	*ABS*
+ 15e:	000080e7          	jalr	ra # 15a <.Lcompute+0x6>
+ 162:	00000297          	auipc	t0,0x0
+			162: R_RISCV_PCREL_HI20	bias
+			162: R_RISCV_RELAX	*ABS*
+ 166:	00028293          	mv	t0,t0
+			166: R_RISCV_PCREL_LO12_I	.L0 
+			166: R_RISCV_RELAX	*ABS*
+ 16a:	0002a283          	lw	t0,0(t0) # 162 <.Lcompute+0xe>
+ 16e:	0055053b          	addw	a0,a0,t0
+ 172:	250d                	addiw	a0,a0,3
+ 174:	00000097          	auipc	ra,0x0
+			174: R_RISCV_CALL	putint
+			174: R_RISCV_RELAX	*ABS*
+ 178:	000080e7          	jalr	ra # 174 <.Lcompute+0x20>
+ 17c:	00000097          	auipc	ra,0x0
+			17c: R_RISCV_CALL	separator
+			17c: R_RISCV_RELAX	*ABS*
+ 180:	000080e7          	jalr	ra # 17c <.Lcompute+0x28>
+ 184:	00000297          	auipc	t0,0x0
+			184: R_RISCV_PCREL_HI20	calls
+			184: R_RISCV_RELAX	*ABS*
+ 188:	00028293          	mv	t0,t0
+			188: R_RISCV_PCREL_LO12_I	.L0 
+			188: R_RISCV_RELAX	*ABS*
+ 18c:	0002a503          	lw	a0,0(t0) # 184 <.Lcompute+0x30>
+ 190:	00000097          	auipc	ra,0x0
+			190: R_RISCV_CALL	putint
+			190: R_RISCV_RELAX	*ABS*
+ 194:	000080e7          	jalr	ra # 190 <.Lcompute+0x3c>
+ 198:	00000097          	auipc	ra,0x0
+			198: R_RISCV_CALL	separator
+			198: R_RISCV_RELAX	*ABS*
+ 19c:	000080e7          	jalr	ra # 198 <.Lcompute+0x44>
+ 1a0:	8556                	mv	a0,s5
+ 1a2:	00000097          	auipc	ra,0x0
+			1a2: R_RISCV_CALL	putint
+			1a2: R_RISCV_RELAX	*ABS*
+ 1a6:	000080e7          	jalr	ra # 1a2 <.Lcompute+0x4e>
+ 1aa:	00000097          	auipc	ra,0x0
+			1aa: R_RISCV_CALL	separator
+			1aa: R_RISCV_RELAX	*ABS*
+ 1ae:	000080e7          	jalr	ra # 1aa <.Lcompute+0x56>
+ 1b2:	4292                	lw	t0,4(sp)
+ 1b4:	0332cb3b          	divw	s6,t0,s3
+ 1b8:	0332ebbb          	remw	s7,t0,s3
+ 1bc:	855a                	mv	a0,s6
+ 1be:	00000097          	auipc	ra,0x0
+			1be: R_RISCV_CALL	putint
+			1be: R_RISCV_RELAX	*ABS*
+ 1c2:	000080e7          	jalr	ra # 1be <.Lcompute+0x6a>
+ 1c6:	00000097          	auipc	ra,0x0
+			1c6: R_RISCV_CALL	separator
+			1c6: R_RISCV_RELAX	*ABS*
+ 1ca:	000080e7          	jalr	ra # 1c6 <.Lcompute+0x72>
+ 1ce:	855e                	mv	a0,s7
+ 1d0:	00000097          	auipc	ra,0x0
+			1d0: R_RISCV_CALL	putint
+			1d0: R_RISCV_RELAX	*ABS*
+ 1d4:	000080e7          	jalr	ra # 1d0 <.Lcompute+0x7c>
+ 1d8:	4529                	li	a0,10
+ 1da:	00000097          	auipc	ra,0x0
+			1da: R_RISCV_CALL	putch
+			1da: R_RISCV_RELAX	*ABS*
+ 1de:	000080e7          	jalr	ra # 1da <.Lcompute+0x86>
+ 1e2:	4501                	li	a0,0
+ 1e4:	7be2                	ld	s7,56(sp)
+ 1e6:	6b06                	ld	s6,64(sp)
+ 1e8:	6aa6                	ld	s5,72(sp)
+ 1ea:	6a46                	ld	s4,80(sp)
+ 1ec:	69e6                	ld	s3,88(sp)
+ 1ee:	7906                	ld	s2,96(sp)
+ 1f0:	74a6                	ld	s1,104(sp)
+ 1f2:	7446                	ld	s0,112(sp)
+ 1f4:	70e6                	ld	ra,120(sp)
+ 1f6:	6109                	addi	sp,sp,128
+ 1f8:	8082                	ret

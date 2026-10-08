@@ -1,0 +1,481 @@
+program,case,implementation,exit_code,passed,stdout
+control_matrix,empty_gate_zero,source,0,True,10 0 6 0 2
+control_matrix,empty_gate_zero,llvm,0,True,10 0 6 0 2
+control_matrix,empty_gate_zero,asm,0,True,10 0 6 0 2
+control_matrix,initial_full,source,0,True,53 1 1 0 2
+control_matrix,initial_full,llvm,0,True,53 1 1 0 2
+control_matrix,initial_full,asm,0,True,53 1 1 0 2
+control_matrix,break_first,source,0,True,10 1 1 0 2
+control_matrix,break_first,llvm,0,True,10 1 1 0 2
+control_matrix,break_first,asm,0,True,10 1 1 0 2
+control_matrix,break_middle,source,0,True,15 1 1 0 2
+control_matrix,break_middle,llvm,0,True,15 1 1 0 2
+control_matrix,break_middle,asm,0,True,15 1 1 0 2
+control_matrix,break_last,source,0,True,23 1 1 0 2
+control_matrix,break_last,llvm,0,True,23 1 1 0 2
+control_matrix,break_last,asm,0,True,23 1 1 0 2
+control_matrix,zero_continue_before_break,source,0,True,10 0 6 0 0
+control_matrix,zero_continue_before_break,llvm,0,True,10 0 6 0 0
+control_matrix,zero_continue_before_break,asm,0,True,10 0 6 0 0
+control_matrix,short_circuit_two_calls,source,0,True,17 2 3 0 2
+control_matrix,short_circuit_two_calls,llvm,0,True,17 2 3 0 2
+control_matrix,short_circuit_two_calls,asm,0,True,17 2 3 0 2
+control_matrix,short_circuit_first_false,source,0,True,15 2 2 0 2
+control_matrix,short_circuit_first_false,llvm,0,True,15 2 2 0 2
+control_matrix,short_circuit_first_false,asm,0,True,15 2 2 0 2
+control_matrix,short_circuit_zero_first,source,0,True,10 1 0 0 2
+control_matrix,short_circuit_zero_first,llvm,0,True,10 1 0 0 2
+control_matrix,short_circuit_zero_first,asm,0,True,10 1 0 0 2
+control_matrix,negative_dividend,source,0,True,39 0 6 -1 -2
+control_matrix,negative_dividend,llvm,0,True,39 0 6 -1 -2
+control_matrix,negative_dividend,asm,0,True,39 0 6 -1 -2
+control_matrix,both_negative_division,source,0,True,39 1 1 1 -2
+control_matrix,both_negative_division,llvm,0,True,39 1 1 1 -2
+control_matrix,both_negative_division,asm,0,True,39 1 1 1 -2
+control_matrix,exact_division,source,0,True,39 1 1 -2 0
+control_matrix,exact_division,llvm,0,True,39 1 1 -2 0
+control_matrix,exact_division,asm,0,True,39 1 1 -2 0
+control_matrix,zero_dividend,source,0,True,49 1 1 0 0
+control_matrix,zero_dividend,llvm,0,True,49 1 1 0 0
+control_matrix,zero_dividend,asm,0,True,49 1 1 0 0
+control_matrix,upper_delta_bound,source,0,True,683 1 1 4 4
+control_matrix,upper_delta_bound,llvm,0,True,683 1 1 4 4
+control_matrix,upper_delta_bound,asm,0,True,683 1 1 4 4
+control_matrix,lower_delta_bound,source,0,True,-577 2 2 4 0
+control_matrix,lower_delta_bound,llvm,0,True,-577 2 2 4 0
+control_matrix,lower_delta_bound,asm,0,True,-577 2 2 4 0
+control_matrix,one_element,source,0,True,14 0 6 2 0
+control_matrix,one_element,llvm,0,True,14 0 6 2 0
+control_matrix,one_element,asm,0,True,14 0 6 2 0
+control_matrix,two_elements,source,0,True,4 1 1 -2 -1
+control_matrix,two_elements,llvm,0,True,4 1 1 -2 -1
+control_matrix,two_elements,asm,0,True,4 1 1 -2 -1
+control_matrix,three_elements,source,0,True,33 1 1 0 2
+control_matrix,three_elements,llvm,0,True,33 1 1 0 2
+control_matrix,three_elements,asm,0,True,33 1 1 0 2
+control_matrix,four_elements,source,0,True,3 1 1 -1 0
+control_matrix,four_elements,llvm,0,True,3 1 1 -1 0
+control_matrix,four_elements,asm,0,True,3 1 1 -1 0
+control_matrix,five_elements,source,0,True,23 1 1 0 2
+control_matrix,five_elements,llvm,0,True,23 1 1 0 2
+control_matrix,five_elements,asm,0,True,23 1 1 0 2
+control_matrix,generated_00,source,0,True,10 2 3 -4 0
+control_matrix,generated_00,llvm,0,True,10 2 3 -4 0
+control_matrix,generated_00,asm,0,True,10 2 3 -4 0
+control_matrix,generated_01,source,0,True,66 1 0 5 1
+control_matrix,generated_01,llvm,0,True,66 1 0 5 1
+control_matrix,generated_01,asm,0,True,66 1 0 5 1
+control_matrix,generated_02,source,0,True,-10 2 3 -1 2
+control_matrix,generated_02,llvm,0,True,-10 2 3 -1 2
+control_matrix,generated_02,asm,0,True,-10 2 3 -1 2
+control_matrix,generated_03,source,0,True,185 1 1 -7 0
+control_matrix,generated_03,llvm,0,True,185 1 1 -7 0
+control_matrix,generated_03,asm,0,True,185 1 1 -7 0
+control_matrix,generated_04,source,0,True,56 1 0 -2 3
+control_matrix,generated_04,llvm,0,True,56 1 0 -2 3
+control_matrix,generated_04,asm,0,True,56 1 0 -2 3
+control_matrix,generated_05,source,0,True,63 1 1 4 -4
+control_matrix,generated_05,llvm,0,True,63 1 1 4 -4
+control_matrix,generated_05,asm,0,True,63 1 1 4 -4
+control_matrix,generated_06,source,0,True,10 1 0 4 -1
+control_matrix,generated_06,llvm,0,True,10 1 0 4 -1
+control_matrix,generated_06,asm,0,True,10 1 0 4 -1
+control_matrix,generated_07,source,0,True,17 2 3 -19 0
+control_matrix,generated_07,llvm,0,True,17 2 3 -19 0
+control_matrix,generated_07,asm,0,True,17 2 3 -19 0
+control_matrix,generated_08,source,0,True,10 1 0 -32 0
+control_matrix,generated_08,llvm,0,True,10 1 0 -32 0
+control_matrix,generated_08,asm,0,True,10 1 0 -32 0
+control_matrix,generated_09,source,0,True,3 1 1 13 0
+control_matrix,generated_09,llvm,0,True,3 1 1 13 0
+control_matrix,generated_09,asm,0,True,3 1 1 13 0
+control_matrix,generated_10,source,0,True,38 0 6 -1 1
+control_matrix,generated_10,llvm,0,True,38 0 6 -1 1
+control_matrix,generated_10,asm,0,True,38 0 6 -1 1
+control_matrix,generated_11,source,0,True,10 0 6 0 0
+control_matrix,generated_11,llvm,0,True,10 0 6 0 0
+control_matrix,generated_11,asm,0,True,10 0 6 0 0
+control_matrix,generated_12,source,0,True,10 1 0 5 -1
+control_matrix,generated_12,llvm,0,True,10 1 0 5 -1
+control_matrix,generated_12,asm,0,True,10 1 0 5 -1
+control_matrix,generated_13,source,0,True,-15 1 0 -8 0
+control_matrix,generated_13,llvm,0,True,-15 1 0 -8 0
+control_matrix,generated_13,asm,0,True,-15 1 0 -8 0
+control_matrix,generated_14,source,0,True,121 2 3 3 6
+control_matrix,generated_14,llvm,0,True,121 2 3 3 6
+control_matrix,generated_14,asm,0,True,121 2 3 3 6
+control_matrix,generated_15,source,0,True,2 0 6 0 -6
+control_matrix,generated_15,llvm,0,True,2 0 6 0 -6
+control_matrix,generated_15,asm,0,True,2 0 6 0 -6
+control_matrix,generated_16,source,0,True,10 2 3 2 -3
+control_matrix,generated_16,llvm,0,True,10 2 3 2 -3
+control_matrix,generated_16,asm,0,True,10 2 3 2 -3
+control_matrix,generated_17,source,0,True,-10 2 2 -6 0
+control_matrix,generated_17,llvm,0,True,-10 2 2 -6 0
+control_matrix,generated_17,asm,0,True,-10 2 2 -6 0
+control_matrix,generated_18,source,0,True,16 1 1 1 -1
+control_matrix,generated_18,llvm,0,True,16 1 1 1 -1
+control_matrix,generated_18,asm,0,True,16 1 1 1 -1
+control_matrix,generated_19,source,0,True,118 0 6 25 0
+control_matrix,generated_19,llvm,0,True,118 0 6 25 0
+control_matrix,generated_19,asm,0,True,118 0 6 25 0
+control_matrix,generated_20,source,0,True,31 0 6 14 1
+control_matrix,generated_20,llvm,0,True,31 0 6 14 1
+control_matrix,generated_20,asm,0,True,31 0 6 14 1
+control_matrix,generated_21,source,0,True,10 2 3 -2 -3
+control_matrix,generated_21,llvm,0,True,10 2 3 -2 -3
+control_matrix,generated_21,asm,0,True,10 2 3 -2 -3
+control_matrix,generated_22,source,0,True,130 1 0 16 0
+control_matrix,generated_22,llvm,0,True,130 1 0 16 0
+control_matrix,generated_22,asm,0,True,130 1 0 16 0
+control_matrix,generated_23,source,0,True,-17 1 0 0 4
+control_matrix,generated_23,llvm,0,True,-17 1 0 0 4
+control_matrix,generated_23,asm,0,True,-17 1 0 0 4
+control_matrix,generated_24,source,0,True,-165 2 3 -4 -4
+control_matrix,generated_24,llvm,0,True,-165 2 3 -4 -4
+control_matrix,generated_24,asm,0,True,-165 2 3 -4 -4
+control_matrix,generated_25,source,0,True,10 1 1 12 0
+control_matrix,generated_25,llvm,0,True,10 1 1 12 0
+control_matrix,generated_25,asm,0,True,10 1 1 12 0
+control_matrix,generated_26,source,0,True,10 1 0 -2 -1
+control_matrix,generated_26,llvm,0,True,10 1 0 -2 -1
+control_matrix,generated_26,asm,0,True,10 1 0 -2 -1
+control_matrix,generated_27,source,0,True,40 2 3 -29 0
+control_matrix,generated_27,llvm,0,True,40 2 3 -29 0
+control_matrix,generated_27,asm,0,True,40 2 3 -29 0
+control_matrix,generated_28,source,0,True,41 1 1 2 -4
+control_matrix,generated_28,llvm,0,True,41 1 1 2 -4
+control_matrix,generated_28,asm,0,True,41 1 1 2 -4
+control_matrix,generated_29,source,0,True,-30 1 0 -6 -1
+control_matrix,generated_29,llvm,0,True,-30 1 0 -6 -1
+control_matrix,generated_29,asm,0,True,-30 1 0 -6 -1
+control_matrix,generated_30,source,0,True,10 1 1 -3 0
+control_matrix,generated_30,llvm,0,True,10 1 1 -3 0
+control_matrix,generated_30,asm,0,True,10 1 1 -3 0
+control_matrix,generated_31,source,0,True,30 2 3 8 0
+control_matrix,generated_31,llvm,0,True,30 2 3 8 0
+control_matrix,generated_31,asm,0,True,30 2 3 8 0
+control_matrix,generated_32,source,0,True,337 1 0 2 0
+control_matrix,generated_32,llvm,0,True,337 1 0 2 0
+control_matrix,generated_32,asm,0,True,337 1 0 2 0
+control_matrix,generated_33,source,0,True,-23 2 3 -3 -3
+control_matrix,generated_33,llvm,0,True,-23 2 3 -3 -3
+control_matrix,generated_33,asm,0,True,-23 2 3 -3 -3
+control_matrix,generated_34,source,0,True,-25 1 0 0 -6
+control_matrix,generated_34,llvm,0,True,-25 1 0 0 -6
+control_matrix,generated_34,asm,0,True,-25 1 0 0 -6
+control_matrix,generated_35,source,0,True,23 0 6 2 1
+control_matrix,generated_35,llvm,0,True,23 0 6 2 1
+control_matrix,generated_35,asm,0,True,23 0 6 2 1
+control_matrix,generated_36,source,0,True,100 0 6 4 0
+control_matrix,generated_36,llvm,0,True,100 0 6 4 0
+control_matrix,generated_36,asm,0,True,100 0 6 4 0
+control_matrix,generated_37,source,0,True,29 0 6 4 -3
+control_matrix,generated_37,llvm,0,True,29 0 6 4 -3
+control_matrix,generated_37,asm,0,True,29 0 6 4 -3
+control_matrix,generated_38,source,0,True,10 2 2 0 -3
+control_matrix,generated_38,llvm,0,True,10 2 2 0 -3
+control_matrix,generated_38,asm,0,True,10 2 2 0 -3
+control_matrix,generated_39,source,0,True,8 2 2 -4 -1
+control_matrix,generated_39,llvm,0,True,8 2 2 -4 -1
+control_matrix,generated_39,asm,0,True,8 2 2 -4 -1
+control_matrix,generated_40,source,0,True,11 2 3 4 0
+control_matrix,generated_40,llvm,0,True,11 2 3 4 0
+control_matrix,generated_40,asm,0,True,11 2 3 4 0
+control_matrix,generated_41,source,0,True,10 1 1 -7 -2
+control_matrix,generated_41,llvm,0,True,10 1 1 -7 -2
+control_matrix,generated_41,asm,0,True,10 1 1 -7 -2
+control_matrix,generated_42,source,0,True,20 0 6 4 5
+control_matrix,generated_42,llvm,0,True,20 0 6 4 5
+control_matrix,generated_42,asm,0,True,20 0 6 4 5
+control_matrix,generated_43,source,0,True,10 2 3 0 -2
+control_matrix,generated_43,llvm,0,True,10 2 3 0 -2
+control_matrix,generated_43,asm,0,True,10 2 3 0 -2
+control_matrix,generated_44,source,0,True,-64 2 2 0 0
+control_matrix,generated_44,llvm,0,True,-64 2 2 0 0
+control_matrix,generated_44,asm,0,True,-64 2 2 0 0
+control_matrix,generated_45,source,0,True,-5 2 3 -7 -1
+control_matrix,generated_45,llvm,0,True,-5 2 3 -7 -1
+control_matrix,generated_45,asm,0,True,-5 2 3 -7 -1
+control_matrix,generated_46,source,0,True,-128 1 0 0 -2
+control_matrix,generated_46,llvm,0,True,-128 1 0 0 -2
+control_matrix,generated_46,asm,0,True,-128 1 0 0 -2
+control_matrix,generated_47,source,0,True,-209 2 3 0 2
+control_matrix,generated_47,llvm,0,True,-209 2 3 0 2
+control_matrix,generated_47,asm,0,True,-209 2 3 0 2
+control_matrix,generated_48,source,0,True,-13 0 6 -6 0
+control_matrix,generated_48,llvm,0,True,-13 0 6 -6 0
+control_matrix,generated_48,asm,0,True,-13 0 6 -6 0
+control_matrix,generated_49,source,0,True,-107 0 6 -2 -1
+control_matrix,generated_49,llvm,0,True,-107 0 6 -2 -1
+control_matrix,generated_49,asm,0,True,-107 0 6 -2 -1
+control_matrix,generated_50,source,0,True,-6 1 1 5 0
+control_matrix,generated_50,llvm,0,True,-6 1 1 5 0
+control_matrix,generated_50,asm,0,True,-6 1 1 5 0
+control_matrix,generated_51,source,0,True,84 2 3 6 1
+control_matrix,generated_51,llvm,0,True,84 2 3 6 1
+control_matrix,generated_51,asm,0,True,84 2 3 6 1
+control_matrix,generated_52,source,0,True,37 1 1 1 0
+control_matrix,generated_52,llvm,0,True,37 1 1 1 0
+control_matrix,generated_52,asm,0,True,37 1 1 1 0
+control_matrix,generated_53,source,0,True,10 1 0 -7 0
+control_matrix,generated_53,llvm,0,True,10 1 0 -7 0
+control_matrix,generated_53,asm,0,True,10 1 0 -7 0
+control_matrix,generated_54,source,0,True,10 1 0 2 -2
+control_matrix,generated_54,llvm,0,True,10 1 0 2 -2
+control_matrix,generated_54,asm,0,True,10 1 0 2 -2
+control_matrix,generated_55,source,0,True,-6 1 1 1 5
+control_matrix,generated_55,llvm,0,True,-6 1 1 1 5
+control_matrix,generated_55,asm,0,True,-6 1 1 1 5
+control_matrix,generated_56,source,0,True,10 1 0 -1 0
+control_matrix,generated_56,llvm,0,True,10 1 0 -1 0
+control_matrix,generated_56,asm,0,True,10 1 0 -1 0
+control_matrix,generated_57,source,0,True,41 1 0 3 4
+control_matrix,generated_57,llvm,0,True,41 1 0 3 4
+control_matrix,generated_57,asm,0,True,41 1 0 3 4
+control_matrix,generated_58,source,0,True,4 1 0 -5 -1
+control_matrix,generated_58,llvm,0,True,4 1 0 -5 -1
+control_matrix,generated_58,asm,0,True,4 1 0 -5 -1
+control_matrix,generated_59,source,0,True,31 2 3 -6 1
+control_matrix,generated_59,llvm,0,True,31 2 3 -6 1
+control_matrix,generated_59,asm,0,True,31 2 3 -6 1
+control_matrix,generated_60,source,0,True,1 1 0 9 0
+control_matrix,generated_60,llvm,0,True,1 1 0 9 0
+control_matrix,generated_60,asm,0,True,1 1 0 9 0
+control_matrix,generated_61,source,0,True,30 1 1 -2 1
+control_matrix,generated_61,llvm,0,True,30 1 1 -2 1
+control_matrix,generated_61,asm,0,True,30 1 1 -2 1
+control_matrix,generated_62,source,0,True,-19 2 3 2 -3
+control_matrix,generated_62,llvm,0,True,-19 2 3 2 -3
+control_matrix,generated_62,asm,0,True,-19 2 3 2 -3
+control_matrix,generated_63,source,0,True,-161 1 1 -3 -2
+control_matrix,generated_63,llvm,0,True,-161 1 1 -3 -2
+control_matrix,generated_63,asm,0,True,-161 1 1 -3 -2
+control_matrix,generated_64,source,0,True,66 0 6 3 6
+control_matrix,generated_64,llvm,0,True,66 0 6 3 6
+control_matrix,generated_64,asm,0,True,66 0 6 3 6
+control_matrix,generated_65,source,0,True,-29 2 3 3 2
+control_matrix,generated_65,llvm,0,True,-29 2 3 3 2
+control_matrix,generated_65,asm,0,True,-29 2 3 3 2
+control_matrix,generated_66,source,0,True,21 1 1 3 1
+control_matrix,generated_66,llvm,0,True,21 1 1 3 1
+control_matrix,generated_66,asm,0,True,21 1 1 3 1
+control_matrix,generated_67,source,0,True,31 1 1 4 1
+control_matrix,generated_67,llvm,0,True,31 1 1 4 1
+control_matrix,generated_67,asm,0,True,31 1 1 4 1
+control_matrix,generated_68,source,0,True,34 1 1 6 0
+control_matrix,generated_68,llvm,0,True,34 1 1 6 0
+control_matrix,generated_68,asm,0,True,34 1 1 6 0
+control_matrix,generated_69,source,0,True,10 1 1 6 1
+control_matrix,generated_69,llvm,0,True,10 1 1 6 1
+control_matrix,generated_69,asm,0,True,10 1 1 6 1
+control_matrix,generated_70,source,0,True,10 2 2 -6 0
+control_matrix,generated_70,llvm,0,True,10 2 2 -6 0
+control_matrix,generated_70,asm,0,True,10 2 2 -6 0
+control_matrix,generated_71,source,0,True,45 0 6 4 0
+control_matrix,generated_71,llvm,0,True,45 0 6 4 0
+control_matrix,generated_71,asm,0,True,45 0 6 4 0
+control_matrix,generated_72,source,0,True,88 2 3 -4 1
+control_matrix,generated_72,llvm,0,True,88 2 3 -4 1
+control_matrix,generated_72,asm,0,True,88 2 3 -4 1
+control_matrix,generated_73,source,0,True,21 1 1 1 -4
+control_matrix,generated_73,llvm,0,True,21 1 1 1 -4
+control_matrix,generated_73,asm,0,True,21 1 1 1 -4
+control_matrix,generated_74,source,0,True,23 0 6 3 0
+control_matrix,generated_74,llvm,0,True,23 0 6 3 0
+control_matrix,generated_74,asm,0,True,23 0 6 3 0
+control_matrix,generated_75,source,0,True,11 1 1 1 -4
+control_matrix,generated_75,llvm,0,True,11 1 1 1 -4
+control_matrix,generated_75,asm,0,True,11 1 1 1 -4
+control_matrix,generated_76,source,0,True,73 2 3 -4 1
+control_matrix,generated_76,llvm,0,True,73 2 3 -4 1
+control_matrix,generated_76,asm,0,True,73 2 3 -4 1
+control_matrix,generated_77,source,0,True,8 0 6 -11 0
+control_matrix,generated_77,llvm,0,True,8 0 6 -11 0
+control_matrix,generated_77,asm,0,True,8 0 6 -11 0
+control_matrix,generated_78,source,0,True,-14 1 0 -1 0
+control_matrix,generated_78,llvm,0,True,-14 1 0 -1 0
+control_matrix,generated_78,asm,0,True,-14 1 0 -1 0
+control_matrix,generated_79,source,0,True,37 1 1 4 -2
+control_matrix,generated_79,llvm,0,True,37 1 1 4 -2
+control_matrix,generated_79,asm,0,True,37 1 1 4 -2
+float_stats,empty,source,0,True,0x1p-2 0 0x1p-2
+float_stats,empty,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,empty,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,zero_scale,source,0,True,0x1.9p+2 6 0x1.4p+0
+float_stats,zero_scale,llvm,0,True,0x1.9p+2 6 0x1.4p+0
+float_stats,zero_scale,asm,0,True,0x1.9p+2 6 0x1.4p+0
+float_stats,positive_and_negative,source,0,True,0x1.ep+1 3 0x1.8p-1
+float_stats,positive_and_negative,llvm,0,True,0x1.ep+1 3 0x1.8p-1
+float_stats,positive_and_negative,asm,0,True,0x1.ep+1 3 0x1.8p-1
+float_stats,negative_scale,source,0,True,0x1.04p+4 16 0x1.ap+1
+float_stats,negative_scale,llvm,0,True,0x1.04p+4 16 0x1.ap+1
+float_stats,negative_scale,asm,0,True,0x1.04p+4 16 0x1.ap+1
+float_stats,fractional,source,0,True,0x1.a7ae14p+1 3 0x1.a7ae14p-1
+float_stats,fractional,llvm,0,True,0x1.a7ae14p+1 3 0x1.a7ae14p-1
+float_stats,fractional,asm,0,True,0x1.a7ae14p+1 3 0x1.a7ae14p-1
+float_stats,all_filtered,source,0,True,0x1p-2 0 0x1.99999ap-5
+float_stats,all_filtered,llvm,0,True,0x1p-2 0 0x1.99999ap-5
+float_stats,all_filtered,asm,0,True,0x1p-2 0 0x1.99999ap-5
+float_stats,truncation_not_rounding,source,0,True,0x1.8p-1 0 0x1.8p-2
+float_stats,truncation_not_rounding,llvm,0,True,0x1.8p-1 0 0x1.8p-2
+float_stats,truncation_not_rounding,asm,0,True,0x1.8p-1 0 0x1.8p-2
+float_stats,small_positive,source,0,True,0x1p-2 0 0x1p-3
+float_stats,small_positive,llvm,0,True,0x1p-2 0 0x1p-3
+float_stats,small_positive,asm,0,True,0x1p-2 0 0x1p-3
+float_stats,upper_bound,source,0,True,0x1.019p+10 1030 0x1.9c199ap+7
+float_stats,upper_bound,llvm,0,True,0x1.019p+10 1030 0x1.9c199ap+7
+float_stats,upper_bound,asm,0,True,0x1.019p+10 1030 0x1.9c199ap+7
+float_stats,negative_bounds,source,0,True,0x1.019p+10 1030 0x1.9c199ap+7
+float_stats,negative_bounds,llvm,0,True,0x1.019p+10 1030 0x1.9c199ap+7
+float_stats,negative_bounds,asm,0,True,0x1.019p+10 1030 0x1.9c199ap+7
+float_stats,generated_00,source,0,True,0x1.b6c662p+6 109 0x1.b6c662p+4
+float_stats,generated_00,llvm,0,True,0x1.b6c662p+6 109 0x1.b6c662p+4
+float_stats,generated_00,asm,0,True,0x1.b6c662p+6 109 0x1.b6c662p+4
+float_stats,generated_01,source,0,True,0x1.95540cp+7 202 0x1.95540cp+5
+float_stats,generated_01,llvm,0,True,0x1.95540cp+7 202 0x1.95540cp+5
+float_stats,generated_01,asm,0,True,0x1.95540cp+7 202 0x1.95540cp+5
+float_stats,generated_02,source,0,True,0x1.cbd46cp+5 57 0x1.cbd46cp+3
+float_stats,generated_02,llvm,0,True,0x1.cbd46cp+5 57 0x1.cbd46cp+3
+float_stats,generated_02,asm,0,True,0x1.cbd46cp+5 57 0x1.cbd46cp+3
+float_stats,generated_03,source,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_03,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_03,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_04,source,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_04,llvm,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_04,asm,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_05,source,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_05,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_05,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_06,source,0,True,0x1.d50814p+4 29 0x1.7739aap+2
+float_stats,generated_06,llvm,0,True,0x1.d50814p+4 29 0x1.7739aap+2
+float_stats,generated_06,asm,0,True,0x1.d50814p+4 29 0x1.7739aap+2
+float_stats,generated_07,source,0,True,0x1.05a4cep+8 261 0x1.05a4cep+6
+float_stats,generated_07,llvm,0,True,0x1.05a4cep+8 261 0x1.05a4cep+6
+float_stats,generated_07,asm,0,True,0x1.05a4cep+8 261 0x1.05a4cep+6
+float_stats,generated_08,source,0,True,0x1.20e98cp+7 144 0x1.813766p+5
+float_stats,generated_08,llvm,0,True,0x1.20e98cp+7 144 0x1.813766p+5
+float_stats,generated_08,asm,0,True,0x1.20e98cp+7 144 0x1.813766p+5
+float_stats,generated_09,source,0,True,0x1p-2 0 0x1.99999ap-5
+float_stats,generated_09,llvm,0,True,0x1p-2 0 0x1.99999ap-5
+float_stats,generated_09,asm,0,True,0x1p-2 0 0x1.99999ap-5
+float_stats,generated_10,source,0,True,0x1.d883ep+4 29 0x1.d883ep+2
+float_stats,generated_10,llvm,0,True,0x1.d883ep+4 29 0x1.d883ep+2
+float_stats,generated_10,asm,0,True,0x1.d883ep+4 29 0x1.d883ep+2
+float_stats,generated_11,source,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_11,llvm,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_11,asm,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_12,source,0,True,0x1.9da4f4p+7 206 0x1.4aea5cp+5
+float_stats,generated_12,llvm,0,True,0x1.9da4f4p+7 206 0x1.4aea5cp+5
+float_stats,generated_12,asm,0,True,0x1.9da4f4p+7 206 0x1.4aea5cp+5
+float_stats,generated_13,source,0,True,0x1.33a294p+5 38 0x1.33a294p+4
+float_stats,generated_13,llvm,0,True,0x1.33a294p+5 38 0x1.33a294p+4
+float_stats,generated_13,asm,0,True,0x1.33a294p+5 38 0x1.33a294p+4
+float_stats,generated_14,source,0,True,0x1.65a9e6p+6 89 0x1.dce288p+4
+float_stats,generated_14,llvm,0,True,0x1.65a9e6p+6 89 0x1.dce288p+4
+float_stats,generated_14,asm,0,True,0x1.65a9e6p+6 89 0x1.dce288p+4
+float_stats,generated_15,source,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_15,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_15,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_16,source,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_16,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_16,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_17,source,0,True,0x1.8bb41cp+8 395 0x1.3c9016p+6
+float_stats,generated_17,llvm,0,True,0x1.8bb41cp+8 395 0x1.3c9016p+6
+float_stats,generated_17,asm,0,True,0x1.8bb41cp+8 395 0x1.3c9016p+6
+float_stats,generated_18,source,0,True,0x1.edab58p+7 246 0x1.491ce6p+6
+float_stats,generated_18,llvm,0,True,0x1.edab58p+7 246 0x1.491ce6p+6
+float_stats,generated_18,asm,0,True,0x1.edab58p+7 246 0x1.491ce6p+6
+float_stats,generated_19,source,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_19,llvm,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_19,asm,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_20,source,0,True,0x1.87ff7p+6 97 0x1.87ff7p+5
+float_stats,generated_20,llvm,0,True,0x1.87ff7p+6 97 0x1.87ff7p+5
+float_stats,generated_20,asm,0,True,0x1.87ff7p+6 97 0x1.87ff7p+5
+float_stats,generated_21,source,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_21,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_21,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_22,source,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_22,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_22,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_23,source,0,True,0x1.1f30bcp+7 143 0x1.1f30bcp+5
+float_stats,generated_23,llvm,0,True,0x1.1f30bcp+7 143 0x1.1f30bcp+5
+float_stats,generated_23,asm,0,True,0x1.1f30bcp+7 143 0x1.1f30bcp+5
+float_stats,generated_24,source,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_24,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_24,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_25,source,0,True,0x1p-2 0 0x1p-4
+float_stats,generated_25,llvm,0,True,0x1p-2 0 0x1p-4
+float_stats,generated_25,asm,0,True,0x1p-2 0 0x1p-4
+float_stats,generated_26,source,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_26,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_26,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_27,source,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_27,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_27,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_28,source,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_28,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_28,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_29,source,0,True,0x1.531a9cp+2 5 0x1.0f487cp+0
+float_stats,generated_29,llvm,0,True,0x1.531a9cp+2 5 0x1.0f487cp+0
+float_stats,generated_29,asm,0,True,0x1.531a9cp+2 5 0x1.0f487cp+0
+float_stats,generated_30,source,0,True,0x1p-2 0 0x1.555556p-4
+float_stats,generated_30,llvm,0,True,0x1p-2 0 0x1.555556p-4
+float_stats,generated_30,asm,0,True,0x1p-2 0 0x1.555556p-4
+float_stats,generated_31,source,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_31,llvm,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_31,asm,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_32,source,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_32,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_32,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_33,source,0,True,0x1p-2 0 0x1.555556p-4
+float_stats,generated_33,llvm,0,True,0x1p-2 0 0x1.555556p-4
+float_stats,generated_33,asm,0,True,0x1p-2 0 0x1.555556p-4
+float_stats,generated_34,source,0,True,0x1.8d0066p+0 1 0x1.8d0066p-1
+float_stats,generated_34,llvm,0,True,0x1.8d0066p+0 1 0x1.8d0066p-1
+float_stats,generated_34,asm,0,True,0x1.8d0066p+0 1 0x1.8d0066p-1
+float_stats,generated_35,source,0,True,0x1.7deef4p+5 47 0x1.fd3e9ap+3
+float_stats,generated_35,llvm,0,True,0x1.7deef4p+5 47 0x1.fd3e9ap+3
+float_stats,generated_35,asm,0,True,0x1.7deef4p+5 47 0x1.fd3e9ap+3
+float_stats,generated_36,source,0,True,0x1.9a0ecap+4 25 0x1.480bd4p+2
+float_stats,generated_36,llvm,0,True,0x1.9a0ecap+4 25 0x1.480bd4p+2
+float_stats,generated_36,asm,0,True,0x1.9a0ecap+4 25 0x1.480bd4p+2
+float_stats,generated_37,source,0,True,0x1.dab514p+4 29 0x1.dab514p+3
+float_stats,generated_37,llvm,0,True,0x1.dab514p+4 29 0x1.dab514p+3
+float_stats,generated_37,asm,0,True,0x1.dab514p+4 29 0x1.dab514p+3
+float_stats,generated_38,source,0,True,0x1.2927a4p+6 74 0x1.2927a4p+5
+float_stats,generated_38,llvm,0,True,0x1.2927a4p+6 74 0x1.2927a4p+5
+float_stats,generated_38,asm,0,True,0x1.2927a4p+6 74 0x1.2927a4p+5
+float_stats,generated_39,source,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_39,llvm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_39,asm,0,True,0x1p-2 0 0x1p-2
+float_stats,generated_40,source,0,True,0x1.321a2ap+7 153 0x1.e9c376p+4
+float_stats,generated_40,llvm,0,True,0x1.321a2ap+7 153 0x1.e9c376p+4
+float_stats,generated_40,asm,0,True,0x1.321a2ap+7 153 0x1.e9c376p+4
+float_stats,generated_41,source,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_41,llvm,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_41,asm,0,True,0x1p-2 0 0x1p-3
+float_stats,generated_42,source,0,True,0x1p-2 0 0x1.555556p-4
+float_stats,generated_42,llvm,0,True,0x1p-2 0 0x1.555556p-4
+float_stats,generated_42,asm,0,True,0x1p-2 0 0x1.555556p-4
+float_stats,generated_43,source,0,True,0x1.ca04e2p+4 28 0x1.ca04e2p+3
+float_stats,generated_43,llvm,0,True,0x1.ca04e2p+4 28 0x1.ca04e2p+3
+float_stats,generated_43,asm,0,True,0x1.ca04e2p+4 28 0x1.ca04e2p+3
+float_stats,generated_44,source,0,True,0x1.b017ccp+1 3 0x1.b017ccp+0
+float_stats,generated_44,llvm,0,True,0x1.b017ccp+1 3 0x1.b017ccp+0
+float_stats,generated_44,asm,0,True,0x1.b017ccp+1 3 0x1.b017ccp+0
+float_stats,generated_45,source,0,True,0x1.499bc2p+7 164 0x1.499bc2p+5
+float_stats,generated_45,llvm,0,True,0x1.499bc2p+7 164 0x1.499bc2p+5
+float_stats,generated_45,asm,0,True,0x1.499bc2p+7 164 0x1.499bc2p+5
+float_stats,generated_46,source,0,True,0x1.10838p+6 68 0x1.10838p+4
+float_stats,generated_46,llvm,0,True,0x1.10838p+6 68 0x1.10838p+4
+float_stats,generated_46,asm,0,True,0x1.10838p+6 68 0x1.10838p+4
+float_stats,generated_47,source,0,True,0x1.24baecp+7 146 0x1.d45e46p+4
+float_stats,generated_47,llvm,0,True,0x1.24baecp+7 146 0x1.d45e46p+4
+float_stats,generated_47,asm,0,True,0x1.24baecp+7 146 0x1.d45e46p+4
+float_stats,generated_48,source,0,True,0x1.14de1p+8 276 0x1.bafce6p+5
+float_stats,generated_48,llvm,0,True,0x1.14de1p+8 276 0x1.bafce6p+5
+float_stats,generated_48,asm,0,True,0x1.14de1p+8 276 0x1.bafce6p+5
+float_stats,generated_49,source,0,True,0x1.1dcdc8p+7 142 0x1.1dcdc8p+6
+float_stats,generated_49,llvm,0,True,0x1.1dcdc8p+7 142 0x1.1dcdc8p+6
+float_stats,generated_49,asm,0,True,0x1.1dcdc8p+7 142 0x1.1dcdc8p+6

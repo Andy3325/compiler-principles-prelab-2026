@@ -1,0 +1,7 @@
+variant,main_i_bytes,main_s_bytes,main_o_bytes,executable_bytes,text_bytes,debug_section_bytes,main_object_instruction_count,main_object_scale_symbol,ir_alloca_count,ir_phi_count,ir_scale_definition,ir_scale_call_count,text_sha256
+gcc_O0,15983,2792,2504,16248,581,0,97,True,,,,,f5f36b278d4d1929872fe8ba7c27953e4907fb8aed891970b8ca72bbdaa52cdc
+gcc_O2,24400,2124,2544,16216,520,0,66,False,,,,,b8e7a7f14d4434715b37db60119f6ff3f29a42754316553aa27dd41052861739
+gcc_O2_g,24498,26191,10888,21080,520,4239,66,False,,,,,b8e7a7f14d4434715b37db60119f6ff3f29a42754316553aa27dd41052861739
+clang_O0,15612,3990,2160,16152,575,0,84,True,9,0,True,1,9a5884f54ecfce4683869a97e3361d183535f9d1e07975b1290a593f9a100115
+clang_O2,16176,8032,3624,16120,868,0,154,False,1,16,False,0,52930e2adcc12fa27d9fb091972b584d7c143fed235d8eeb0f0568b819f90133
+clang_O2_g,16176,56378,7368,19136,868,2315,154,False,1,16,False,0,52930e2adcc12fa27d9fb091972b584d7c143fed235d8eeb0f0568b819f90133

@@ -1,0 +1,179 @@
+
+artifacts/sysy/objects/float_stats.source.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <affine>:
+   0:	1101                	addi	sp,sp,-32
+   2:	ec06                	sd	ra,24(sp)
+   4:	e822                	sd	s0,16(sp)
+   6:	1000                	addi	s0,sp,32
+   8:	fea42627          	fsw	fa0,-20(s0)
+   c:	feb42427          	fsw	fa1,-24(s0)
+  10:	fea42223          	sw	a0,-28(s0)
+  14:	fec42007          	flw	ft0,-20(s0)
+  18:	fe842087          	flw	ft1,-24(s0)
+  1c:	10107053          	fmul.s	ft0,ft0,ft1
+  20:	fe442503          	lw	a0,-28(s0)
+  24:	d00570d3          	fcvt.s.w	ft1,a0
+  28:	00107553          	fadd.s	fa0,ft0,ft1
+  2c:	60e2                	ld	ra,24(sp)
+  2e:	6442                	ld	s0,16(sp)
+  30:	6105                	addi	sp,sp,32
+  32:	8082                	ret
+
+0000000000000034 <sum_positive>:
+  34:	7179                	addi	sp,sp,-48
+  36:	f406                	sd	ra,40(sp)
+  38:	f022                	sd	s0,32(sp)
+  3a:	1800                	addi	s0,sp,48
+  3c:	fea43423          	sd	a0,-24(s0)
+  40:	feb42223          	sw	a1,-28(s0)
+  44:	fea42027          	fsw	fa0,-32(s0)
+  48:	4501                	li	a0,0
+  4a:	fca42e23          	sw	a0,-36(s0)
+  4e:	fca42c23          	sw	a0,-40(s0)
+  52:	0040006f          	j	56 <sum_positive+0x22>
+  56:	fe442503          	lw	a0,-28(s0)
+  5a:	fdc42583          	lw	a1,-36(s0)
+  5e:	2585                	addiw	a1,a1,1
+  60:	06b54363          	blt	a0,a1,c6 <sum_positive+0x92>
+  64:	0040006f          	j	68 <sum_positive+0x34>
+  68:	fe843583          	ld	a1,-24(s0)
+  6c:	fdc42503          	lw	a0,-36(s0)
+  70:	00251613          	slli	a2,a0,0x2
+  74:	95b2                	add	a1,a1,a2
+  76:	0005a507          	flw	fa0,0(a1)
+  7a:	fe042587          	flw	fa1,-32(s0)
+  7e:	00000097          	auipc	ra,0x0
+			7e: R_RISCV_CALL	affine
+  82:	000080e7          	jalr	ra # 7e <sum_positive+0x4a>
+  86:	fca42a27          	fsw	fa0,-44(s0)
+  8a:	fd442007          	flw	ft0,-44(s0)
+  8e:	420000d3          	fcvt.d.s	ft1,ft0
+  92:	f2000053          	fmv.d.x	ft0,zero
+  96:	a2101553          	flt.d	a0,ft0,ft1
+  9a:	4581                	li	a1,0
+  9c:	00b50e63          	beq	a0,a1,b8 <sum_positive+0x84>
+  a0:	0040006f          	j	a4 <sum_positive+0x70>
+  a4:	fd842007          	flw	ft0,-40(s0)
+  a8:	fd442087          	flw	ft1,-44(s0)
+  ac:	00107053          	fadd.s	ft0,ft0,ft1
+  b0:	fc042c27          	fsw	ft0,-40(s0)
+  b4:	0040006f          	j	b8 <sum_positive+0x84>
+  b8:	fdc42503          	lw	a0,-36(s0)
+  bc:	2505                	addiw	a0,a0,1
+  be:	fca42e23          	sw	a0,-36(s0)
+  c2:	f95ff06f          	j	56 <sum_positive+0x22>
+  c6:	fd842507          	flw	fa0,-40(s0)
+  ca:	70a2                	ld	ra,40(sp)
+  cc:	7402                	ld	s0,32(sp)
+  ce:	6145                	addi	sp,sp,48
+  d0:	8082                	ret
+
+00000000000000d2 <main>:
+  d2:	715d                	addi	sp,sp,-80
+  d4:	e486                	sd	ra,72(sp)
+  d6:	e0a2                	sd	s0,64(sp)
+  d8:	0880                	addi	s0,sp,80
+  da:	4501                	li	a0,0
+  dc:	faa43c23          	sd	a0,-72(s0)
+  e0:	fea42623          	sw	a0,-20(s0)
+  e4:	00000097          	auipc	ra,0x0
+			e4: R_RISCV_CALL_PLT	getint
+  e8:	000080e7          	jalr	ra # e4 <main+0x12>
+  ec:	fea42423          	sw	a0,-24(s0)
+  f0:	00000097          	auipc	ra,0x0
+			f0: R_RISCV_CALL_PLT	getfloat
+  f4:	000080e7          	jalr	ra # f0 <main+0x1e>
+  f8:	fb843503          	ld	a0,-72(s0)
+  fc:	fea42227          	fsw	fa0,-28(s0)
+
+0000000000000100 <.LBB2_4>:
+ 100:	00000597          	auipc	a1,0x0
+			100: R_RISCV_PCREL_HI20	.L__const.main.a
+ 104:	00058593          	mv	a1,a1
+			104: R_RISCV_PCREL_LO12_I	.LBB2_4
+ 108:	0085e683          	lwu	a3,8(a1) # 108 <.LBB2_4+0x8>
+ 10c:	00c5e603          	lwu	a2,12(a1)
+ 110:	1602                	slli	a2,a2,0x20
+ 112:	8e55                	or	a2,a2,a3
+ 114:	fcc43c23          	sd	a2,-40(s0)
+ 118:	0005e603          	lwu	a2,0(a1)
+ 11c:	0045e583          	lwu	a1,4(a1)
+ 120:	1582                	slli	a1,a1,0x20
+ 122:	8dd1                	or	a1,a1,a2
+ 124:	fcb43823          	sd	a1,-48(s0)
+ 128:	fca42623          	sw	a0,-52(s0)
+ 12c:	0040006f          	j	130 <.LBB2_4+0x30>
+ 130:	fcc42503          	lw	a0,-52(s0)
+ 134:	fe842583          	lw	a1,-24(s0)
+ 138:	02b55863          	bge	a0,a1,168 <.LBB2_4+0x68>
+ 13c:	0040006f          	j	140 <.LBB2_4+0x40>
+ 140:	00000097          	auipc	ra,0x0
+			140: R_RISCV_CALL_PLT	getfloat
+ 144:	000080e7          	jalr	ra # 140 <.LBB2_4+0x40>
+ 148:	fcc42503          	lw	a0,-52(s0)
+ 14c:	00251593          	slli	a1,a0,0x2
+ 150:	fd040513          	addi	a0,s0,-48
+ 154:	952e                	add	a0,a0,a1
+ 156:	00a52027          	fsw	fa0,0(a0)
+ 15a:	fcc42503          	lw	a0,-52(s0)
+ 15e:	2505                	addiw	a0,a0,1
+ 160:	fca42623          	sw	a0,-52(s0)
+ 164:	fcdff06f          	j	130 <.LBB2_4+0x30>
+ 168:	fe842583          	lw	a1,-24(s0)
+ 16c:	fe442507          	flw	fa0,-28(s0)
+ 170:	fd040513          	addi	a0,s0,-48
+ 174:	00000097          	auipc	ra,0x0
+			174: R_RISCV_CALL	sum_positive
+ 178:	000080e7          	jalr	ra # 174 <.LBB2_4+0x74>
+
+000000000000017c <.LBB2_5>:
+ 17c:	00000517          	auipc	a0,0x0
+			17c: R_RISCV_PCREL_HI20	.LCPI2_0
+ 180:	00050513          	mv	a0,a0
+			180: R_RISCV_PCREL_LO12_I	.LBB2_5
+ 184:	00052007          	flw	ft0,0(a0) # 17c <.LBB2_5>
+ 188:	00057053          	fadd.s	ft0,fa0,ft0
+ 18c:	fc042427          	fsw	ft0,-56(s0)
+ 190:	fc842007          	flw	ft0,-56(s0)
+ 194:	c0001553          	fcvt.w.s	a0,ft0,rtz
+ 198:	fca42223          	sw	a0,-60(s0)
+ 19c:	fc842007          	flw	ft0,-56(s0)
+ 1a0:	fe842503          	lw	a0,-24(s0)
+ 1a4:	2505                	addiw	a0,a0,1
+ 1a6:	d00570d3          	fcvt.s.w	ft1,a0
+ 1aa:	18107053          	fdiv.s	ft0,ft0,ft1
+ 1ae:	fc042027          	fsw	ft0,-64(s0)
+ 1b2:	fc842507          	flw	fa0,-56(s0)
+ 1b6:	00000097          	auipc	ra,0x0
+			1b6: R_RISCV_CALL_PLT	putfloat
+ 1ba:	000080e7          	jalr	ra # 1b6 <.LBB2_5+0x3a>
+ 1be:	02000513          	li	a0,32
+ 1c2:	faa43823          	sd	a0,-80(s0)
+ 1c6:	00000097          	auipc	ra,0x0
+			1c6: R_RISCV_CALL_PLT	putch
+ 1ca:	000080e7          	jalr	ra # 1c6 <.LBB2_5+0x4a>
+ 1ce:	fc442503          	lw	a0,-60(s0)
+ 1d2:	00000097          	auipc	ra,0x0
+			1d2: R_RISCV_CALL_PLT	putint
+ 1d6:	000080e7          	jalr	ra # 1d2 <.LBB2_5+0x56>
+ 1da:	fb043503          	ld	a0,-80(s0)
+ 1de:	00000097          	auipc	ra,0x0
+			1de: R_RISCV_CALL_PLT	putch
+ 1e2:	000080e7          	jalr	ra # 1de <.LBB2_5+0x62>
+ 1e6:	fc042507          	flw	fa0,-64(s0)
+ 1ea:	00000097          	auipc	ra,0x0
+			1ea: R_RISCV_CALL_PLT	putfloat
+ 1ee:	000080e7          	jalr	ra # 1ea <.LBB2_5+0x6e>
+ 1f2:	4529                	li	a0,10
+ 1f4:	00000097          	auipc	ra,0x0
+			1f4: R_RISCV_CALL_PLT	putch
+ 1f8:	000080e7          	jalr	ra # 1f4 <.LBB2_5+0x78>
+ 1fc:	4501                	li	a0,0
+ 1fe:	60a6                	ld	ra,72(sp)
+ 200:	6406                	ld	s0,64(sp)
+ 202:	6161                	addi	sp,sp,80
+ 204:	8082                	ret

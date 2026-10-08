@@ -1,0 +1,65 @@
+[
+  {
+    "path": "artifacts/mechanism/vecadd-sources/PlanMemory.cpp",
+    "sha256": "95ddc758ef2d6932405e44dd0011969c36c70bc38e2fde2ba7bd57ffc0732f74",
+    "bytes": 94791,
+    "commit": "428ab8fdab46a879c7349caba4cde705bc8c9bb6",
+    "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/lib/Dialect/HIVM/Transforms/PlanMemory.cpp"
+  },
+  {
+    "path": "artifacts/mechanism/vecadd-sources/PlanMemory.h",
+    "sha256": "ec70e265a0ac26eefb8e8f396929d0729b169f74720276971099468786f32d52",
+    "bytes": 29435,
+    "commit": "428ab8fdab46a879c7349caba4cde705bc8c9bb6",
+    "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/include/bishengir/Dialect/HIVM/Transforms/PlanMemory.h"
+  },
+  {
+    "path": "artifacts/mechanism/vecadd-sources/PlanMemory.md",
+    "sha256": "3189baf09986f580aee561e73993368043495470a924e4c053dd1da970950162",
+    "bytes": 10566,
+    "commit": "428ab8fdab46a879c7349caba4cde705bc8c9bb6",
+    "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/docs/source/zh_cn/developer_guide/features/PlanMemory/PlanMemory.md"
+  },
+  {
+    "path": "artifacts/mechanism/vecadd-sources/GetPipe.cpp",
+    "sha256": "8d2b6b8e93a24115681f055438d359ff0ce0b0d220a549435c62e22683795afd",
+    "bytes": 2902,
+    "commit": "428ab8fdab46a879c7349caba4cde705bc8c9bb6",
+    "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/lib/Dialect/HIVM/IR/OpPipeInterface/GetPipe.cpp"
+  },
+  {
+    "path": "artifacts/mechanism/vecadd-sources/SyncSolverIRTranslator.cpp",
+    "sha256": "ca9424a2bd9d27ce522b0c0bb7793e04b2aa00744ad8558511b9f4c5415fc692",
+    "bytes": 28827,
+    "commit": "428ab8fdab46a879c7349caba4cde705bc8c9bb6",
+    "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/lib/Dialect/HIVM/Transforms/GraphSyncSolver/SyncSolverIRTranslator.cpp"
+  },
+  {
+    "path": "artifacts/mechanism/vecadd-sources/InferFuncCoreType.cpp",
+    "sha256": "648d273b67e2f37a522e75c01c937b9ff3ac2910241973757fd96d45f3e1773b",
+    "bytes": 11948,
+    "commit": "428ab8fdab46a879c7349caba4cde705bc8c9bb6",
+    "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/lib/Dialect/HIVM/Transforms/InferFuncCoreType.cpp"
+  },
+  {
+    "path": "artifacts/mechanism/vecadd-sources/MemoryDependentAnalyzer.cpp",
+    "sha256": "9e90633b8e920ba22e5518961bdae4b68822015ae692fcb47eb4cd549d37faf3",
+    "bytes": 4172,
+    "commit": "428ab8fdab46a879c7349caba4cde705bc8c9bb6",
+    "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/lib/Dialect/HIVM/Transforms/InjectSync/MemoryDependentAnalyzer.cpp"
+  },
+  {
+    "path": "src/mlir/official-tool-1.1.0/bishengir/lib/Dialect/HIVM/Pipelines/HIVMPipelines.cpp",
+    "sha256": "996cbabac87e1e5e86cff456fd4ab04054e36405f49a499394dbac40bc53c5ea",
+    "bytes": 19193,
+    "commit": "428ab8fdab46a879c7349caba4cde705bc8c9bb6",
+    "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/bishengir/lib/Dialect/HIVM/Pipelines/HIVMPipelines.cpp"
+  },
+  {
+    "path": "src/mlir/official-tool-1.1.0/docs/source/zh_cn/developer_guide/features/AutoSync/AutoSync.md",
+    "sha256": "059f265336219a3645cd98b3daa5cf4acacf7553de5c825341bf2d9c2c9739fe",
+    "bytes": 8852,
+    "commit": "428ab8fdab46a879c7349caba4cde705bc8c9bb6",
+    "url": "https://raw.githubusercontent.com/Ascend/AscendNPU-IR/428ab8fdab46a879c7349caba4cde705bc8c9bb6/docs/source/zh_cn/developer_guide/features/AutoSync/AutoSync.md"
+  }
+]

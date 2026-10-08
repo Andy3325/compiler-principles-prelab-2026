@@ -1,0 +1,27 @@
+[
+  {
+    "pass": "hivm-infer-func-core-type",
+    "path": "compiler-snapshots/01-hivm-infer-func-core-type.mlir",
+    "source_log": "06-full-compile.stderr.txt"
+  },
+  {
+    "pass": "hivm-plan-memory",
+    "path": "compiler-snapshots/02-hivm-plan-memory.mlir",
+    "source_log": "06-full-compile.stderr.txt"
+  },
+  {
+    "pass": "hivm-plan-memory",
+    "path": "compiler-snapshots/03-hivm-plan-memory.mlir",
+    "source_log": "06-full-compile.stderr.txt"
+  },
+  {
+    "pass": "hivm-graph-sync-solver",
+    "path": "compiler-snapshots/04-hivm-graph-sync-solver.mlir",
+    "source_log": "06-full-compile.stderr.txt"
+  },
+  {
+    "pass": "convert-hivm-to-std",
+    "path": "compiler-snapshots/05-convert-hivm-to-std.mlir",
+    "source_log": "06-full-compile.stderr.txt"
+  }
+]

@@ -1,0 +1,69 @@
+--- gcc_A_O2
++++ gcc_B_O2_vector
+@@ -7,12 +7,12 @@
+ Removing basic block 11
+ int alternating_sum (int n)
+ {
+-  unsigned int ivtmp.17;
++  unsigned int ivtmp.18;
+   int i;
+   int sum;
+-  unsigned int _2;
+-  unsigned int _5;
+-  int _14;
++  unsigned int _16;
++  int _17;
++  unsigned int _18;
+ 
+   <bb 2> [local count: 118111600]:
+   if (n_8(D) > 0)
+@@ -21,35 +21,35 @@
+     goto <bb 7>; [11.00%]
+ 
+   <bb 3> [local count: 955630225]:
+-  # sum_16 = PHI <sum_3(6), 0(2)>
+-  # i_19 = PHI <i_13(6), 0(2)>
+-  # ivtmp.17_20 = PHI <ivtmp.17_6(6), 5(2)>
+-  _14 = (int) ivtmp.17_20;
+-  _5 = (unsigned int) i_19;
+-  _2 = _5 & 1;
+-  if (_2 == 0)
++  # sum_6 = PHI <0(2), sum_24(6)>
++  # i_5 = PHI <0(2), i_25(6)>
++  # ivtmp.18_20 = PHI <5(2), ivtmp.18_19(6)>
++  _17 = (int) ivtmp.18_20;
++  _16 = (unsigned int) i_5;
++  _18 = _16 & 1;
++  if (_18 == 0)
+     goto <bb 4>; [50.00%]
+   else
+     goto <bb 5>; [50.00%]
+ 
+   <bb 4> [local count: 477815112]:
+-  sum_12 = _14 + sum_16;
++  sum_23 = sum_6 + _17;
+   goto <bb 6>; [100.00%]
+ 
+   <bb 5> [local count: 477815112]:
+-  sum_11 = sum_16 - _14;
++  sum_22 = sum_6 - _17;
+ 
+   <bb 6> [local count: 955630225]:
+-  # sum_3 = PHI <sum_12(4), sum_11(5)>
+-  i_13 = i_19 + 1;
+-  ivtmp.17_6 = ivtmp.17_20 + 3;
+-  if (n_8(D) != i_13)
++  # sum_24 = PHI <sum_22(5), sum_23(4)>
++  i_25 = i_5 + 1;
++  ivtmp.18_19 = ivtmp.18_20 + 3;
++  if (n_8(D) != i_25)
+     goto <bb 3>; [89.00%]
+   else
+     goto <bb 7>; [11.00%]
+ 
+   <bb 7> [local count: 118111600]:
+-  # sum_15 = PHI <sum_3(6), 0(2)>
++  # sum_15 = PHI <sum_24(6), 0(2)>
+   return sum_15;
+ 
+ }

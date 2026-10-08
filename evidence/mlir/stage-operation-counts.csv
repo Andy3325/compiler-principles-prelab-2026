@@ -1,0 +1,7 @@
+file,alloc,load,vadd,store,pointer_cast,set_flag,wait_flag,pipe_barrier,template_calls
+01-parsed.mlir,3,2,1,1,0,0,0,0,0
+02-core.mlir,3,2,1,1,0,0,0,0,0
+03-memory.mlir,0,2,1,1,3,0,0,0,0
+04-sync.mlir,0,2,1,1,3,2,2,1,0
+05-standard.mlir,0,0,0,0,4,2,2,1,4
+07-host-lowered.mlir,0,0,0,0,4,2,2,1,4

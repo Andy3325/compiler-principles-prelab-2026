@@ -1,0 +1,27 @@
+{
+  "completed_at": "2026-10-08T10:03:41.598468+08:00",
+  "configurations": 9,
+  "new_execution_tests": 90,
+  "passed": 90,
+  "failed": 0,
+  "original_execution_tests": 60,
+  "original_passed": 60,
+  "baseline_unchanged": true,
+  "protected_files": 1067,
+  "baseline_remeasurement_checks": {
+    "clang_A_O2": {
+      "baseline_variant": "clang_O2",
+      "text_bytes_equal": true,
+      "instruction_count_equal": true,
+      "executable_text_equal": true
+    },
+    "gcc_A_O2": {
+      "baseline_variant": "gcc_O2",
+      "text_bytes_equal": true,
+      "instruction_count_equal": true,
+      "executable_text_equal": true
+    }
+  },
+  "diagnostic_builds_preserve_code": true,
+  "speed_measurement_performed": false
+}

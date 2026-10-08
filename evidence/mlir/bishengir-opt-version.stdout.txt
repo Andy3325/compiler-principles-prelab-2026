@@ -1,0 +1,4 @@
+bishengir-opt 1.1.0 (/usr1/BiSheng/AscendNPU-IR/bishengir 428ab8fdab46 2026-04-30) 
+llvm 19.1.7 e4ce5939f6e1
+Release build
+

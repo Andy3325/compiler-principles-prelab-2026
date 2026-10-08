@@ -1,0 +1,33 @@
+{
+  "collected_at": "2026-10-04T22:11:05.769240+08:00",
+  "original_test_count": 60,
+  "original_passed": 60,
+  "new_test_executions": 0,
+  "protected_original_files": 996,
+  "original_files_unchanged": true,
+  "observed_vectorized_loops": [
+    {
+      "function": "alternating_sum",
+      "vectorization_factor": "4",
+      "interleave_count": "2"
+    },
+    {
+      "function": "main",
+      "vectorization_factor": "4",
+      "interleave_count": "1"
+    }
+  ],
+  "diagnostic_artifact_comparisons": {
+    "ir_byte_identical_to_original": false,
+    "assembly_byte_identical_to_original": false,
+    "trace_final_ir_byte_identical_to_original": false,
+    "ir_function_bodies_equal_ignoring_metadata": true,
+    "main_object_text_byte_identical_to_original": true
+  },
+  "gcc_O2_queried_optimizer_options": {
+    "-ftree-loop-vectorize": "[disabled]",
+    "-ftree-slp-vectorize": "[disabled]",
+    "-fvect-cost-model": "cheap"
+  },
+  "scope": "Diagnostic recompilations and pass-boundary snapshots only; no speed measurement."
+}

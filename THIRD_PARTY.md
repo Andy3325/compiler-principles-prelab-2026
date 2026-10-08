@@ -23,6 +23,8 @@ SysY2022 规范全文没有纳入上述 MIT 声明。规范 PDF / 文本只在�
 
 机制图和结构图由工程脚本生成，数据与 provenance 保留。fig3.png、fig6.png、fig7.png 为报告作者提供的替换配图，不声称来自 Ascend / LLVM 上游。报告格式由已提供模板适配，原来源注释保留；课程原模板与课件未加入仓库。
 
+`materials/experiment-output/` 的十张PNG为既有命令/文件摘录的排版图，按原字节归档。其中的官方VecAdd与IR片段保留第三方归属，继续适用上文Ascend来源与许可。截图中的历史异机过程有部分缺失日志，准确核验范围见同目录README。当前图6改用原工程生成的 `vecadd-lifetime.pdf`，原 `fig6.png` 保留但不再用于报告；修正只涉及无依据的GM范围、UB半开区间和操作顺序标注。
+
 `report/figures/nku.png` 未发现再分发授权，只在本地保留；含该校徽的原 PDF 不上传。公开构建在临时副本省略图片，不改本地报告。
 
 ## 本项目内容

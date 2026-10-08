@@ -36,9 +36,13 @@ MLIR 多层表示的价值在于\textbf{让分析所需的语义保留到相应�
 \label{subsec:ub-reuse}
 每个 tile 占 $16\times2=32$ 字节。内存规划后的 IR 将 A、B、C 对应的 \texttt{pointer\_cast} 分别置于 UB 偏移 0、32、0。图\ref{fig:vecadd-lifetime}将逻辑数据流与\emph{缓冲内容}的活跃区间对应起来；它不同于 \texttt{memref.alloc} 结果作为 SSA 句柄的存在区间。
 
+以下节选直接取自 \path{artifacts/mlir/03-memory.mlir} 第 3--11 行，保留实际 SSA 名称和操作次序。函数参数 \texttt{\%arg0}、\texttt{\%arg1}、\texttt{\%arg2} 分别对应 GM 中的 A、B、C；\texttt{\%0}、\texttt{\%1}、\texttt{\%2} 则对应 UB 中的三个逻辑缓冲。三个 \texttt{pointer\_cast} 的常量操作数依次为 0、32、0，表明 A/C 共用 UB 字节区间 $[0,32)$，B 使用 $[32,64)$；这些偏移不描述 GM 参数之间的地址关系。
+\Needspace{14\baselineskip}
+\lstinputlisting[style=codebox,language={},firstnumber=3,caption={内存规划后的实际 IR（函数体节选）},label={lst:vecadd-memory-ir}]{listings/vecadd-memory.mlir}
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{figures/fig6.png}
+\includegraphics[width=\textwidth]{figures/vecadd-lifetime.pdf}
 \caption{VecAdd 数据流和缓冲内容生命周期。区间为 UB 字节范围，横轴表示操作顺序。A 与 C 使用同一区域，并在 vadd 处共同活跃。}
 \label{fig:vecadd-lifetime}
 \end{figure}
@@ -52,6 +56,10 @@ A\_UB 的首次写入是 load A，最后一次读取是 vadd；B\_UB 同理。C\
 \subsection{跨流水同步：从源文件顺序到 happens-before}
 \label{subsec:cross-pipeline-sync}
 本例 load 的 GM 至 UB 搬运属于 MTE2，vadd 属于 V，store 的 UB 至 GM 搬运属于 MTE3。它们是不同硬件流水线；IR 中 load 位于 vadd 之前，仍需同步操作保证向量流水在搬运完成后才消费数据。同步插入后的 IR 增加两对事件和末尾屏障，图\ref{fig:vecadd-pipeline}展示其依赖关系。
+
+以下节选取自 \path{artifacts/mlir/04-sync.mlir} 第 9--17 行。此前的两次 load 已写入 \texttt{\%0} 与 \texttt{\%1}；第一组 \texttt{set\_flag} 之后仍有输出缓冲的 \texttt{pointer\_cast}，随后才是对应 \texttt{wait\_flag} 与 vadd。两组事件均使用实际输出中的 \texttt{EVENT\_ID0}，但由不同的源/目标流水区分；store 之后保留 \texttt{PIPE\_ALL} 屏障。
+\Needspace{14\baselineskip}
+\lstinputlisting[style=codebox,language={},firstnumber=9,caption={同步插入后的实际 IR（函数体节选）},label={lst:vecadd-sync-ir}]{listings/vecadd-sync.mlir}
 
 \begin{figure}[H]
 \centering

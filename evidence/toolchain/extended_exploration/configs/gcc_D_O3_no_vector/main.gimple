@@ -1,0 +1,155 @@
+
+;; Function alternating_sum (alternating_sum, funcdef_no=13, decl_uid=2152, cgraph_uid=14, symbol_order=13)
+
+Removing basic block 8
+Removing basic block 9
+Removing basic block 10
+Removing basic block 11
+int alternating_sum (int n)
+{
+  unsigned int ivtmp.17;
+  int i;
+  int sum;
+  unsigned int _2;
+  unsigned int _5;
+  int _14;
+
+  <bb 2> [local count: 118111600]:
+  if (n_8(D) > 0)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+
+  <bb 3> [local count: 955630225]:
+  # sum_16 = PHI <sum_3(6), 0(2)>
+  # i_19 = PHI <i_13(6), 0(2)>
+  # ivtmp.17_20 = PHI <ivtmp.17_6(6), 5(2)>
+  _14 = (int) ivtmp.17_20;
+  _5 = (unsigned int) i_19;
+  _2 = _5 & 1;
+  if (_2 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 477815112]:
+  sum_12 = _14 + sum_16;
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 477815112]:
+  sum_11 = sum_16 - _14;
+
+  <bb 6> [local count: 955630225]:
+  # sum_3 = PHI <sum_12(4), sum_11(5)>
+  i_13 = i_19 + 1;
+  ivtmp.17_6 = ivtmp.17_20 + 3;
+  if (n_8(D) != i_13)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+
+  <bb 7> [local count: 118111600]:
+  # sum_15 = PHI <sum_3(6), 0(2)>
+  return sum_15;
+
+}
+
+
+
+;; Function main (main, funcdef_no=14, decl_uid=2169, cgraph_uid=15, symbol_order=14) (executed once)
+
+Removing basic block 13
+Removing basic block 14
+Removing basic block 15
+Removing basic block 16
+int main ()
+{
+  unsigned int ivtmp.27;
+  int sum;
+  int i;
+  int adjusted;
+  int n;
+  int _1;
+  struct FILE * stderr.1_2;
+  int n.2_3;
+  unsigned int n.3_4;
+  struct FILE * stderr.4_5;
+  int n.6_7;
+  int _8;
+  int _19;
+  unsigned int _21;
+  unsigned int _32;
+
+  <bb 2> [local count: 200370505]:
+  _1 = scanf ("%d", &n);
+  if (_1 != 1)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 66122266]:
+  stderr.1_2 = stderr;
+  __builtin_fwrite ("expected one integer\n", 1, 21, stderr.1_2);
+  goto <bb 12>; [100.00%]
+
+  <bb 4> [local count: 134248239]:
+  n.2_3 = n;
+  n.3_4 = (unsigned int) n.2_3;
+  if (n.3_4 > 20)
+    goto <bb 6>; [12.02%]
+  else
+    goto <bb 5>; [87.98%]
+
+  <bb 5> [local count: 118111601]:
+  if (n.2_3 != 0)
+    goto <bb 7>; [89.00%]
+  else
+    goto <bb 11>; [11.00%]
+
+  <bb 6> [local count: 16136638]:
+  stderr.4_5 = stderr;
+  __builtin_fwrite ("n must be in [0, 20]\n", 1, 21, stderr.4_5);
+  goto <bb 12>; [100.00%]
+
+  <bb 7> [local count: 955630226]:
+  # i_31 = PHI <i_25(10), 0(5)>
+  # sum_30 = PHI <sum_26(10), 0(5)>
+  # ivtmp.27_17 = PHI <ivtmp.27_6(10), 5(5)>
+  _19 = (int) ivtmp.27_17;
+  _32 = (unsigned int) i_31;
+  _21 = _32 & 1;
+  if (_21 == 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 8> [local count: 477815113]:
+  sum_23 = _19 + sum_30;
+  goto <bb 10>; [100.00%]
+
+  <bb 9> [local count: 477815113]:
+  sum_24 = sum_30 - _19;
+
+  <bb 10> [local count: 955630226]:
+  # sum_26 = PHI <sum_23(8), sum_24(9)>
+  i_25 = i_31 + 1;
+  ivtmp.27_6 = ivtmp.27_17 + 3;
+  if (n.2_3 != i_25)
+    goto <bb 7>; [89.00%]
+  else
+    goto <bb 11>; [11.00%]
+
+  <bb 11> [local count: 118111600]:
+  # sum_29 = PHI <sum_26(10), n.2_3(5)>
+  adjusted_13 = add_bonus (sum_29);
+  n.6_7 = n;
+  __printf_chk (1, "n=%d alternating=%d adjusted=%d\n", n.6_7, sum_29, adjusted_13);
+
+  <bb 12> [local count: 200370505]:
+  # _8 = PHI <1(3), 2(6), 0(11)>
+  n ={v} {CLOBBER};
+  return _8;
+
+}
+
+

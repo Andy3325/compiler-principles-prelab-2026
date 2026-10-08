@@ -10,6 +10,7 @@
 !/tests/
 !/report/
 !/evidence/
+!/materials/
 **/__pycache__/
 **/*.pyc
 **/.env

@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "archive_type": "byte_identical_existing_png_copies",
+  "new_experiments_executed": false,
+  "image_kind": "命令输出和实际文件摘录排版图；不是桌面或终端软件直接截屏",
+  "appendix_B_ids": [
+    "04",
+    "05",
+    "06",
+    "10"
+  ],
+  "repository_only_ids": [
+    "01",
+    "02",
+    "03",
+    "07",
+    "08",
+    "09"
+  ],
+  "original_local_folder": "实验截图_发组员",
+  "copy_verification": {
+    "files_checked": 10,
+    "matches": 10,
+    "source_files_unchanged": true,
+    "algorithm": "SHA-256"
+  },
+  "missing_source_materials": [
+    "logs/qemu-rerun-summary.json",
+    "logs/qemu-rerun-all.json",
+    "logs/toolchain-current-host.txt",
+    "logs/elf-inspect-console.txt",
+    "deliverables/实验截图/rerun_qemu.py",
+    "deliverables/实验截图/bin/"
+  ],
+  "missing_materials_note": "以上为图片或旧索引提到、但本次本地归档未找到的材料；没有为其创建虚假文件或链接。",
+  "privacy_review": "逐张视觉核查未见凭据、Token或私网IP。图片保留课程目录及部分异机/home/iodwad用户名和缓存路径；不代表登录凭据，不改动原图。",
+  "excluded_local_only": [
+    "实验截图_发组员/一页讲解.pdf",
+    "实验截图_发组员/讲解与截图索引.md"
+  ],
+  "images": [
+    {
+      "id": "01",
+      "file": "01-toolchain-stages.png",
+      "width_px": 1850,
+      "height_px": 871,
+      "bytes": 188546,
+      "sha256": "c43f621e64dcf640f08e881b2de3d402bd485f64d8bd04a51ea874839524531c",
+      "original_local_png": "实验截图_发组员/01-toolchain-stages.png",
+      "image_kind": "output_excerpt_layout_not_desktop_screenshot",
+      "usage": "repository_only",
+      "purpose": "Clang 14 四阶段命令与预处理产物",
+      "public_source_files": [
+        "evidence/toolchain/summary.json",
+        "src/toolchain/main.c",
+        "src/toolchain/demo.h"
+      ],
+      "local_source_files": [
+        "artifacts/toolchain/clang_O0/01_preprocess_main.command.txt",
+        "artifacts/toolchain/clang_O0/01_preprocess_main.exit.txt",
+        "artifacts/toolchain/clang_O0/02_compile_main.command.txt",
+        "artifacts/toolchain/clang_O0/02_compile_main.exit.txt",
+        "artifacts/toolchain/clang_O0/03_assemble_main.command.txt",
+        "artifacts/toolchain/clang_O0/03_assemble_main.exit.txt",
+        "artifacts/toolchain/clang_O0/04_link.command.txt",
+        "artifacts/toolchain/clang_O0/04_link.exit.txt",
+        "artifacts/toolchain/clang_O0/main.i"
+      ],
+      "evidence_assessment": "2026-10-03 原实验摘录；命令、退出码及 main.i 第566行与原记录一致。",
+      "copy_sha256_matches_original": true
+    },
+    {
+      "id": "02",
+      "file": "02-toolchain-link-and-test.png",
+      "width_px": 1850,
+      "height_px": 552,
+      "bytes": 96483,
+      "sha256": "0d0720a2258942d6ecc36038f9d63892850c5f550234cad3597065caf0973fb5",
+      "original_local_png": "实验截图_发组员/02-toolchain-link-and-test.png",
+      "image_kind": "output_excerpt_layout_not_desktop_screenshot",
+      "usage": "repository_only",
+      "purpose": "符号解析、链接负例和原工具链测试",
+      "public_source_files": [
+        "evidence/toolchain/summary.json",
+        "evidence/toolchain/test_results.json",
+        "src/toolchain/bonus.c"
+      ],
+      "local_source_files": [
+        "artifacts/toolchain/clang_O0/inspect_main_object_nm.stdout.txt",
+        "artifacts/toolchain/clang_O0/inspect_bonus_object_nm.stdout.txt",
+        "artifacts/toolchain/clang_O0/negative_control_missing_bonus.stderr.txt",
+        "artifacts/toolchain/clang_O0/demo",
+        "artifacts/toolchain/test_results.json"
+      ],
+      "evidence_assessment": "2026-10-03 链接与60/60结果可核对；旧demo确含GLIBC_2.34依赖，但图片关于Ubuntu20.04/GLIBC2.31的异机运行失败日志未随本地材料保留。",
+      "copy_sha256_matches_original": true
+    },
+    {
+      "id": "03",
+      "file": "03-three-implementations.png",
+      "width_px": 1850,
+      "height_px": 610,
+      "bytes": 88746,
+      "sha256": "b6e3cd5eed3b55eff1e9629a4c6054c1dd85127751e291ed8d45534f59310ab4",
+      "original_local_png": "实验截图_发组员/03-three-implementations.png",
+      "image_kind": "output_excerpt_layout_not_desktop_screenshot",
+      "usage": "repository_only",
+      "purpose": "三种实现与RISC-V ELF目标",
+      "public_source_files": [
+        "src/sysy/control_matrix.sy",
+        "src/sysy/float_stats.sy",
+        "src/llvm/control_matrix.ll",
+        "src/llvm/float_stats.ll",
+        "src/riscv/control_matrix.S",
+        "src/riscv/float_stats.S",
+        "evidence/sysy/source-sha256.txt"
+      ],
+      "local_source_files": [
+        "artifacts/sysy/bin/control_matrix.source",
+        "artifacts/sysy/bin/control_matrix.llvm",
+        "artifacts/sysy/bin/control_matrix.asm",
+        "artifacts/sysy/bin/float_stats.source",
+        "artifacts/sysy/bin/float_stats.llvm",
+        "artifacts/sysy/bin/float_stats.asm"
+      ],
+      "evidence_assessment": "原始六个ELF存在；图示control_matrix.source的ELF64、RISC-V、flags=0x5及build-id可核对。截图所称deliverables副本及elf-inspect-console.txt未保留，无法独立核验该次副本操作。",
+      "copy_sha256_matches_original": true
+    },
+    {
+      "id": "04",
+      "file": "04-control_matrix-rerun.png",
+      "width_px": 1850,
+      "height_px": 668,
+      "bytes": 79439,
+      "sha256": "dbdd838d66d2b7bdd6fa7e80dc8f946cbb26073a520e70f5c64ebfb64c497cf6",
+      "original_local_png": "实验截图_发组员/04-control_matrix-rerun.png",
+      "image_kind": "output_excerpt_layout_not_desktop_screenshot",
+      "usage": "appendix_B_and_repository",
+      "purpose": "整数样例三种实现输出对照",
+      "public_source_files": [
+        "tests/inputs/control_matrix.initial_full.in",
+        "tests/inputs/control_matrix.initial_full.expected.json",
+        "evidence/sysy/results.csv",
+        "evidence/sysy/summary.json"
+      ],
+      "local_source_files": [
+        "artifacts/sysy/logs/control_matrix.initial_full.source.json",
+        "artifacts/sysy/logs/control_matrix.initial_full.llvm.json",
+        "artifacts/sysy/logs/control_matrix.initial_full.asm.json"
+      ],
+      "evidence_assessment": "输入、三份stdout和独立预期与已有原实验记录一致；图片所称Fresh QEMU rerun的专用日志及脚本未随本地材料保留，本轮未重跑实验。",
+      "copy_sha256_matches_original": true
+    },
+    {
+      "id": "05",
+      "file": "05-float_stats-rerun.png",
+      "width_px": 1850,
+      "height_px": 668,
+      "bytes": 84960,
+      "sha256": "ef1c1bb4e38eaff8f2be1002519081dbbb20cacd6169748628bbf54e2006783e",
+      "original_local_png": "实验截图_发组员/05-float_stats-rerun.png",
+      "image_kind": "output_excerpt_layout_not_desktop_screenshot",
+      "usage": "appendix_B_and_repository",
+      "purpose": "浮点样例三种实现输出对照",
+      "public_source_files": [
+        "tests/inputs/float_stats.fractional.in",
+        "tests/inputs/float_stats.fractional.expected.json",
+        "evidence/sysy/results.csv",
+        "evidence/sysy/summary.json"
+      ],
+      "local_source_files": [
+        "artifacts/sysy/logs/float_stats.fractional.source.json",
+        "artifacts/sysy/logs/float_stats.fractional.llvm.json",
+        "artifacts/sysy/logs/float_stats.fractional.asm.json"
+      ],
+      "evidence_assessment": "输入、十六进制浮点输出及独立预期与已有原实验记录一致；图片所称Fresh QEMU rerun的专用日志及脚本未随本地材料保留，本轮未重跑实验。",
+      "copy_sha256_matches_original": true
+    },
+    {
+      "id": "06",
+      "file": "06-qemu-summary.png",
+      "width_px": 1850,
+      "height_px": 470,
+      "bytes": 70729,
+      "sha256": "6efc783bf61130fa2c073dc980480d05843dafdf8f7aad3426dd6ad78f422b14",
+      "original_local_png": "实验截图_发组员/06-qemu-summary.png",
+      "image_kind": "output_excerpt_layout_not_desktop_screenshot",
+      "usage": "appendix_B_and_repository",
+      "purpose": "完整测试计数及历史结果对照",
+      "public_source_files": [
+        "evidence/sysy/summary.json",
+        "evidence/sysy/results.csv",
+        "evidence/combined_validation.json"
+      ],
+      "local_source_files": [
+        "artifacts/sysy/summary.json",
+        "artifacts/sysy/results.csv",
+        "artifacts/sysy/logs/",
+        "artifacts/combined_validation.json"
+      ],
+      "evidence_assessment": "原实验160个输入、480次执行全部通过有summary、CSV和逐次日志支持；截图2026-10-07新一轮480次重跑的logs/qemu-rerun-summary.json、logs/qemu-rerun-all.json与rerun_qemu.py未保留，不能独立核验，也不计为新增480次测试。",
+      "copy_sha256_matches_original": true
+    },
+    {
+      "id": "07",
+      "file": "07-vecadd-source.png",
+      "width_px": 1850,
+      "height_px": 784,
+      "bytes": 134048,
+      "sha256": "f89e8cf16894be523319160ddff9305fd2b2531d16b5629dd75ed7d3439b89bc",
+      "original_local_png": "实验截图_发组员/07-vecadd-source.png",
+      "image_kind": "output_excerpt_layout_not_desktop_screenshot",
+      "usage": "repository_only",
+      "purpose": "官方VecAdd输入IR与固定工具版本",
+      "public_source_files": [
+        "src/mlir/official-tool-1.1.0/bishengir/test/Integration/HIVM/VecAdd/add.mlir",
+        "src/mlir/official-tool-1.1.0/LICENSE",
+        "src/mlir/official-tool-1.1.0/NOTICE",
+        "evidence/mlir/bishengir-opt-version.stdout.txt"
+      ],
+      "local_source_files": [
+        "artifacts/mlir/bishengir-opt-version.stdout.txt"
+      ],
+      "evidence_assessment": "官方源码及bishengir-opt1.1.0、LLVM19.1.7版本可核对；图片/home/iodwad缓存路径属于异机记录，不是当前Windows/WSL路径。",
+      "copy_sha256_matches_original": true
+    },
+    {
+      "id": "08",
+      "file": "08-memory-plan.png",
+      "width_px": 1850,
+      "height_px": 523,
+      "bytes": 94813,
+      "sha256": "9179e0e400057efa2fb2b708bdcf2515773d29d05c5c491827c6fbe7b5cc2608",
+      "original_local_png": "实验截图_发组员/08-memory-plan.png",
+      "image_kind": "output_excerpt_layout_not_desktop_screenshot",
+      "usage": "repository_only",
+      "purpose": "UB地址规划与A/C存储复用",
+      "public_source_files": [
+        "evidence/mlir/03-memory.mlir",
+        "evidence/mlir/ascend-results.json"
+      ],
+      "local_source_files": [
+        "artifacts/mlir/03-memory.mlir",
+        "artifacts/mlir/ascend-results.json"
+      ],
+      "evidence_assessment": "UB偏移A=0、B=32、C=0字节及主机变换状态可核对；图片/home/iodwad工程与缓存路径属于异机记录，不是当前环境。",
+      "copy_sha256_matches_original": true
+    },
+    {
+      "id": "09",
+      "file": "09-sync-and-template.png",
+      "width_px": 1850,
+      "height_px": 668,
+      "bytes": 140656,
+      "sha256": "440006c7531283bb9907fc0ba99300f8cbca8305fb0e36ccad00ab2ebf4f1c3d",
+      "original_local_png": "实验截图_发组员/09-sync-and-template.png",
+      "image_kind": "output_excerpt_layout_not_desktop_screenshot",
+      "usage": "repository_only",
+      "purpose": "跨流水同步与模板调用",
+      "public_source_files": [
+        "evidence/mlir/04-sync.mlir",
+        "evidence/mlir/05-standard.mlir"
+      ],
+      "local_source_files": [
+        "artifacts/mlir/04-sync.mlir",
+        "artifacts/mlir/05-standard.mlir"
+      ],
+      "evidence_assessment": "set_flag、wait_flag、pipe_barrier与四次模板调用可核对；仍为中间表示，不表示设备运行完成。",
+      "copy_sha256_matches_original": true
+    },
+    {
+      "id": "10",
+      "file": "10-verification-and-backend.png",
+      "width_px": 1850,
+      "height_px": 581,
+      "bytes": 100332,
+      "sha256": "48612d5a8aae3c4d95ab27c0cf3dde10d975465f86d2c5109a5cd82e381139f6",
+      "original_local_png": "实验截图_发组员/10-verification-and-backend.png",
+      "image_kind": "output_excerpt_layout_not_desktop_screenshot",
+      "usage": "appendix_B_and_repository",
+      "purpose": "主机核验与设备后端限制",
+      "public_source_files": [
+        "evidence/mlir/verification-summary.json",
+        "evidence/mlir/ascend-results.json",
+        "evidence/mlir/06-full-compile.stderr.txt"
+      ],
+      "local_source_files": [
+        "artifacts/mlir/verification-summary.json",
+        "artifacts/mlir/ascend-results.json",
+        "artifacts/mlir/06-full-compile.stderr.txt"
+      ],
+      "evidence_assessment": "六次主机处理、18/18结构核验和缺少hivmc的诊断有记录；进程exit0但未生成设备对象，未执行设备程序。图片/home/iodwad路径属于异机记录。",
+      "copy_sha256_matches_original": true
+    }
+  ]
+}

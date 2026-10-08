@@ -1,0 +1,21 @@
+{
+  "program": "control_matrix",
+  "case": "initial_full",
+  "input": "6 40 1 3 0 0 0 0 0 0\n",
+  "expected": [
+    53,
+    1,
+    1,
+    0,
+    2
+  ],
+  "implementation": "source",
+  "command": [
+    "qemu-riscv64",
+    "<PROJECT>/artifacts/sysy/bin/control_matrix.source"
+  ],
+  "stdout": "53 1 1 0 2\n",
+  "stderr": "TOTAL: 0H-0M-0S-0us\n",
+  "exit_code": 0,
+  "passed": true
+}

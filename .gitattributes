@@ -7,3 +7,4 @@
 src/** -text
 runtime/** -text
 evidence/** -text
+report/listings/** -text

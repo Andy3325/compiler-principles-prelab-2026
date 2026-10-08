@@ -1,0 +1,213 @@
+--- !Passed
+Pass:            inline
+Name:            Inlined
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 14, Column: 20 }
+Function:        alternating_sum
+Args:
+  - String:          ''''
+  - Callee:          scale_and_bias
+  - String:          ''' inlined into '''
+  - Caller:          alternating_sum
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 11, Column: 0 }
+  - String:          ''''
+  - String:          ' with '
+  - String:          '(cost='
+  - Cost:            '-15025'
+  - String:          ', threshold='
+  - Threshold:       '337'
+  - String:          ')'
+  - String:          ' at callsite '
+  - String:          alternating_sum
+  - String:          ':'
+  - Line:            '4'
+  - String:          ':'
+  - Column:          '20'
+  - String:          ';'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 27, Column: 9 }
+Function:        main
+Args:
+  - Callee:          __isoc99_scanf
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 25, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 28, Column: 9 }
+Function:        main
+Args:
+  - Callee:          fwrite
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 25, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 32, Column: 9 }
+Function:        main
+Args:
+  - Callee:          fwrite
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 25, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 36, Column: 20 }
+Function:        main
+Args:
+  - Callee:          add_bonus
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 25, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 37, Column: 5 }
+Function:        main
+Args:
+  - Callee:          printf
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 25, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 27, Column: 9 }
+Function:        main
+Args:
+  - Callee:          __isoc99_scanf
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 25, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 28, Column: 9 }
+Function:        main
+Args:
+  - Callee:          fwrite
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 25, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 32, Column: 9 }
+Function:        main
+Args:
+  - Callee:          fwrite
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 25, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 36, Column: 20 }
+Function:        main
+Args:
+  - Callee:          add_bonus
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 25, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Missed
+Pass:            inline
+Name:            NoDefinition
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 37, Column: 5 }
+Function:        main
+Args:
+  - Callee:          printf
+  - String:          ' will not be inlined into '
+  - Caller:          main
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 25, Column: 0 }
+  - String:          ' because its definition is unavailable'
+...
+--- !Passed
+Pass:            inline
+Name:            Inlined
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 35, Column: 15 }
+Function:        main
+Args:
+  - String:          ''''
+  - Callee:          alternating_sum
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 11, Column: 0 }
+  - String:          ''' inlined into '''
+  - Caller:          main
+    DebugLoc:        { File: 'src/toolchain/main.c', Line: 25, Column: 0 }
+  - String:          ''''
+  - String:          ' with '
+  - String:          '(cost='
+  - Cost:            '25'
+  - String:          ', threshold='
+  - Threshold:       '225'
+  - String:          ')'
+  - String:          ' at callsite '
+  - String:          main
+  - String:          ':'
+  - Line:            '11'
+  - String:          ':'
+  - Column:          '15'
+  - String:          ';'
+...
+--- !Analysis
+Pass:            loop-vectorize
+Name:            InterleavingBeneficialButDisabled
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 13, Column: 5 }
+Function:        alternating_sum
+Args:
+  - String:          the cost-model indicates that interleaving is beneficial but is explicitly disabled or interleave count is set to 1
+...
+--- !Passed
+Pass:            loop-vectorize
+Name:            Vectorized
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 13, Column: 5 }
+Function:        alternating_sum
+Args:
+  - String:          'vectorized loop (vectorization width: '
+  - VectorizationFactor: '4'
+  - String:          ', interleaved count: '
+  - InterleaveCount: '1'
+  - String:          ')'
+...
+--- !Analysis
+Pass:            loop-vectorize
+Name:            InterleavingNotBeneficialAndDisabled
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 13, Column: 5 }
+Function:        main
+Args:
+  - String:          the cost-model indicates that interleaving is not beneficial and is explicitly disabled or interleave count is set to 1
+...
+--- !Passed
+Pass:            loop-vectorize
+Name:            Vectorized
+DebugLoc:        { File: 'src/toolchain/main.c', Line: 13, Column: 5 }
+Function:        main
+Args:
+  - String:          'vectorized loop (vectorization width: '
+  - VectorizationFactor: '4'
+  - String:          ', interleaved count: '
+  - InterleaveCount: '1'
+  - String:          ')'
+...

@@ -31,6 +31,17 @@
 | 本地 Windows 入口 | 原 `scripts/run_all.ps1` 含本机 Python 路径，仅本地保留；公开复现采用下文独立命令，不依赖该文件 |
 | 汇总记录 | 原 `artifacts/combined_validation.json`、`artifacts/environment/versions.txt` 的公开副本位于 `evidence/`；`artifacts/report_review/` 页面渲染由 `inspect_report.py` 重建 |
 | 报告与分析 | `report/*.tex`、必要配图；三个展开分析笔记的脱敏副本在 `evidence/report_notes/` |
+| 实验输出图 | `materials/experiment-output/`：十张原图的逐字节副本、逐图来源索引和 SHA-256；04、05、06、10用于附录B |
+
+## 实验输出摘录与报告补充
+
+[实验材料索引](materials/experiment-output/README.md)逐张说明十张图的用途、原始文件和证据边界，[图片清单](materials/experiment-output/manifest.json)记录尺寸与 SHA-256。它们是命令输出和文件摘录的排版图，不是原生终端截屏；没有改写图中的输出或命令。
+
+01、02的工具链记录来自2026-10-03原实验。04、05的样例输出可由原实验日志及独立预期核对，精选的六份原始 JSON 公开副本见 `evidence/sysy/logs/`。完整480/480结论由原 `summary.json`、480行CSV及逐项日志支持。图片及旧索引所称 Ubuntu 20.04 异机重跑的专用日志、脚本没有随本地材料保留，因此不将06中2026-10-07的重跑计为另一轮已核验执行，也不将其与原480次相加。07、08、10中的异机缓存路径与附录A的构建环境分开说明；不据图片认定异机重编译或独立复现已经核验。
+
+第四章的新增Listing逐字节摘自真实 `artifacts/mlir/03-memory.mlir` 第3–11行和 `04-sync.mlir` 第9–17行，摘录与来源哈希见 `report/listings/PROVENANCE.json`。图6使用现有生成源 `scripts/generate_vecadd_mechanism_figures.py` 对应的正确矢量图 `report/figures/vecadd-lifetime.pdf`：仅UB标注 `[0,32)`、`[32,64)`，GM不附加无依据的偏移，横向为操作顺序；A最后读取与C首次写入仍位于同一vadd。原 `fig6.png` 保留为历史配图，因闭区间、GM范围和时间轴标注有误，不再作为报告当前图6。
+
+附录B选用整数样例、浮点样例、整体验证汇总及Ascend后端限制四张输出图，其余六张仅在仓库归档。主机中端处理与设备端未执行的边界保持不变。
 
 ## 环境与依赖
 
@@ -136,7 +147,7 @@ python3 scripts/inspect_report.py
 
 `python3 scripts/export_public_evidence.py` 从本地已有 `artifacts/` 导出精选资料，不运行实验。干净克隆应先运行实验再按需导出；仓库已有 evidence 可直接阅读。
 
-未上传但在原本地完整保留：可执行文件、.o/.a/.bc、重复执行日志、完整 API tree / 网页缓存、页面渲染、机器资源与旧备份清单、课程原 PDF / DOC / PPTX、组员截图、旧 ZIP、规范全文和校徽。完整原始产物可通过上述脚本生成至 `artifacts/`，不保证时间戳、绝对路径或 ELF 字节逐位一致。
+未上传但在原本地完整保留：可执行文件、.o/.a/.bc、重复执行日志、完整 API tree / 网页缓存、页面渲染、机器资源与旧备份清单、课程原 PDF / DOC / PPTX、旧 ZIP、规范全文和校徽。截图目录中的旧讲解索引及一页讲解PDF存在未独立核验的异机重跑说明，只在本地保留；以新实验材料索引的核验边界为准。完整原始产物可通过上述脚本生成至 `artifacts/`，不保证时间戳、绝对路径或 ELF 字节逐位一致。
 
 报告附录给出固定实验快照 Commit SHA，可运行 `git checkout <报告中的完整SHA>` 查看。后续用于更新报告链接的文档提交不改变该实验快照；不要将会变化的 main 分支视为固定版本。
 

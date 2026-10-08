@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the public report from a temporary copy without editing tracked TeX.
 
-Only transitively included TeX files and referenced figures are copied. A
+Only transitively included TeX files and referenced figures/listings are copied. A
 missing, separately supplied university logo is omitted from the temporary
 cover. On Linux, the temporary ctexart document uses TeX Live's Fandol fonts.
 The original report sources and figures are never modified.
@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "report"
 INPUT = re.compile(r"\\(?:input|include)\s*\{([^{}]+)\}")
 GRAPHIC = re.compile(r"\\includegraphics\*?\s*(?:\[[^\]]*\]\s*)?\{([^{}]+)\}")
+LISTING = re.compile(r"\\lstinputlisting\s*(?:\[[^\]]*\]\s*)?\{([^{}]+)\}")
 CLASS = re.compile(r"\\documentclass\s*(?:\[([^\]]*)\]\s*)?\{ctexart\}")
 BAD_LOG = re.compile(
     r"^!|Undefined control sequence|LaTeX Warning:.*undefined|"
@@ -30,21 +31,25 @@ BAD_LOG = re.compile(
 )
 
 
-def checked_source(relative: str, suffixes: tuple[str, ...]) -> Path:
+def checked_source(relative: str, suffixes: tuple[str, ...], *, allow_project: bool = False) -> Path:
     candidate = (REPORT / relative).resolve()
-    if not candidate.is_relative_to(REPORT.resolve()):
-        raise ValueError(f"Report resource leaves report directory: {relative}")
+    boundary = (ROOT if allow_project else REPORT).resolve()
+    if not candidate.is_relative_to(boundary):
+        raise ValueError(f"Report resource leaves allowed directory: {relative}")
     options = [candidate] if candidate.suffix else [candidate.with_suffix(s) for s in suffixes]
     for option in options:
-        if option.is_file():
-            return option
+        resolved = option.resolve()
+        if not resolved.is_relative_to(boundary):
+            raise ValueError(f"Report resource leaves allowed directory: {relative}")
+        if resolved.is_file():
+            return resolved
     raise FileNotFoundError(f"Missing report resource: {relative}")
 
 
 def copy_sources(destination: Path) -> tuple[int, int, bool, bool]:
-    pending = [REPORT / "main.tex"]
+    pending = [checked_source("main.tex", (".tex",))]
     copied: set[Path] = set()
-    graphics: set[Path] = set()
+    resources: set[Path] = set()
     logo_missing = not (REPORT / "figures/nku.png").is_file()
     linux_fonts = sys.platform.startswith("linux")
     while pending:
@@ -73,12 +78,14 @@ def copy_sources(destination: Path) -> tuple[int, int, bool, bool]:
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(text, encoding="utf-8")
         pending.extend(checked_source(name, (".tex",)) for name in INPUT.findall(text))
-        graphics.update(checked_source(name, (".pdf", ".png", ".jpg", ".jpeg")) for name in GRAPHIC.findall(text))
-    for figure in graphics:
-        target = destination / figure.relative_to(REPORT.resolve())
+        resources.update(checked_source(name, (".pdf", ".png", ".jpg", ".jpeg"), allow_project=True)
+                         for name in GRAPHIC.findall(text))
+        resources.update(checked_source(name, ("",), allow_project=True) for name in LISTING.findall(text))
+    for resource in resources:
+        target = destination.parent / resource.relative_to(ROOT.resolve())
         target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(figure, target)
-    return len(copied), len(graphics), logo_missing, linux_fonts
+        shutil.copy2(resource, target)
+    return len(copied), len(resources), logo_missing, linux_fonts
 
 
 def main() -> int:
@@ -92,9 +99,10 @@ def main() -> int:
     if output.suffix.lower() != ".pdf":
         parser.error("--output must end in .pdf")
     with tempfile.TemporaryDirectory(prefix="compiler-prelab-public-report-") as temp:
-        temporary_report = Path(temp).resolve()
+        temporary_report = Path(temp).resolve() / "report"
+        temporary_report.mkdir()
         counts = copy_sources(temporary_report)
-        print(f"Copied {counts[0]} TeX sources and {counts[1]} figures; "
+        print(f"Copied {counts[0]} TeX sources and {counts[1]} figures/listings; "
               f"missing logo omitted={counts[2]}, Linux Fandol fonts={counts[3]}", flush=True)
         command = ["latexmk", "-xelatex", "-interaction=nonstopmode", "-halt-on-error", "-file-line-error", "main.tex"]
         result = subprocess.run(command, cwd=temporary_report)
